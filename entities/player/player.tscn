@@ -12,7 +12,7 @@
 motion_mode = 1
 script = ExtResource("1_fsyaj")
 characterController = NodePath("CharacterController")
-velocityComponent = NodePath("Velocity_Component")
+velocityComponent = NodePath("VelocityComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_4pdow")
@@ -23,9 +23,7 @@ texture = SubResource("PlaceholderTexture2D_tiqjn")
 
 [node name="CharacterController" parent="." instance=ExtResource("2_5ohw0")]
 
-[node name="Velocity_Component" parent="." instance=ExtResource("3_pp30o")]
+[node name="VelocityComponent" parent="." instance=ExtResource("3_pp30o")]
 maxXSpeed = 100.0
 maxYSpeed = 100.0
 speed = 90
-mass = 1.0
-friction = 1.0
