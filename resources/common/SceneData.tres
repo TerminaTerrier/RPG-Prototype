@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="SceneData" load_steps=2 format=3 uid="uid://blmyec8b7vv5w"]
+
+[ext_resource type="Script" path="res://resources/common/SceneData.cs" id="1_8fvhf"]
+
+[resource]
+script = ExtResource("1_8fvhf")

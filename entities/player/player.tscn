@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://cyvkhehj31xp5"]
+
+[ext_resource type="Script" path="res://entities/player/Player.cs" id="1_fsyaj"]
+[ext_resource type="PackedScene" uid="uid://duf16hyc5j5ok" path="res://components/character_controller.tscn" id="2_5ohw0"]
+[ext_resource type="PackedScene" uid="uid://cj61p2pt0xi67" path="res://components/velocity_component.tscn" id="3_pp30o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4pdow"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_tiqjn"]
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("characterController", "velocityComponent")]
+motion_mode = 1
+script = ExtResource("1_fsyaj")
+characterController = NodePath("CharacterController")
+velocityComponent = NodePath("Velocity_Component")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4pdow")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(23.75, 21.25)
+texture = SubResource("PlaceholderTexture2D_tiqjn")
+
+[node name="CharacterController" parent="." instance=ExtResource("2_5ohw0")]
+
+[node name="Velocity_Component" parent="." instance=ExtResource("3_pp30o")]
+maxXSpeed = 100.0
+maxYSpeed = 100.0
+speed = 90
+mass = 1.0
+friction = 1.0
