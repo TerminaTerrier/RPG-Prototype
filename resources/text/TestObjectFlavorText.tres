@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="FlavorText" load_steps=2 format=3 uid="uid://bw6j1ipf1k5su"]
+
+[ext_resource type="Script" path="res://resources/text/FlavorText.cs" id="1_g1fi2"]
+
+[resource]
+script = ExtResource("1_g1fi2")
+_flavorText = PackedStringArray("I am a test object", "More text please", "Is there such a thing as too much text? I do not think so.")

@@ -3,17 +3,21 @@ using System;
 
 public partial class StillCommand : Node, ICommand
 {
-	IMovable _movableObject;
+	IState _movableState;
 	Vector2 _direction;
 
-	public StillCommand(IMovable movableObject, Vector2 direction)
+	public StillCommand(IState movableState, Vector2 direction)
 	{
-		_movableObject = movableObject;
+		_movableState = movableState;
 		_direction = direction;
 	}
 
 	public void Execute()
 	{
-		_movableObject.Still(_direction);
+		if(_movableState is IMovable)
+		{
+            IMovable movableObject = (IMovable)_movableState;
+		    movableObject.Still(_direction);
+		}
 	}
 }

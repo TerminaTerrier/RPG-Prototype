@@ -1,14 +1,34 @@
-[gd_scene load_steps=4 format=3 uid="uid://dxpx0u2o5vu4j"]
+[gd_scene load_steps=7 format=3 uid="uid://dxpx0u2o5vu4j"]
 
 [ext_resource type="Script" path="res://scenes/main/Main.cs" id="1_aet3y"]
-[ext_resource type="PackedScene" uid="uid://3fyp7surujdf" path="res://scenes/world/world.tscn" id="2_2gxhc"]
+[ext_resource type="Script" path="res://UI/UILoader.cs" id="2_6fxpc"]
 [ext_resource type="PackedScene" uid="uid://cyvkhehj31xp5" path="res://entities/player/player.tscn" id="2_edb3w"]
+[ext_resource type="Script" path="res://scenes/world/SceneLoader.cs" id="2_v6b1g"]
+[ext_resource type="PackedScene" uid="uid://bedc5yovfgr40" path="res://UI/dialogue_player.tscn" id="3_37184"]
+[ext_resource type="Resource" uid="uid://blmyec8b7vv5w" path="res://resources/common/SceneData.tres" id="3_so8sb"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_aet3y")
 
-[node name="World" parent="." instance=ExtResource("2_2gxhc")]
+[node name="UILayer" type="CanvasLayer" parent="."]
+script = ExtResource("2_6fxpc")
+
+[node name="DialoguePlayer" parent="UILayer" instance=ExtResource("3_37184")]
+offset_left = 8.0
+offset_top = -5.0
+offset_right = 8.0
+offset_bottom = -5.0
+
+[node name="World" type="Node" parent="."]
+script = ExtResource("2_v6b1g")
+_sceneData = ExtResource("3_so8sb")
 
 [node name="Player" parent="World" instance=ExtResource("2_edb3w")]
+position = Vector2(296, 188)
 
-[node name="Camera2D" type="Camera2D" parent="World/Player"]
+[node name="PlayerCamera" type="Camera2D" parent="World/Player"]
+zoom = Vector2(2, 2)
+limit_left = 0
+limit_top = 0
+limit_right = 800
+limit_bottom = 336

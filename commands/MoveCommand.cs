@@ -3,9 +3,9 @@ using System;
 
 public partial class MoveCommand : Node, ICommand
 {
-	IMovable _movableObject;
+	IState _movableObject;
 	Vector2 _direction;
-	public MoveCommand(IMovable movableObject, Vector2 direction)
+	public MoveCommand(IState movableObject, Vector2 direction)
 	{
 		_movableObject = movableObject;
 		_direction = direction;
@@ -14,7 +14,11 @@ public partial class MoveCommand : Node, ICommand
 	//use interfaces to determine what gets executed
 	public void Execute()
 	{
-		_movableObject.Move(_direction);
+		if(_movableObject is IMovable)
+		{
+            IMovable movableObject = (IMovable)_movableObject;
+		    movableObject.Move(_direction);
+		}
 		//GD.Print("Command Execute");
 	}
 

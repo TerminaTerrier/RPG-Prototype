@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://btqt0sdgf8ygs"]
+
+[ext_resource type="Script" path="res://components/InspectArea.cs" id="1_wch5a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2pl0b"]
+radius = 18.0278
+
+[node name="InspectArea" type="Area2D"]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("1_wch5a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2pl0b")

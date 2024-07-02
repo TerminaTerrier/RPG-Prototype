@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://0v5c3v5d213d"]
+
+[ext_resource type="Script" path="res://scenes/props/TestInspectableObject.cs" id="1_gs2rs"]
+[ext_resource type="PackedScene" uid="uid://btqt0sdgf8ygs" path="res://components/inspect_area.tscn" id="1_j5s85"]
+[ext_resource type="Resource" uid="uid://bw6j1ipf1k5su" path="res://resources/text/TestObjectFlavorText.tres" id="2_5227e"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ffov6"]
+
+[node name="TestInspectableObject_1" type="Node2D" node_paths=PackedStringArray("inspectArea")]
+script = ExtResource("1_gs2rs")
+_flavorText = ExtResource("2_5227e")
+inspectArea = NodePath("InspectArea")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(1.19209e-07, 0)
+scale = Vector2(20, 24)
+texture = SubResource("PlaceholderTexture2D_ffov6")
+
+[node name="InspectArea" parent="." instance=ExtResource("1_j5s85")]

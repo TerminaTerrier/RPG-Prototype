@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="SceneData" load_steps=3 format=3 uid="uid://42xk60t3h6vr"]
+
+[ext_resource type="PackedScene" uid="uid://ulkwnxin2wr0" path="res://UI/text_box.tscn" id="1_0pwa6"]
+[ext_resource type="Script" path="res://resources/common/SceneData.cs" id="1_gngum"]
+
+[resource]
+script = ExtResource("1_gngum")
+TextBox = ExtResource("1_0pwa6")

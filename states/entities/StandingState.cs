@@ -1,15 +1,17 @@
 using Godot;
 using System;
 
-public partial class StandingState : Node, IState, IMovable
+public partial class StandingState : Node, IState, IMovable, IInspectable
 {
 	public ITransition FSM { get; set; }
 	public VelocityComponent VelocityComponent{ get; set; }
+	
 
-	public StandingState(VelocityComponent velocityComponent, ITransition fSM)
+	public StandingState(ITransition fSM, VelocityComponent velocityComponent)
 	{
-		VelocityComponent = velocityComponent;
 		FSM = fSM;
+		VelocityComponent = velocityComponent;
+		
 	}
 	
 	public void Enter(Variant controller)
@@ -32,8 +34,28 @@ public partial class StandingState : Node, IState, IMovable
 
     }
 
+	public void Inspect()
+    {
+        FSM.TransitionState("InspectingState");
+    }
+
+	public void OutputInspectionResult()
+	{
+		
+	}
+
 	public void Update(Variant controller, float delta)
 	{
 		
 	}
+
+    public bool GetInspectionStatus()
+    {
+       return false;
+    }
+
+    public void EndInspection()
+    {
+       
+    }
 }

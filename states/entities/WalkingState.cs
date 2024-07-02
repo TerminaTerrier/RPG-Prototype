@@ -1,15 +1,15 @@
 using Godot;
 using System;
 
-public partial class WalkingState : Node, IState, IMovable 
+public partial class WalkingState : Node, IState, IMovable, IInspectable 
 {
 	public ITransition FSM { get; set; }
 	public VelocityComponent VelocityComponent{ get; set; }
 
-    public WalkingState(VelocityComponent velocityComponent, ITransition fSM)
+    public WalkingState(ITransition fSM, VelocityComponent velocityComponent)
     {
-        VelocityComponent = velocityComponent;
         FSM = fSM;
+        VelocityComponent = velocityComponent;
     }
     public void Enter(Variant StateController)
     {
@@ -31,8 +31,28 @@ public partial class WalkingState : Node, IState, IMovable
         VelocityComponent.SetVelocity(direction);
     }
 
+    public void Inspect()
+    {
+        FSM.TransitionState("InspectingState");
+    }
+
+    public void OutputInspectionResult()
+    {
+        
+    }
+
     public void Update(Variant StateController, float delta)
     {
         VelocityComponent.Move((CharacterBody2D)StateController);
+    }
+
+    public bool GetInspectionStatus()
+    {
+        return false;
+    }
+
+    public void EndInspection()
+    {
+       
     }
 }
