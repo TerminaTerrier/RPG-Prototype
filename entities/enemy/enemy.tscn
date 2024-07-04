@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://drkbbp20gojbg"]
+
+[ext_resource type="Script" path="res://entities/enemy/Enemy.cs" id="1_jwlme"]
+[ext_resource type="PackedScene" uid="uid://cj61p2pt0xi67" path="res://components/velocity_component.tscn" id="2_veamb"]
+[ext_resource type="PackedScene" uid="uid://btqt0sdgf8ygs" path="res://components/inspect_area.tscn" id="3_d5gdm"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_3e6h6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2hsto"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5vsc7"]
+radius = 14.0
+
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("velocityComponent", "inspectArea")]
+motion_mode = 1
+script = ExtResource("1_jwlme")
+velocityComponent = NodePath("VelocityComponent")
+inspectArea = NodePath("InspectArea")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(4.76837e-07, 3.57628e-07)
+scale = Vector2(20, 20)
+texture = SubResource("PlaceholderTexture2D_3e6h6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2hsto")
+
+[node name="VelocityComponent" parent="." instance=ExtResource("2_veamb")]
+maxXSpeed = 10.0
+maxYSpeed = 10.0
+speed = 10
+mass = 1.0
+friction = 1.0
+
+[node name="InspectArea" parent="." instance=ExtResource("3_d5gdm")]
+
+[node name="EventArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EventArea"]
+shape = SubResource("CircleShape2D_5vsc7")
+
+[connection signal="body_entered" from="EventArea" to="." method="OnBodyEntered"]

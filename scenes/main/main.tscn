@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dxpx0u2o5vu4j"]
+[gd_scene load_steps=9 format=3 uid="uid://dxpx0u2o5vu4j"]
 
 [ext_resource type="Script" path="res://scenes/main/Main.cs" id="1_aet3y"]
 [ext_resource type="Script" path="res://UI/UILoader.cs" id="2_6fxpc"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://scenes/world/SceneLoader.cs" id="2_v6b1g"]
 [ext_resource type="PackedScene" uid="uid://bedc5yovfgr40" path="res://UI/dialogue_player.tscn" id="3_37184"]
 [ext_resource type="Resource" uid="uid://blmyec8b7vv5w" path="res://resources/common/SceneData.tres" id="3_so8sb"]
+[ext_resource type="Script" path="res://scenes/battle/BattleManager.cs" id="7_hejt0"]
+[ext_resource type="Resource" uid="uid://ceh2j1ufhyh04" path="res://resources/common/BRSceneData.tres" id="8_lmfpn"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_aet3y")
@@ -24,7 +26,7 @@ script = ExtResource("2_v6b1g")
 _sceneData = ExtResource("3_so8sb")
 
 [node name="Player" parent="World" instance=ExtResource("2_edb3w")]
-position = Vector2(296, 188)
+position = Vector2(276, 162)
 
 [node name="PlayerCamera" type="Camera2D" parent="World/Player"]
 zoom = Vector2(2, 2)
@@ -32,3 +34,12 @@ limit_left = 0
 limit_top = 0
 limit_right = 800
 limit_bottom = 336
+
+[node name="BattleRoom" type="Node" parent="." node_paths=PackedStringArray("_battleCamera")]
+script = ExtResource("7_hejt0")
+_sceneData = ExtResource("8_lmfpn")
+_battleCamera = NodePath("BattleCamera")
+
+[node name="BattleCamera" type="Camera2D" parent="BattleRoom"]
+enabled = false
+editor_draw_drag_margin = true

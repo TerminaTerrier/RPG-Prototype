@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://blgpk5il3fahb"]
+
+[ext_resource type="Script" path="res://entities/player/BattlePlayer.cs" id="1_aljo4"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xe28o"]
+
+[node name="BattlePlayer" type="Node2D"]
+z_index = 1
+script = ExtResource("1_aljo4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(-9.53674e-07, -7.15256e-07)
+scale = Vector2(15.9531, 13.4687)
+texture = SubResource("PlaceholderTexture2D_xe28o")

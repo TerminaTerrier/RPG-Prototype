@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SceneData" load_steps=4 format=3 uid="uid://ceh2j1ufhyh04"]
+
+[ext_resource type="Script" path="res://resources/common/SceneData.cs" id="1_8d63k"]
+[ext_resource type="PackedScene" uid="uid://dbn411qtoxkjd" path="res://entities/enemy/battle_enemy.tscn" id="1_41gfy"]
+[ext_resource type="PackedScene" uid="uid://blgpk5il3fahb" path="res://entities/player/battle_player.tscn" id="2_ngpvn"]
+
+[resource]
+script = ExtResource("1_8d63k")
+BattlePlayer = ExtResource("2_ngpvn")
+BattleEnemy = ExtResource("1_41gfy")

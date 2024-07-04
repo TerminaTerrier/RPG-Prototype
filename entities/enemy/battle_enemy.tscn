@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbn411qtoxkjd"]
+
+[ext_resource type="Script" path="res://entities/enemy/BattleEnemy.cs" id="1_hoo6q"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_46bew"]
+
+[node name="BattleEnemy" type="Node2D"]
+script = ExtResource("1_hoo6q")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(-4, -5)
+scale = Vector2(103.5, 44.5)
+texture = SubResource("PlaceholderTexture2D_46bew")

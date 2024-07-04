@@ -8,4 +8,6 @@ public partial class EventBus : Node
     public delegate void LoadTextEventHandler(String[] text);
     [Signal]
     public delegate void UnloadTextEventHandler();
+    [Signal]
+    public delegate void StartBattleEventHandler();
 }
