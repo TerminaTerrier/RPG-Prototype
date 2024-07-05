@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Runtime.Serialization;
 
 public partial class SceneLoader : Node
 {
@@ -11,17 +12,17 @@ public partial class SceneLoader : Node
     public override void _Ready()
     {
         eventBus = GetNode<EventBus>("/root/EventBus");
-        eventBus.StartBattle += UnloadAllScenes;
         
+        
+        AddScene(_sceneData.Player, "Player");
+        SetScenePosition("Player", new Vector2(150,150));
+        LoadScene("Player");
+ 
         AddScene(_sceneData.TestArea1, "TestArea1");
         LoadScene("TestArea1");
 
         AddScene(_sceneData.Enemy, "Enemy");
         LoadScene("Enemy");
-
-
-        //Node TestArea1 = _sceneData.TestArea1.Instantiate();
-		//AddChild(TestArea1);
     }
 
     public void AddScene(PackedScene scene, string key)
@@ -36,9 +37,20 @@ public partial class SceneLoader : Node
        AddChild((Node)scenes[key]);
     }
 
+    public void SetScenePosition(string key, Vector2 position)
+    {
+        var scene = (Node2D)scenes[key];
+        scene.Position = position;
+    }
+
+    public void LoadSubScene(Node child, string key)
+    {
+        child.AddChild((Node)scenes[key]);
+    }
+
     public void UnloadScene(string key)
     {
-        CallDeferred("remove_child", (Node)scenes[key]);
+       // CallDeferred("remove_child", (Node)scenes[key]);
     }
 
     public void UnloadAllScenes()

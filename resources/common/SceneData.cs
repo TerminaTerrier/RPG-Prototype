@@ -8,6 +8,8 @@ public partial class SceneData : Resource
     [Export]
     public PackedScene Player { get; set; }
     [Export]
+    public PackedScene PlayerCamera { get; set; }
+    [Export]
     public PackedScene BattlePlayer { get; set; }
     [Export]
     public PackedScene Enemy { get; set; }

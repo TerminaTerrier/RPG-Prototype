@@ -8,7 +8,7 @@ public partial class BattleEnemy : Node2D
 	
 	public override void _Ready()
 	{
-        GlobalPosition = new Vector2(0, -325);
+        GlobalPosition = new Vector2(300, -170);
 	}
 
 	public override void _Process(double delta)

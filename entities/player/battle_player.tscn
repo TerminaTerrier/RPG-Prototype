@@ -1,12 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://blgpk5il3fahb"]
+[gd_scene load_steps=4 format=3 uid="uid://blgpk5il3fahb"]
 
 [ext_resource type="Script" path="res://entities/player/BattlePlayer.cs" id="1_aljo4"]
+[ext_resource type="Resource" uid="uid://ckgpqx306jwjh" path="res://resources/stats/PlayerStats.tres" id="2_1la81"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xe28o"]
 
 [node name="BattlePlayer" type="Node2D"]
 z_index = 1
 script = ExtResource("1_aljo4")
+playerStats = ExtResource("2_1la81")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1

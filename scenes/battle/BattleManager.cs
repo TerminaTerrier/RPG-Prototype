@@ -23,10 +23,10 @@ public partial class BattleManager : Node
 	public override void _Ready()
 	{
 		_eventBus = GetNode<EventBus>("/root/EventBus");
-		_eventBus.StartBattle += OnBattleStart;
+		
 	}
 
-	public void OnBattleStart()
+	public void BattleStart()
 	{
         battlePlayer = (BattlePlayer)_sceneData.BattlePlayer.Instantiate();
 		battleEnemy = (BattleEnemy)_sceneData.BattleEnemy.Instantiate();
@@ -40,12 +40,17 @@ public partial class BattleManager : Node
 		battleStatus = BattleStatus.Active;
 	}
 
+	public void SetInstanceValues(InstanceStats playerInstanceData)
+	{
+         battlePlayer.SetPlayerInstanceValues(playerInstanceData);
+	}
+
 	public void ManageTurn()
 	{
         
 	}
 
-	public void OnBattleStop()
+	public void BattleStop()
 	{
 
 	}

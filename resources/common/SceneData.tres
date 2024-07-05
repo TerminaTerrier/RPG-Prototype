@@ -1,10 +1,14 @@
-[gd_resource type="Resource" script_class="SceneData" load_steps=4 format=3 uid="uid://blmyec8b7vv5w"]
+[gd_resource type="Resource" script_class="SceneData" load_steps=6 format=3 uid="uid://blmyec8b7vv5w"]
 
 [ext_resource type="PackedScene" uid="uid://bongp2f1jnul1" path="res://scenes/world/test_area_1.tscn" id="1_3h832"]
 [ext_resource type="Script" path="res://resources/common/SceneData.cs" id="1_8fvhf"]
 [ext_resource type="PackedScene" uid="uid://drkbbp20gojbg" path="res://entities/enemy/enemy.tscn" id="1_y4k65"]
+[ext_resource type="PackedScene" uid="uid://cyvkhehj31xp5" path="res://entities/player/player.tscn" id="2_k73lv"]
+[ext_resource type="PackedScene" uid="uid://dx1d20sblmt2g" path="res://components/PlayerCamera.tscn" id="3_7pphx"]
 
 [resource]
 script = ExtResource("1_8fvhf")
+Player = ExtResource("2_k73lv")
+PlayerCamera = ExtResource("3_7pphx")
 Enemy = ExtResource("1_y4k65")
 TestArea1 = ExtResource("1_3h832")

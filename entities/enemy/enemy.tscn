@@ -11,11 +11,12 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_5vsc7"]
 radius = 14.0
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("velocityComponent", "inspectArea")]
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("velocityComponent", "inspectArea", "eventArea")]
 motion_mode = 1
 script = ExtResource("1_jwlme")
 velocityComponent = NodePath("VelocityComponent")
 inspectArea = NodePath("InspectArea")
+eventArea = NodePath("EventArea")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
@@ -36,6 +37,7 @@ friction = 1.0
 [node name="InspectArea" parent="." instance=ExtResource("3_d5gdm")]
 
 [node name="EventArea" type="Area2D" parent="."]
+monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EventArea"]
 shape = SubResource("CircleShape2D_5vsc7")

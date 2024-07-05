@@ -10,6 +10,8 @@ public partial class Enemy : CharacterBody2D
 	VelocityComponent velocityComponent;
 	[Export]
 	InspectArea inspectArea;
+	[Export]
+	Area2D eventArea;
 	public IState CurrentState {get; private set;}
 	private Dictionary<string, IState> states = new Dictionary<string, IState>();
 	EventBus eventBus;
@@ -17,6 +19,7 @@ public partial class Enemy : CharacterBody2D
 	public override void _Ready()
 	{
         eventBus = GetNode<EventBus>("/root/EventBus");
+		eventArea.Monitoring = true;
 	}
 
 	public override void _Process(double delta)
