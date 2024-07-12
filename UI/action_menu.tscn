@@ -14,6 +14,7 @@ script = ExtResource("1_owlvr")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+button_mask = 0
 
 [node name="Button2" type="Button" parent="."]
 layout_mode = 2

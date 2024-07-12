@@ -9,9 +9,16 @@ public partial class Main : Node2D
 	[Export]
 	BattleManager battleManager;
 	EventBus eventBus;
-	public override void _Ready()
+
+    public override void _EnterTree()
+    {
+        Input.MouseMode = Input.MouseModeEnum.Captured;
+    }
+    public override void _Ready()
 	{
 		eventBus = GetNode<EventBus>("/root/EventBus");
+        
+
 		eventBus.StartBattle += InitializeBattle;
 	}
 

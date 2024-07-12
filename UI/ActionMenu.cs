@@ -10,6 +10,7 @@ public partial class ActionMenu : GridContainer
     {
         eventBus = GetNode<EventBus>("/root/EventBus");
 		ActionMenuButtons = GetChildren().Cast<Button>().ToArray();
+		ActionMenuButtons[0].GrabFocus();
     }
 
     public void OnButtonOnePressed()
