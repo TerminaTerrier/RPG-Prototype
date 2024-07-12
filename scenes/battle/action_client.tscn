@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqa6cbcq6gxqg"]
+
+[ext_resource type="Script" path="res://scenes/battle/ActionClient.cs" id="1_3ibvt"]
+[ext_resource type="Script" path="res://scenes/battle/TargetRetriever.cs" id="1_jsuvm"]
+[ext_resource type="Script" path="res://scenes/battle/ActionContext.cs" id="2_kl1cd"]
+
+[node name="ActionClient" type="Node" node_paths=PackedStringArray("ActionContext", "targetRetriever")]
+script = ExtResource("1_3ibvt")
+ActionContext = NodePath("ActionContext")
+targetRetriever = NodePath("TargetRetriever")
+
+[node name="ActionContext" type="Node" parent="."]
+script = ExtResource("2_kl1cd")
+
+[node name="TargetRetriever" type="Node" parent="."]
+script = ExtResource("1_jsuvm")

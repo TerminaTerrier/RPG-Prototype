@@ -9,7 +9,6 @@ public partial class HealthComponent : Node2D
 	public delegate void DamageEventHandler();
 	public int MaxHealth { get; private set; }
 	public int CurrentHealth {get; private set;}
-	private Boolean didHit;
 	EventBus EventBus;
 	
     public void CalculateHealth(int healthUpdate)
@@ -18,7 +17,6 @@ public partial class HealthComponent : Node2D
 		{
 			GD.Print(CurrentHealth);
 			CurrentHealth = CurrentHealth + healthUpdate;
-			didHit = false;
 		}
 
 		if(CurrentHealth <= 0)

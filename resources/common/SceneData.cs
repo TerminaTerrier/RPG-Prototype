@@ -19,5 +19,7 @@ public partial class SceneData : Resource
     public PackedScene TestArea1 { get; set; }
     [Export]
     public PackedScene TextBox { get; set; }
+    [Export]
+    public PackedScene BattleGUI{ get; set; }
 
 }

@@ -19,10 +19,11 @@ public partial class Main : Node2D
 	{
 		var player = sceneLoader.GetNode<Player>("Player");
 		
-		
-		sceneLoader.UnloadAllScenes();
-		battleManager.BattleStart();
 		battleManager.SetInstanceValues(player.GetInstanceData());
+		battleManager.BattleStart();
+		sceneLoader.UnloadAllScenes();
+		
+		
 	}
 
 	

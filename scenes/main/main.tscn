@@ -5,8 +5,8 @@
 [ext_resource type="Script" path="res://scenes/world/SceneLoader.cs" id="2_v6b1g"]
 [ext_resource type="PackedScene" uid="uid://bedc5yovfgr40" path="res://UI/dialogue_player.tscn" id="3_37184"]
 [ext_resource type="Resource" uid="uid://blmyec8b7vv5w" path="res://resources/common/SceneData.tres" id="3_so8sb"]
-[ext_resource type="Script" path="res://scenes/battle/BattleManager.cs" id="7_hejt0"]
-[ext_resource type="Resource" uid="uid://ceh2j1ufhyh04" path="res://resources/common/BRSceneData.tres" id="8_lmfpn"]
+[ext_resource type="Resource" uid="uid://diiec2t5hy6xb" path="res://resources/common/UISceneData.tres" id="3_yaw1d"]
+[ext_resource type="PackedScene" uid="uid://ghjpune6tddj" path="res://scenes/battle/battle_room.tscn" id="6_nkeoh"]
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("sceneLoader", "battleManager")]
 script = ExtResource("1_aet3y")
@@ -15,6 +15,7 @@ battleManager = NodePath("BattleRoom")
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 script = ExtResource("2_6fxpc")
+_sceneData = ExtResource("3_yaw1d")
 
 [node name="DialoguePlayer" parent="UILayer" instance=ExtResource("3_37184")]
 offset_left = 8.0
@@ -26,11 +27,4 @@ offset_bottom = -5.0
 script = ExtResource("2_v6b1g")
 _sceneData = ExtResource("3_so8sb")
 
-[node name="BattleRoom" type="Node" parent="." node_paths=PackedStringArray("_battleCamera")]
-script = ExtResource("7_hejt0")
-_sceneData = ExtResource("8_lmfpn")
-_battleCamera = NodePath("BattleCamera")
-
-[node name="BattleCamera" type="Camera2D" parent="BattleRoom"]
-enabled = false
-editor_draw_drag_margin = true
+[node name="BattleRoom" parent="." instance=ExtResource("6_nkeoh")]

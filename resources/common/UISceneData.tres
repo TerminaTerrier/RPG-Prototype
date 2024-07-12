@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="SceneData" load_steps=3 format=3 uid="uid://diiec2t5hy6xb"]
+
+[ext_resource type="Script" path="res://resources/common/SceneData.cs" id="1_vpat1"]
+[ext_resource type="PackedScene" uid="uid://uj58vf5m2yx0" path="res://UI/battle_gui.tscn" id="1_yq5hl"]
+
+[resource]
+script = ExtResource("1_vpat1")
+BattleGUI = ExtResource("1_yq5hl")

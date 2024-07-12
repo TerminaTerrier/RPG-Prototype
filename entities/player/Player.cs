@@ -21,6 +21,8 @@ public partial class Player : CharacterBody2D, IControllable, ITransition
 	IState InspectingState;
 	EventBus eventBus;
 
+	
+
     public override void _EnterTree()
     {
 		inspectArea.Monitorable = true;

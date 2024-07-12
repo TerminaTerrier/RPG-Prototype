@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://blkg8bqo5o6up"]
+
+[ext_resource type="Script" path="res://resources/moves/Move.cs" id="1_cfxam"]
+
+[resource]
+script = ExtResource("1_cfxam")
+MoveText = "Anchor Root"
+moveTypes = Array[int]([2])
+target = 1
+BaseStrength = 0
+HitNumber = 0
+CritChance = 0.0
+SPCost = 10
+statusFlag = 1

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Moveset" load_steps=6 format=3 uid="uid://ithodhmlwas4"]
+
+[ext_resource type="Script" path="res://resources/moves/Moveset.cs" id="1_0pl3v"]
+[ext_resource type="Resource" uid="uid://8wtptyo8scu7" path="res://resources/moves/Splinter.tres" id="1_f228m"]
+[ext_resource type="Resource" uid="uid://bll42snheh1v1" path="res://resources/moves/ToughBark.tres" id="1_phrnd"]
+[ext_resource type="Resource" uid="uid://bfajujic0c4u6" path="res://resources/moves/Sap.tres" id="1_wdm1k"]
+[ext_resource type="Resource" uid="uid://blkg8bqo5o6up" path="res://resources/moves/AnchorRoot.tres" id="4_vxxvo"]
+
+[resource]
+script = ExtResource("1_0pl3v")
+moveset = [ExtResource("1_wdm1k"), ExtResource("1_phrnd"), ExtResource("1_f228m"), ExtResource("4_vxxvo")]

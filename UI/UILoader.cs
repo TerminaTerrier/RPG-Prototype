@@ -3,13 +3,36 @@ using System;
 
 public partial class UILoader : CanvasLayer
 {
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
+	[Export]
+	SceneData _sceneData;
+	 Godot.Collections.Dictionary<string, GodotObject> elements = new Godot.Collections.Dictionary<string, GodotObject>();
+	EventBus eventBus;
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
+    public override void _Ready()
+    {
+        eventBus = GetNode<EventBus>("/root/EventBus");
+		eventBus.StartBattle += () => { AddUIElement(_sceneData.BattleGUI, "BattleGUI"); LoadUIElement("BattleGUI"); };
+    }
+
+	public void AddUIElement(PackedScene scene, string key)
+    {
+       var newUIElement = scene.Instantiate();
+
+       elements.Add(key, newUIElement);  
+    }
+
+	public void LoadUIElement(string key)
+    {
+       AddChild((Node)elements[key]);
+    }
+
+    public void UnloadAllUIElements()
+    {
+        var childrenArray = GetChildren();
+
+        foreach (var child in childrenArray)
+        {
+            CallDeferred("remove_child", child);
+        }
+    }
 }

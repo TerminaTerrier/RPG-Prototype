@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqararx1et8i8"]
+
+[ext_resource type="Script" path="res://UI/ActionMenu.cs" id="1_owlvr"]
+
+[node name="ActionMenu" type="GridContainer"]
+offset_left = 390.0
+offset_top = 487.0
+offset_right = 815.0
+offset_bottom = 625.0
+columns = 2
+script = ExtResource("1_owlvr")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button3" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button4" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[connection signal="pressed" from="Button" to="." method="OnButtonOnePressed"]
+[connection signal="pressed" from="Button2" to="." method="OnButtonTwoPressed"]
+[connection signal="pressed" from="Button3" to="." method="OnButtonThreePressed"]
+[connection signal="pressed" from="Button4" to="." method="OnButtonFourPressed"]

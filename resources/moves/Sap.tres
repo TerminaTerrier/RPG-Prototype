@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://bfajujic0c4u6"]
+
+[ext_resource type="Script" path="res://resources/moves/Move.cs" id="1_4m1ve"]
+
+[resource]
+script = ExtResource("1_4m1ve")
+MoveText = "Sap"
+moveTypes = Array[int]([0, 4])
+target = 1
+BaseStrength = 10
+HitNumber = 0
+CritChance = 0.0
+SPCost = 10
+statusFlag = 0
