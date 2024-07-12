@@ -10,7 +10,7 @@ public partial class ActionClient : Node
 	EventBus eventBus;
 	Stats _actorStats;
 	public InstanceStats InstanceStats {get; private set;}
-	public Dictionary<string, IDamageable> possibleTargets;
+	public Dictionary<string, Node2D> possibleTargets;
 	public Moveset Moveset { get; private set; }
 
 	public override void _Ready()

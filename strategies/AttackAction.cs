@@ -10,10 +10,10 @@ public partial class AttackAction : Node, IAction
     int power;
     int attack;
     
-	public AttackAction(Move move, IDamageable target, Stats actorStats)
+	public AttackAction(Move move, Node2D target, Stats actorStats)
 	{
 		Move = move;
-        Target = target;
+        Target = (IDamageable)target;
         ActorStats = actorStats;
 	}
 	

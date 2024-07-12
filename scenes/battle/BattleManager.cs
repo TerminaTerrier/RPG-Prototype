@@ -15,7 +15,7 @@ public partial class BattleManager : Node
 	InstanceStats playerInstanceData;
 	BattlePlayer battlePlayer;
 	BattleEnemy battleEnemy;
-	Dictionary<string, IDamageable> participants = new Dictionary<string,IDamageable>();
+	Dictionary<string, Node2D> participants = new Dictionary<string, Node2D>();
 	BattleStatus battleStatus;
 	TookLastTurn tookLastTurn;
     
@@ -73,15 +73,15 @@ public partial class BattleManager : Node
 	   if(tookLastTurn == TookLastTurn.Player | tookLastTurn == TookLastTurn.None)
 	   {
 		    participants.Clear();
-            participants.Add("Actor", (IDamageable)battlePlayer);
-	        participants.Add("Opponent", (IDamageable)battleEnemy);
+            participants.Add("Actor", battlePlayer);
+	        participants.Add("Opponent", battleEnemy);
 			_actionClient.SetStats(_playerStats);
 	   }
 	   else if(tookLastTurn == TookLastTurn.Enemy)
 	   {
 		    participants.Clear();
-            participants.Add("Actor", (IDamageable)battleEnemy);
-	        participants.Add("Opponent", (IDamageable)battlePlayer);
+            participants.Add("Actor", battleEnemy);
+	        participants.Add("Opponent", battlePlayer);
 			_actionClient.SetStats(_enemyStats);
 	   }
 
