@@ -8,6 +8,8 @@ public partial class BattleManager : Node
 	[Export]
 	Camera2D _battleCamera;
 	[Export]
+	TurnManager turnManager;
+	[Export]
 	ActionClient _actionClient;
 	EventBus _eventBus;
 	Stats _playerStats;
@@ -16,22 +18,17 @@ public partial class BattleManager : Node
 	BattlePlayer battlePlayer;
 	BattleEnemy battleEnemy;
 	Dictionary<string, Node2D> participants = new Dictionary<string, Node2D>();
-	BattleStatus battleStatus;
-	TookLastTurn tookLastTurn;
+	Dictionary<string, Stats> participantsStats = new Dictionary<string, Stats>();
+	public static BattleStatus battleStatus {get; private set;}
+	
     
-	enum BattleStatus
+	public enum BattleStatus
 	{
 		Active,
 		Finished
 	}
 
-	enum TookLastTurn
-	{
-       None,
-	   Player,
-	   Enemy
-	}
-
+	
 	public override void _Ready()
 	{
 		_eventBus = GetNode<EventBus>("/root/EventBus");
@@ -54,38 +51,23 @@ public partial class BattleManager : Node
 		battlePlayer.SetMoveset(GD.Load<Moveset>("res://resources/moves/WoodMoveset.tres"));
 		_actionClient.SetMoveset(GD.Load<Moveset>("res://resources/moves/WoodMoveset.tres"));
 
-		
+		participants.Add("Player", battlePlayer);
+	    participants.Add("Enemy", battleEnemy);
+		participantsStats.Add("PlayerStats", _playerStats);
+		participantsStats.Add("EnemyStats", _enemyStats);
+		_actionClient.possibleTargets = participants;
+		_actionClient.TargetStats = participantsStats;
+
+
         
 		_battleCamera.Enabled = true;
 		battleStatus = BattleStatus.Active;
-		SetTargets();
-		ManageTurn();
+		turnManager.ManageTurn(battlePlayer, battleEnemy, _playerStats, _enemyStats);
 	}
 
 	public void SetInstanceValues(InstanceStats PlayerInstanceData)
 	{
         playerInstanceData = PlayerInstanceData;
-	}
-    
-	//Method for setting available targets and passing them down to ActionClient from which TargetRetriever will select a target. Likely violates SOLID but I'm not sure where else to put it.
-	public void SetTargets()
-	{
-	   if(tookLastTurn == TookLastTurn.Player | tookLastTurn == TookLastTurn.None)
-	   {
-		    participants.Clear();
-            participants.Add("Actor", battlePlayer);
-	        participants.Add("Opponent", battleEnemy);
-			_actionClient.SetStats(_playerStats);
-	   }
-	   else if(tookLastTurn == TookLastTurn.Enemy)
-	   {
-		    participants.Clear();
-            participants.Add("Actor", battleEnemy);
-	        participants.Add("Opponent", battlePlayer);
-			_actionClient.SetStats(_enemyStats);
-	   }
-
-	   _actionClient.possibleTargets = participants;
 	}
 
 	public void ChangeBattleStatus()
@@ -100,35 +82,9 @@ public partial class BattleManager : Node
 		}
 	}
 
-	public void ManageTurn()
-	{
-	    if(battleStatus == BattleStatus.Active)
-		{
-            if(_playerStats.speed > _enemyStats.speed)
-		    {
-                if(tookLastTurn != TookLastTurn.Player)
-				{
-                    battlePlayer.StartTurn();
-					tookLastTurn = TookLastTurn.Player;
-				}
-		    }
-		    else if(_enemyStats.speed > _playerStats.speed)
-		    {
-               if(tookLastTurn != TookLastTurn.Enemy)
-				{
-                    battlePlayer.StartTurn();
-					tookLastTurn = TookLastTurn.Enemy;
-				}
-		    }
-		}
-		else
-		{
-			BattleStop();
-		}
-	}
-
+	
 	public void BattleStop()
 	{
-        tookLastTurn = TookLastTurn.None;
+        
 	}
 }

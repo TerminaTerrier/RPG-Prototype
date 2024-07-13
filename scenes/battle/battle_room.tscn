@@ -1,14 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://ghjpune6tddj"]
+[gd_scene load_steps=5 format=3 uid="uid://ghjpune6tddj"]
 
 [ext_resource type="Script" path="res://scenes/battle/BattleManager.cs" id="1_ucygb"]
 [ext_resource type="Resource" uid="uid://ceh2j1ufhyh04" path="res://resources/common/BRSceneData.tres" id="2_32h41"]
+[ext_resource type="Script" path="res://scenes/battle/TurnManager.cs" id="3_5eje5"]
 [ext_resource type="PackedScene" uid="uid://cqa6cbcq6gxqg" path="res://scenes/battle/action_client.tscn" id="3_g3crh"]
 
-[node name="BattleRoom" type="Node" node_paths=PackedStringArray("_battleCamera", "_actionClient")]
+[node name="BattleRoom" type="Node" node_paths=PackedStringArray("_battleCamera", "turnManager", "_actionClient")]
 script = ExtResource("1_ucygb")
 _sceneData = ExtResource("2_32h41")
 _battleCamera = NodePath("BattleCamera")
+turnManager = NodePath("TurnManager")
 _actionClient = NodePath("ActionClient")
+
+[node name="TurnManager" type="Node" parent="."]
+script = ExtResource("3_5eje5")
 
 [node name="ActionClient" parent="." instance=ExtResource("3_g3crh")]
 
