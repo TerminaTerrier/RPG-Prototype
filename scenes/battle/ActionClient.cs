@@ -47,8 +47,10 @@ public partial class ActionClient : Node
 				    ActionContext.EnactAction();  
 					break;
 				}
-				case Move.MoveType.Buff:
+				case Move.MoveType.StatusEffect:
 				{
+					ActionContext.SetAction(new StatusChangeAction(moveData, target, targetStats));
+					ActionContext.EnactAction();
 					break;
 				}
 		    }

@@ -62,7 +62,8 @@ public partial class BattleManager : Node
         
 		_battleCamera.Enabled = true;
 		battleStatus = BattleStatus.Active;
-		turnManager.ManageTurn(battlePlayer, battleEnemy, _playerStats, _enemyStats);
+		turnManager.SetBattleProperties(battlePlayer, battleEnemy, _playerStats, _enemyStats);
+		turnManager.ManageTurn();
 	}
 
 	public void SetInstanceValues(InstanceStats PlayerInstanceData)

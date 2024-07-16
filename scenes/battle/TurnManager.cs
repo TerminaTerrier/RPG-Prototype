@@ -5,7 +5,11 @@ public partial class TurnManager : Node
 {   
 	[Export]
 	TargetRetriever targetRetriever;
-    EventBus eventBus;
+	BattlePlayer _battlePlayer;
+	BattleEnemy _battleEnemy;
+	Stats _playerStats;
+	Stats _enemyStats;
+    EventBus _eventBus;
 	TookLastTurn tookLastTurn;
 	public static CurrentTurn currentTurn {get; private set; }
 	enum TookLastTurn
@@ -23,29 +27,50 @@ public partial class TurnManager : Node
 
 	public override void _Ready()
 	{
-        
+        _eventBus = GetNode<EventBus>("/root/EventBus");
+		_eventBus.TurnEnded += ManageTurn;
 	}
 
-	public void ManageTurn(BattlePlayer battlePlayer, BattleEnemy battleEnemy, Stats playerStats, Stats enemyStats)
+	public void SetBattleProperties(BattlePlayer battlePlayer, BattleEnemy battleEnemy, Stats playerStats, Stats enemyStats)
+	{
+        _battlePlayer = battlePlayer;
+		_battleEnemy = battleEnemy;
+		_playerStats = playerStats;
+		_enemyStats = enemyStats;
+	}
+
+	public void ManageTurn()
 	{
 	    if(BattleManager.battleStatus == BattleManager.BattleStatus.Active)
 		{
-            if(playerStats.speed > enemyStats.speed)
+            if(_playerStats.speed > _enemyStats.speed)
 		    {
                 if(tookLastTurn != TookLastTurn.Player)
 				{
-                    battlePlayer.StartTurn();
+                    _battlePlayer.StartTurn();
 					tookLastTurn = TookLastTurn.Player;
 					currentTurn = CurrentTurn.Player;
 				}
+				else if(tookLastTurn != TookLastTurn.Enemy)
+				{
+					_battleEnemy.StartTurn();
+					tookLastTurn = TookLastTurn.Enemy;
+					currentTurn = CurrentTurn.Enemy;
+				}
 		    }
-		    else if(enemyStats.speed > playerStats.speed)
+		    else if(_enemyStats.speed > _playerStats.speed)
 		    {
                if(tookLastTurn != TookLastTurn.Enemy)
 				{
-                    battlePlayer.StartTurn();
+                    _battleEnemy.StartTurn();
 					tookLastTurn = TookLastTurn.Enemy;
 					currentTurn = CurrentTurn.Enemy;
+				}
+				else if(tookLastTurn != TookLastTurn.Player)
+				{
+					_battlePlayer.StartTurn();
+					tookLastTurn = TookLastTurn.Player;
+					currentTurn = CurrentTurn.Player;
 				}
 		    }
 		}

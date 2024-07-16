@@ -19,7 +19,7 @@ public partial class Move : Resource
     [Export]
     public int SPCost;
     [Export]
-    public StatusFlag statusFlag;
+    public StatusData status;
     public enum Target
     {
         Self,
@@ -29,15 +29,7 @@ public partial class Move : Resource
     {
         SingleAttack,
         MultiAttack,
-        Debuff,
-        Buff,
-        Heal
+        StatusEffect
     }
-    public enum StatusFlag
-    {
-        None,
-        Rooted,
-        Magnetized,
-        Sinking
-    }
+  
 }

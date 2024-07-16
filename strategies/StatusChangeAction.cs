@@ -7,6 +7,7 @@ public partial class StatusChangeAction : Node, IAction
 	public IEffectable Target {get; set;}
     public Stats ActorStats { get; set;}
     
+    
 	public StatusChangeAction(Move move, Node2D target, Stats actorStats)
 	{
 		Move = move;
@@ -16,6 +17,18 @@ public partial class StatusChangeAction : Node, IAction
  
     public void Enact()
     {
-       
+       switch (Move.status.statusFlag)
+       {
+            case StatusData.StatusFlag.None:
+            {
+                break;
+            } 
+
+            case StatusData.StatusFlag.Rooted:
+            {
+                Target.ChangeStatus(new RootStatus(Move.status, ActorStats));
+                break;
+            }
+       }
     }
 }

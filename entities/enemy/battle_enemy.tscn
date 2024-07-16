@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dbn411qtoxkjd"]
+[gd_scene load_steps=7 format=3 uid="uid://dbn411qtoxkjd"]
 
 [ext_resource type="Script" path="res://entities/enemy/BattleEnemy.cs" id="1_hoo6q"]
 [ext_resource type="Resource" uid="uid://bb5w7cr1y73hg" path="res://resources/stats/EnemyStats.tres" id="2_swfe6"]
 [ext_resource type="PackedScene" uid="uid://3a5s6ds1pqbd" path="res://components/HealthComponent.tscn" id="3_gx2u3"]
 [ext_resource type="PackedScene" uid="uid://cg4p2cq2jnl5e" path="res://components/damage_component.tscn" id="4_pyqwu"]
+[ext_resource type="PackedScene" uid="uid://cmknxnkgmwblx" path="res://components/status_handler.tscn" id="5_yiyqk"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_46bew"]
 
@@ -22,3 +23,5 @@ texture = SubResource("PlaceholderTexture2D_46bew")
 [node name="HealthComponent" parent="." instance=ExtResource("3_gx2u3")]
 
 [node name="DamageComponent" parent="." instance=ExtResource("4_pyqwu")]
+
+[node name="StatusHandler" parent="." instance=ExtResource("5_yiyqk")]

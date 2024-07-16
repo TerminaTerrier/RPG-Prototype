@@ -14,4 +14,9 @@ public partial class EventBus : Node
     public delegate void PlayerTurnStartedEventHandler(Moveset moveset);
     [Signal]
     public delegate void ActionSelectedEventHandler(int button);
+    [Signal]
+    public delegate void TurnEndedEventHandler();
+    [Signal]
+    public delegate void StatusChangedEventHandler(string status);
+     
 }

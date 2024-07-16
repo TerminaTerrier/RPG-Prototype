@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmknxnkgmwblx"]
+
+[ext_resource type="Script" path="res://components/StatusHandler.cs" id="1_dyjda"]
+
+[node name="StatusHandler" type="Node"]
+script = ExtResource("1_dyjda")

@@ -11,4 +11,3 @@ BaseStrength = 2
 HitNumber = 2
 CritChance = 20.0
 SPCost = 5
-statusFlag = 0

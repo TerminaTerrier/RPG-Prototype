@@ -1,10 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cg4p2cq2jnl5e"]
+[gd_scene load_steps=2 format=3 uid="uid://cg4p2cq2jnl5e"]
 
 [ext_resource type="Script" path="res://components/DamageComponent.cs" id="1_qic8a"]
-[ext_resource type="Script" path="res://components/StatusHandler.cs" id="2_55p5s"]
 
 [node name="DamageComponent" type="Node"]
 script = ExtResource("1_qic8a")
-
-[node name="StatusHandler" type="Node" parent="."]
-script = ExtResource("2_55p5s")

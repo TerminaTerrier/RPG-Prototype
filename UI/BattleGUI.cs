@@ -10,6 +10,7 @@ public partial class BattleGUI : Control
 	{
 		eventBus = GetNode<EventBus>("/root/EventBus");
 		eventBus.PlayerTurnStarted += SetActionMenuText;
+		eventBus.TurnEnded += UnloadActionMenu;
 	}
     
 	public void SetActionMenuText(Moveset moveset)
@@ -21,5 +22,10 @@ public partial class BattleGUI : Control
 			_actionMenu.ActionMenuButtons[i].Text = moveset.moveset[i].MoveText;
 			i++;
 		}
+	}
+
+	public void UnloadActionMenu()
+	{
+		RemoveChild(_actionMenu);
 	}
 }
