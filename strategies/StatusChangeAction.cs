@@ -26,7 +26,7 @@ public partial class StatusChangeAction : Node, IAction
 
             case StatusData.StatusFlag.Rooted:
             {
-                Target.ChangeStatus(new RootStatus(Move.status, ActorStats));
+                Target.ChangeStatus(new RootStatus(Move.status, ActorStats, Target));
                 break;
             }
        }

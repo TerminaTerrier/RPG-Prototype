@@ -4,14 +4,8 @@ using System.ComponentModel;
 
 public partial class StatusHandler : Node
 {
-	Node parent;
 	public IStatus Status { get; set; }
 	int turnLength;
-
-    public override void _Ready()
-    {
-        parent = GetParent();
-    }
 
     public void SetStatus(IStatus status)
 	{
@@ -32,7 +26,7 @@ public partial class StatusHandler : Node
         if(turnLength > 0)
 		{
 			GD.Print("Running Status...");
-			Status.Effect(parent);
+			Status.Effect();
 			turnLength--;
 		}
 	}
