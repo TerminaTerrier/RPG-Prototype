@@ -21,6 +21,7 @@ scale = Vector2(103.5, 44.5)
 texture = SubResource("PlaceholderTexture2D_46bew")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_gx2u3")]
+parentEntityName = "Enemy"
 
 [node name="DamageComponent" parent="." instance=ExtResource("4_pyqwu")]
 

@@ -1,0 +1,97 @@
+[gd_scene load_steps=4 format=3 uid="uid://cn4m5tx6i1uok"]
+
+[ext_resource type="Script" path="res://UI/VitalElementManager.cs" id="1_0fdiq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8wiky"]
+bg_color = Color(1, 0.266667, 0.611765, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ha6x5"]
+bg_color = Color(0, 0.631373, 0.980392, 1)
+
+[node name="VitalHUDElement" type="Control" node_paths=PackedStringArray("healthBar", "hpCounter", "spBar", "spCounter")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_0fdiq")
+healthBar = NodePath("HealthBar/ProgressBar")
+hpCounter = NodePath("HPCounter")
+spBar = NodePath("SPBar/ProgressBar")
+spCounter = NodePath("SPCounter")
+
+[node name="HealthBar" type="HBoxContainer" parent="."]
+layout_direction = 2
+layout_mode = 0
+offset_right = 199.0
+offset_bottom = 24.0
+
+[node name="Label" type="Label" parent="HealthBar"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 17
+text = "HP:
+"
+
+[node name="ProgressBar" type="ProgressBar" parent="HealthBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_styles/fill = SubResource("StyleBoxFlat_8wiky")
+max_value = 15.0
+value = 15.0
+show_percentage = false
+
+[node name="HPCounter" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_left = 70.0
+offset_top = -5.0
+offset_right = 146.0
+offset_bottom = 26.0
+
+[node name="Label" type="Label" parent="HPCounter"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "15"
+
+[node name="SPBar" type="HBoxContainer" parent="."]
+layout_direction = 2
+layout_mode = 0
+offset_left = 1.0
+offset_top = 33.0
+offset_right = 199.0
+offset_bottom = 57.0
+
+[node name="Label" type="Label" parent="SPBar"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 17
+text = "SP:"
+
+[node name="ProgressBar" type="ProgressBar" parent="SPBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_styles/fill = SubResource("StyleBoxFlat_ha6x5")
+max_value = 15.0
+value = 15.0
+show_percentage = false
+
+[node name="SPCounter" type="CenterContainer" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 74.0
+offset_top = 24.0
+offset_right = 139.0
+offset_bottom = 64.0
+
+[node name="Label" type="Label" parent="SPCounter"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 17
+text = "15"

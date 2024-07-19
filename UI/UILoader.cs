@@ -11,7 +11,7 @@ public partial class UILoader : CanvasLayer
     public override void _Ready()
     {
         eventBus = GetNode<EventBus>("/root/EventBus");
-		eventBus.StartBattle += () => { AddUIElement(_sceneData.BattleGUI, "BattleGUI"); LoadUIElement("BattleGUI"); };
+		eventBus.StartBattle += () => { AddUIElement(_sceneData.BattleGUI, "BattleGUI"); AddUIElement(_sceneData.BattleHUD, "BattleHUD"); LoadUIElement("BattleHUD"); LoadUIElement("BattleGUI"); };
     }
 
 	public void AddUIElement(PackedScene scene, string key)

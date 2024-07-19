@@ -23,6 +23,7 @@ scale = Vector2(15.9531, 13.4687)
 texture = SubResource("PlaceholderTexture2D_xe28o")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_yymax")]
+parentEntityName = "Player"
 
 [node name="DamageComponent" parent="." instance=ExtResource("4_qxj7n")]
 

@@ -18,5 +18,9 @@ public partial class EventBus : Node
     public delegate void TurnEndedEventHandler();
     [Signal]
     public delegate void StatusChangedEventHandler(string status);
+    [Signal]
+    public delegate void PlayerHealthUpdatedEventHandler(int health);
+    [Signal]
+    public delegate void EnemyHealthUpdatedEventHandler(int health);
      
 }
