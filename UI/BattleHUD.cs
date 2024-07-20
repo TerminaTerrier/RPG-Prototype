@@ -14,6 +14,8 @@ public partial class BattleHUD : Control
         _eventBus = GetNode<EventBus>("/root/EventBus");
 		_eventBus.PlayerHealthUpdated += OnPlayerHealthUpdate;
 		_eventBus.EnemyHealthUpdated += OnEnemyHealthUpdate;
+		_eventBus.PlayerSPUpdated += OnPlayerSPUpdate;
+		_eventBus.EnemySPUpdated += OnEnemySPUpdate;
 	}
     
 	public void OnPlayerHealthUpdate(int health)
@@ -24,6 +26,16 @@ public partial class BattleHUD : Control
 	public void OnEnemyHealthUpdate(int health)
 	{
 		EnemyVitalElement.OnHealthUpdate(health);
+	}
+
+	public void OnPlayerSPUpdate(int sp)
+	{
+        PlayerVitalElement.OnSPUpdate(sp);
+	}
+
+	public void OnEnemySPUpdate(int sp)
+	{
+		EnemyVitalElement.OnSPUpdate(sp);
 	}
 	
 }

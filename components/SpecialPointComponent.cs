@@ -24,11 +24,11 @@ public partial class SpecialPointComponent : Node
 
 			if(parentEntityName == "Player")
 			{
-			    eventBus.EmitSignal(EventBus.SignalName.PlayerSPUpdated);
+			    eventBus.EmitSignal(EventBus.SignalName.PlayerSPUpdated, CurrentSP);
 			}
 			else if(parentEntityName == "Enemy")
 			{
-				eventBus.EmitSignal(EventBus.SignalName.EnemySPUpdated);
+				eventBus.EmitSignal(EventBus.SignalName.EnemySPUpdated, CurrentSP);
 			}
 
 			if(CurrentSP <= 0)

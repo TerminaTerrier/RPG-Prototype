@@ -27,4 +27,11 @@ public partial class VitalElementManager : Control
 		var label = hpCounter.GetChild<Label>(0);
 		label.Text = healthUpdate.ToString();
 	}
+
+	public void OnSPUpdate(int spUpdate)	
+	{
+        spBar.Value = spUpdate;
+		var label = spCounter.GetChild<Label>(0);
+		label.Text = spUpdate.ToString();
+	}
 }
