@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cyvkhehj31xp5"]
+[gd_scene load_steps=11 format=3 uid="uid://cyvkhehj31xp5"]
 
 [ext_resource type="Script" path="res://entities/player/Player.cs" id="1_fsyaj"]
 [ext_resource type="PackedScene" uid="uid://duf16hyc5j5ok" path="res://components/character_controller.tscn" id="2_5ohw0"]
@@ -7,13 +7,15 @@
 [ext_resource type="PackedScene" uid="uid://cj61p2pt0xi67" path="res://components/velocity_component.tscn" id="3_pp30o"]
 [ext_resource type="PackedScene" uid="uid://btqt0sdgf8ygs" path="res://components/inspect_area.tscn" id="4_x516y"]
 [ext_resource type="PackedScene" uid="uid://3a5s6ds1pqbd" path="res://components/HealthComponent.tscn" id="5_r05pt"]
+[ext_resource type="PackedScene" uid="uid://dhkeasjjv1f11" path="res://components/special_point_component.tscn" id="8_vfbqr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4pdow"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_tiqjn"]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("characterController", "velocityComponent", "inspectArea", "healthComponent")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("characterController", "velocityComponent", "inspectArea", "healthComponent", "spComponent")]
 z_index = 1
+position = Vector2(1, 0)
 motion_mode = 1
 script = ExtResource("1_fsyaj")
 playerStats = ExtResource("2_c2mos")
@@ -21,6 +23,7 @@ characterController = NodePath("CharacterController")
 velocityComponent = NodePath("VelocityComponent")
 inspectArea = NodePath("InspectArea")
 healthComponent = NodePath("HealthComponent")
+spComponent = NodePath("SpecialPointComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_4pdow")
@@ -41,3 +44,7 @@ speed = 90
 [node name="InspectArea" parent="." instance=ExtResource("4_x516y")]
 
 [node name="HealthComponent" parent="." instance=ExtResource("5_r05pt")]
+parentEntityName = "Player"
+
+[node name="SpecialPointComponent" parent="." instance=ExtResource("8_vfbqr")]
+parentEntityName = "Player"

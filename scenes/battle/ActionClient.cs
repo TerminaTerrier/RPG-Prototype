@@ -29,33 +29,45 @@ public partial class ActionClient : Node
 		var moveData = Moveset.moveset[moveNum];
 		var target = targetRetriever.GetTarget(moveData.target, possibleTargets);
 		var targetStats = targetRetriever.GetTargetStats(moveData.target, TargetStats);
+		var actor = targetRetriever.GetActor(possibleTargets);
+		var actorSP = targetRetriever.GetActorSP(possibleTargets);
+		GD.Print("Actor SP is " + actorSP);
 		var i = 0;
-
-		foreach(var moveType in moveData.moveTypes)
+        
+		if(actorSP >= moveData.SPCost)
 		{
-		    switch(moveData.moveTypes[i])
+            actor.Deplete(moveData.SPCost);
+			  
+		    foreach(var moveType in moveData.moveTypes)
 		    {
-			    case Move.MoveType.SingleAttack:
-			    {
-                    ActionContext.SetAction(new AttackAction(moveData, target, targetStats));
-				    ActionContext.EnactAction();  
-				    break;
-			    }
-				case Move.MoveType.MultiAttack:
-				{
-					ActionContext.SetAction(new AttackAction(moveData, target, targetStats));
-				    ActionContext.EnactAction();  
-					break;
-				}
-				case Move.MoveType.StatusEffect:
-				{
-					ActionContext.SetAction(new StatusChangeAction(moveData, target, targetStats));
-					ActionContext.EnactAction();
-					break;
-				}
-		    }
+		        switch(moveData.moveTypes[i])
+		        {
+			        case Move.MoveType.SingleAttack:
+			        {
+                        ActionContext.SetAction(new AttackAction(moveData, target, targetStats));
+				        ActionContext.EnactAction();  
+				        break;
+			        }
+				    case Move.MoveType.MultiAttack:
+				    {
+					    ActionContext.SetAction(new AttackAction(moveData, target, targetStats));
+				        ActionContext.EnactAction();  
+					    break;
+				    }
+				    case Move.MoveType.StatusEffect:
+				    {
+					    ActionContext.SetAction(new StatusChangeAction(moveData, target, targetStats));
+					    ActionContext.EnactAction();
+					    break;
+				    }
+		        }
 
-			i++;
+		        i++;
+		    }
+		}
+		else
+		{
+			GD.Print("Not enough SP!");
 		}
 	}
 	

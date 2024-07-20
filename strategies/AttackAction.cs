@@ -24,7 +24,7 @@ public partial class AttackAction : Node, IAction
             var damage = CalculateDamageGiven();
             Target.TakeDamage(damage);
             i++;
-        }    
+        }  
     }
     
     private int CalculateDamageGiven()

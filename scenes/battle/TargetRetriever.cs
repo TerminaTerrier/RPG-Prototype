@@ -69,4 +69,42 @@ public partial class TargetRetriever : Node
         
 		return null;
 	}
+
+	public IDepletable GetActor(Dictionary<string, Node2D> possibleTargets)
+	{
+        switch(TurnManager.currentTurn)
+		{
+			case TurnManager.CurrentTurn.Player:
+			{
+				var actor = (BattlePlayer)possibleTargets["Player"];
+				return actor;
+			}
+			case TurnManager.CurrentTurn.Enemy:
+			{
+				var actor = (BattleEnemy)possibleTargets["Enemy"];
+				return actor;
+			}
+		}
+		
+        return null;
+	}
+
+	public int GetActorSP(Dictionary<string, Node2D> possibleTargets)
+	{
+		switch(TurnManager.currentTurn)
+		{
+			case TurnManager.CurrentTurn.Player:
+			{
+				var actor = (BattlePlayer)possibleTargets["Player"];
+				return actor.spComponent.CurrentSP;
+			}
+			case TurnManager.CurrentTurn.Enemy:
+			{
+				var actor = (BattleEnemy)possibleTargets["Enemy"];
+				return actor.spComponent.CurrentSP;
+			}
+		}
+
+		return 0;
+	}
 }

@@ -1,10 +1,12 @@
 using Godot;
 using System;
 
-public partial class BattlePlayer : Node2D, IDamageable, IEffectable
+public partial class BattlePlayer : Node2D, IDamageable, IEffectable, IDepletable
 {
 	[Export]
 	HealthComponent healthComponent;
+	[Export]
+	public SpecialPointComponent spComponent {get; private set;}
 	[Export]
 	DamageComponent damageComponent;
 	[Export]
@@ -21,6 +23,7 @@ public partial class BattlePlayer : Node2D, IDamageable, IEffectable
 		_eventBus = GetNode<EventBus>("/root/EventBus");
 
 		healthComponent.SetMaxHealth(playerStats.maxHP);
+		spComponent.SetMaxSP(playerStats.maxSP);
 
 		GlobalPosition = new Vector2(-300, 165);
 	}
@@ -28,8 +31,8 @@ public partial class BattlePlayer : Node2D, IDamageable, IEffectable
 	public void StartTurn()
 	{
         _eventBus.EmitSignal(EventBus.SignalName.PlayerTurnStarted, Moveset);
-		GD.Print(healthComponent.CurrentHealth);
-
+		//GD.Print(healthComponent.CurrentHealth);
+        GD.Print(spComponent.CurrentSP);
 		statusHandler.CheckStatus();	
 
 		if(ActionLocked)
@@ -48,6 +51,8 @@ public partial class BattlePlayer : Node2D, IDamageable, IEffectable
 	{
 		PlayersInstanceStats = instanceStats;
 		healthComponent.SetHealth(PlayersInstanceStats.Health);
+		//GD.Print(PlayersInstanceStats.SP);
+		spComponent.SetSP(PlayersInstanceStats.SP);
 		//GD.Print(PlayersInstanceStats.Health);
 	}
 
@@ -68,5 +73,10 @@ public partial class BattlePlayer : Node2D, IDamageable, IEffectable
 		GD.Print("Changing Status...");
         statusHandler.SetStatus(status);
 		statusHandler.CheckStatus();
+    }
+
+    public void Deplete(int cost)
+    {
+        spComponent.CalculateSP(-cost);
     }
 }

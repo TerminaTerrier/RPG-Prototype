@@ -14,6 +14,8 @@ public partial class Player : CharacterBody2D, IControllable, ITransition
 	InspectArea inspectArea;
 	[Export]
 	HealthComponent healthComponent;
+	[Export]
+	SpecialPointComponent spComponent;
 	public IState CurrentState {get; private set;}
 	private Dictionary<string, IState> states = new Dictionary<string, IState>();
 	IState StandingState;
@@ -43,6 +45,9 @@ public partial class Player : CharacterBody2D, IControllable, ITransition
         
 		healthComponent.SetMaxHealth(playerStats.maxHP);
 		healthComponent.SetHealth(playerStats.maxHP);
+		spComponent.SetMaxSP(playerStats.maxSP);
+		spComponent.SetSP(playerStats.maxSP);
+		
 
 	    CurrentState = StandingState;
 		characterController.ControlObjectState = CurrentState;
@@ -87,8 +92,7 @@ public partial class Player : CharacterBody2D, IControllable, ITransition
     
 	public InstanceStats GetInstanceData()
 	{
-	   int sp = 1;
-       var newInstanceData = new InstanceStats(healthComponent.CurrentHealth, sp);
+       var newInstanceData = new InstanceStats(healthComponent.CurrentHealth, spComponent.CurrentSP);
 
 	   return newInstanceData;
 	}

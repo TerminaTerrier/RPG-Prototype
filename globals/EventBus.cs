@@ -22,5 +22,15 @@ public partial class EventBus : Node
     public delegate void PlayerHealthUpdatedEventHandler(int health);
     [Signal]
     public delegate void EnemyHealthUpdatedEventHandler(int health);
+    [Signal]
+    public delegate void PlayerSPUpdatedEventHandler(int sp);
+    [Signal]
+    public delegate void EnemySPUpdatedEventHandler(int sp);
+    [Signal]
+    public delegate void PlayerDeathEventHandler();
+    [Signal]
+    public delegate void EnemyDeathEventHandler();
+    [Signal]
+    public delegate void SPDepletedEventHandler(string entityName);
      
 }

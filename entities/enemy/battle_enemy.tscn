@@ -1,18 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://dbn411qtoxkjd"]
+[gd_scene load_steps=8 format=3 uid="uid://dbn411qtoxkjd"]
 
 [ext_resource type="Script" path="res://entities/enemy/BattleEnemy.cs" id="1_hoo6q"]
 [ext_resource type="Resource" uid="uid://bb5w7cr1y73hg" path="res://resources/stats/EnemyStats.tres" id="2_swfe6"]
 [ext_resource type="PackedScene" uid="uid://3a5s6ds1pqbd" path="res://components/HealthComponent.tscn" id="3_gx2u3"]
 [ext_resource type="PackedScene" uid="uid://cg4p2cq2jnl5e" path="res://components/damage_component.tscn" id="4_pyqwu"]
 [ext_resource type="PackedScene" uid="uid://cmknxnkgmwblx" path="res://components/status_handler.tscn" id="5_yiyqk"]
+[ext_resource type="PackedScene" uid="uid://dhkeasjjv1f11" path="res://components/special_point_component.tscn" id="6_5ek3a"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_46bew"]
 
-[node name="BattleEnemy" type="Node2D" node_paths=PackedStringArray("damageComponent", "healthComponent")]
+[node name="BattleEnemy" type="Node2D" node_paths=PackedStringArray("damageComponent", "healthComponent", "statusHandler", "spComponent")]
 script = ExtResource("1_hoo6q")
 enemyStats = ExtResource("2_swfe6")
 damageComponent = NodePath("DamageComponent")
 healthComponent = NodePath("HealthComponent")
+statusHandler = NodePath("StatusHandler")
+spComponent = NodePath("SpecialPointComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
@@ -21,6 +24,9 @@ scale = Vector2(103.5, 44.5)
 texture = SubResource("PlaceholderTexture2D_46bew")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_gx2u3")]
+parentEntityName = "Enemy"
+
+[node name="SpecialPointComponent" parent="." instance=ExtResource("6_5ek3a")]
 parentEntityName = "Enemy"
 
 [node name="DamageComponent" parent="." instance=ExtResource("4_pyqwu")]

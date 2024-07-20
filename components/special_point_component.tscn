@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhkeasjjv1f11"]
+
+[ext_resource type="Script" path="res://components/SpecialPointComponent.cs" id="1_ffe1b"]
+
+[node name="SpecialPointComponent" type="Node"]
+script = ExtResource("1_ffe1b")

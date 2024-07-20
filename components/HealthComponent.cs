@@ -35,7 +35,7 @@ public partial class HealthComponent : Node2D
 		{
 			GD.Print("death");
 			
-			CurrentHealth = MaxHealth;
+			//CurrentHealth = MaxHealth;
 		}
 		
 		if(CurrentHealth <= MaxHealth && CurrentHealth > 0)
