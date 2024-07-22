@@ -20,6 +20,10 @@ public partial class StatusHandler : Node
 			GD.Print("Checking status...");
 			RunStatus();
 		}
+		else
+		{
+			GD.Print("STATUS IS NULL");
+		}
 	}
 	public void RunStatus()
 	{

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="StatusData" load_steps=2 format=3 uid="uid://cgtksq04d8bug"]
+
+[ext_resource type="Script" path="res://resources/status/StatusData.cs" id="1_xmcqc"]
+
+[resource]
+script = ExtResource("1_xmcqc")
+turnLength = 1
+power = 0
+chance = 0.0
+statusFlag = 0

@@ -33,8 +33,14 @@ public partial class SpecialPointComponent : Node
 
 			if(CurrentSP <= 0)
 			{
-				eventBus.EmitSignal(EventBus.SignalName.SPDepleted);
+				GD.Print("SP Depleted!");
+				eventBus.EmitSignal(EventBus.SignalName.SPDepleted, parentEntityName);
 			}
+		}
+
+		if(CurrentSP == MaxSP)
+		{
+            eventBus.EmitSignal(EventBus.SignalName.SPReplenished);
 		}
 	}
 

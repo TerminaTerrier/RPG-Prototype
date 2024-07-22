@@ -32,5 +32,7 @@ public partial class EventBus : Node
     public delegate void EnemyDeathEventHandler();
     [Signal]
     public delegate void SPDepletedEventHandler(string entityName);
+    [Signal]
+    public delegate void SPReplenishedEventHandler();
      
 }

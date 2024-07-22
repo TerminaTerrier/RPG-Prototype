@@ -9,4 +9,4 @@ defense = 1
 speed = 2
 luck = 1
 maxHP = 15
-maxSP = 15
+maxSP = 10

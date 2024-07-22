@@ -24,6 +24,19 @@ public partial class BattlePlayer : Node2D, IDamageable, IEffectable, IDepletabl
 
 		healthComponent.SetMaxHealth(playerStats.maxHP);
 		spComponent.SetMaxSP(playerStats.maxSP);
+		Timer timer = new();
+		AddChild(timer);
+
+		_eventBus.SPDepleted += (string parentEntityName) =>
+		{
+            if(parentEntityName == "Player")
+			{
+				GD.Print("Setting Exhaust Status");
+				var ExhaustData = GD.Load<StatusData>("res://resources/status/ExhaustedStatusData.tres");
+				
+                ChangeStatus(new ExhaustStatus(ExhaustData.turnLength, ExhaustData, healthComponent, spComponent, timer));
+			}
+		};
 
 		GlobalPosition = new Vector2(-300, 165);
 	}

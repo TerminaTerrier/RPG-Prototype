@@ -11,6 +11,8 @@ public partial class BattleGUI : Control
 		eventBus = GetNode<EventBus>("/root/EventBus");
 		eventBus.PlayerTurnStarted += SetActionMenuText;
 		eventBus.TurnEnded += UnloadActionMenu;
+		eventBus.SPDepleted += (parentEntityName) => DisableActionMenuButtons();
+		eventBus.SPReplenished += EnableActionMenuButtons;
 	}
     
 	public void SetActionMenuText(Moveset moveset)
@@ -27,5 +29,21 @@ public partial class BattleGUI : Control
 	public void UnloadActionMenu()
 	{
 		RemoveChild(_actionMenu);
+	}
+    
+	public void DisableActionMenuButtons()
+	{
+        foreach(var button in _actionMenu.ActionMenuButtons)
+		{
+			button.Disabled = true;
+		}
+	}
+
+	public void EnableActionMenuButtons()
+	{
+        foreach(var button in _actionMenu.ActionMenuButtons)
+		{
+			button.Disabled = false;
+		}
 	}
 }

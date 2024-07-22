@@ -77,8 +77,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 theme_override_styles/fill = SubResource("StyleBoxFlat_ha6x5")
-max_value = 15.0
-value = 15.0
+max_value = 10.0
+value = 10.0
 show_percentage = false
 
 [node name="SPCounter" type="CenterContainer" parent="."]
@@ -94,4 +94,4 @@ texture_filter = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 17
-text = "15"
+text = "10"
