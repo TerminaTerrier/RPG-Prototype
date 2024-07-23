@@ -23,7 +23,11 @@ public partial class StatusChangeAction : Node, IAction
             {
                 break;
             } 
-
+            case StatusData.StatusFlag.Nonspecific:
+            {
+                Target.ChangeStatus(new StatModifier(Move, ActorStats, Target));
+                break;
+            }
             case StatusData.StatusFlag.Rooted:
             {
                 Target.ChangeStatus(new RootStatus(Move.status, ActorStats, Target));

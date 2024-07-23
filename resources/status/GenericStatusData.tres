@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="StatusData" load_steps=2 format=3 uid="uid://dvxsxgkp10r7d"]
+
+[ext_resource type="Script" path="res://resources/status/StatusData.cs" id="1_6kr4n"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_6kr4n")
+turnLength = 1
+power = 0
+chance = 0.0
+statusFlag = 1
+statsToModify = Array[int]([1])
+statModifiers = {
+"Attack": 0.0,
+"Defense": 2.0,
+"Luck": 0.0,
+"Speed": 0.0
+}

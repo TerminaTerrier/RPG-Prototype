@@ -1,13 +1,15 @@
-[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://bll42snheh1v1"]
+[gd_resource type="Resource" script_class="Move" load_steps=3 format=3 uid="uid://bll42snheh1v1"]
 
 [ext_resource type="Script" path="res://resources/moves/Move.cs" id="1_1sbm0"]
+[ext_resource type="Resource" uid="uid://dvxsxgkp10r7d" path="res://resources/status/GenericStatusData.tres" id="2_dmici"]
 
 [resource]
 script = ExtResource("1_1sbm0")
 MoveText = "Tough Bark"
-moveTypes = Array[int]([3])
+moveTypes = Array[int]([2])
 target = 0
 BaseStrength = 5
 HitNumber = 0
 CritChance = 0.0
-SPCost = 10
+SPCost = 3
+status = ExtResource("2_dmici")

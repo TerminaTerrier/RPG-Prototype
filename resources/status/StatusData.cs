@@ -12,11 +12,23 @@ public partial class StatusData : Resource
     public float chance;
 	[Export]
     public StatusFlag statusFlag;
+    [Export]
+    public Godot.Collections.Array<StatsToModify> statsToModify;
+    [Export]
+    public Godot.Collections.Dictionary<string, float> statModifiers;
 	public enum StatusFlag
     {
         None,
+        Nonspecific,
         Rooted,
         Magnetized,
         Sinking
+    }
+    public enum StatsToModify
+    {
+        Attack,
+        Defense,
+        Speed,
+        Luck
     }
 }
