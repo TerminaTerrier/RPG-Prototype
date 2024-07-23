@@ -5,9 +5,9 @@
 [resource]
 script = ExtResource("1_4m1ve")
 MoveText = "Sap"
-moveTypes = Array[int]([0, 4])
-target = 1
+moveTypes = Array[int]([0, 0])
+target = 3
 BaseStrength = 10
 HitNumber = 0
 CritChance = 0.0
-SPCost = 10
+SPCost = 5

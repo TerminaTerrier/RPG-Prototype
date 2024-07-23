@@ -27,12 +27,14 @@ public partial class ActionClient : Node
 	public void DetermineAction(int moveNum)
 	{
 		var moveData = Moveset.moveset[moveNum];
-		var target = targetRetriever.GetTarget(moveData.target, possibleTargets);
+		(Node2D target1, Node2D target2)targets = targetRetriever.GetTarget(moveData.target, possibleTargets);
 		var targetStats = targetRetriever.GetTargetStats(moveData.target, TargetStats);
 		var actor = targetRetriever.GetActor(possibleTargets);
 		var actorSP = targetRetriever.GetActorSP(possibleTargets);
 		GD.Print("Actor SP is " + actorSP);
 		var i = 0;
+
+		
         
 		if(actorSP >= moveData.SPCost)
 		{
@@ -44,19 +46,19 @@ public partial class ActionClient : Node
 		        {
 			        case Move.MoveType.SingleAttack:
 			        {
-                        ActionContext.SetAction(new AttackAction(moveData, target, targetStats));
+                        ActionContext.SetAction(new AttackAction(moveData, targets, targetStats));
 				        ActionContext.EnactAction();  
 				        break;
 			        }
 				    case Move.MoveType.MultiAttack:
 				    {
-					    ActionContext.SetAction(new AttackAction(moveData, target, targetStats));
+					    ActionContext.SetAction(new AttackAction(moveData, targets, targetStats));
 				        ActionContext.EnactAction();  
 					    break;
 				    }
 				    case Move.MoveType.StatusEffect:
 				    {
-					    ActionContext.SetAction(new StatusChangeAction(moveData, target, targetStats));
+					    ActionContext.SetAction(new StatusChangeAction(moveData, targets, targetStats));
 					    ActionContext.EnactAction();
 					    break;
 				    }

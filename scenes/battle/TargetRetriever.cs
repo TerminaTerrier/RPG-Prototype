@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public partial class TargetRetriever : Node
 {
 	//Might consider making these methods static.
-	public Node2D GetTarget(Move.Target target, Dictionary<string, Node2D> possibleTargets)
+	public (Node2D target1, Node2D target2) GetTarget(Move.Target target, Dictionary<string, Node2D> possibleTargets)
 	{
 	    switch (TurnManager.currentTurn)
 	    {
@@ -12,29 +12,37 @@ public partial class TargetRetriever : Node
 			{
 	            if(target == Move.Target.Self)
 	            {
-                    return possibleTargets["Player"];
+                    return (possibleTargets["Player"], null);
 	            }
-				else if(target == Move.Target.Enemy)
+				
+				if(target == Move.Target.Enemy)
 	            {
-		            return possibleTargets["Enemy"];
+		            return (possibleTargets["Enemy"], null);
 	            }
+
+				if(target == Move.Target.SelfAndEnemy)
+				{
+					Node2D target1 = possibleTargets["Player"];
+					Node2D target2 = possibleTargets["Enemy"];
+					return (target1, target2);
+				}
 				break;
 	        }
 			case TurnManager.CurrentTurn.Enemy:
 			{
 				if(target == Move.Target.Self)
 				{
-					return possibleTargets["Enemy"];
+					return (possibleTargets["Enemy"], null);
 				}
 				else if(target == Move.Target.Enemy)
 				{
-					return possibleTargets["Player"];
+					return (possibleTargets["Player"], null);
 				}
 				break;
 			}
 	    }
 
-		return null;
+		return (null, null);
     }
 
 	public Stats GetTargetStats(Move.Target target, Dictionary<string, Stats> targetStats)

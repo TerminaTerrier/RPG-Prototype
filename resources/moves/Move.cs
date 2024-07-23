@@ -20,10 +20,13 @@ public partial class Move : Resource
     public int SPCost;
     [Export]
     public StatusData status;
+    [Flags]
     public enum Target
     {
-        Self,
-        Enemy
+        None = 0,
+        Self = 1,
+        Enemy = 2,
+        SelfAndEnemy = Self | Enemy
     }
     public enum MoveType
     {
