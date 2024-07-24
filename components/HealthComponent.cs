@@ -21,6 +21,11 @@ public partial class HealthComponent : Node2D
 			GD.Print(CurrentHealth);
 			CurrentHealth = CurrentHealth + healthUpdate;
 
+			if(CurrentHealth > MaxHealth)
+			{
+				CurrentHealth = MaxHealth;
+			}
+
 			if(parentEntityName == "Player")
 			{
 			    eventBus.EmitSignal(EventBus.SignalName.PlayerHealthUpdated, CurrentHealth);
