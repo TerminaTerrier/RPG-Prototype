@@ -34,9 +34,17 @@ public partial class TargetRetriever : Node
 				{
 					return (possibleTargets["Enemy"], null);
 				}
-				else if(target == Move.Target.Enemy)
+
+				if(target == Move.Target.Enemy)
 				{
 					return (possibleTargets["Player"], null);
+				}
+
+				if(target == Move.Target.SelfAndEnemy)
+				{
+					Node2D target1 = possibleTargets["Enemy"];
+					Node2D target2 = possibleTargets["Player"];
+					return (target1, target2);
 				}
 				break;
 			}
@@ -73,6 +81,23 @@ public partial class TargetRetriever : Node
 				}
 				break;
 			}
+	    }
+        
+		return null;
+	}
+	
+	public Stats GetActorStats(Move.Target target, Dictionary<string, Stats> targetStats)
+	{
+		switch (TurnManager.currentTurn)
+	    {
+	        case TurnManager.CurrentTurn.Player:
+			{
+                return targetStats["PlayerStats"];
+	        }
+			case TurnManager.CurrentTurn.Enemy:
+			{
+			return targetStats["EnemyStats"];
+			}	
 	    }
         
 		return null;

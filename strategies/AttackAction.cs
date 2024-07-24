@@ -28,9 +28,17 @@ public partial class AttackAction : Node, IAction
         for(int i = 0; i < Move.HitNumber;)
         {
             var damage = CalculateDamageGiven();
-
-            Targets.targetOne?.TakeDamage(damage);   
-            Targets.targetTwo?.TakeDamage(damage);
+            
+            if(Move.MoveText != "Sap")
+            {
+                Targets.targetOne?.TakeDamage(damage);   
+                Targets.targetTwo?.TakeDamage(damage);
+            }
+            else
+            {
+                Targets.targetTwo?.TakeDamage(damage);
+                Targets.targetOne?.TakeDamage(-damage);
+            }
                 
             i++;
         }  
@@ -45,7 +53,7 @@ public partial class AttackAction : Node, IAction
         var rng = new RandomNumberGenerator();
         var critDeterminer = rng.RandfRange(0,1) * 100;
 
-        if(critDeterminer < Move.CritChance)
+        if(critDeterminer < Move?.CritChance)
         {
             damage = damage * 2;
         }

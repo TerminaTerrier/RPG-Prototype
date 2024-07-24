@@ -29,6 +29,7 @@ public partial class ActionClient : Node
 		var moveData = Moveset.moveset[moveNum];
 		(Node2D target1, Node2D target2)targets = targetRetriever.GetTarget(moveData.target, possibleTargets);
 		var targetStats = targetRetriever.GetTargetStats(moveData.target, TargetStats);
+		var actorStats = targetRetriever.GetActorStats(moveData.target, TargetStats);
 		var actor = targetRetriever.GetActor(possibleTargets);
 		var actorSP = targetRetriever.GetActorSP(possibleTargets);
 		GD.Print("Actor SP is " + actorSP);
@@ -46,13 +47,13 @@ public partial class ActionClient : Node
 		        {
 			        case Move.MoveType.SingleAttack:
 			        {
-                        ActionContext.SetAction(new AttackAction(moveData, targets, targetStats));
+                        ActionContext.SetAction(new AttackAction(moveData, targets, actorStats));
 				        ActionContext.EnactAction();  
 				        break;
 			        }
 				    case Move.MoveType.MultiAttack:
 				    {
-					    ActionContext.SetAction(new AttackAction(moveData, targets, targetStats));
+					    ActionContext.SetAction(new AttackAction(moveData, targets, actorStats));
 				        ActionContext.EnactAction();  
 					    break;
 				    }
