@@ -13,16 +13,18 @@ public partial class SceneLoader : Node
     {
         eventBus = GetNode<EventBus>("/root/EventBus");
         
-        
-        AddScene(_sceneData.Player, "Player");
-        SetScenePosition("Player", new Vector2(150,150));
-        LoadScene("Player");
+        eventBus.GameStarted += () =>
+        {
+            AddScene(_sceneData.Player, "Player");
+            SetScenePosition("Player", new Vector2(150,150));
+            LoadScene("Player");
  
-        AddScene(_sceneData.TestArea1, "TestArea1");
-        LoadScene("TestArea1");
+            AddScene(_sceneData.TestArea1, "TestArea1");
+            LoadScene("TestArea1");
 
-        AddScene(_sceneData.Enemy, "Enemy");
-        LoadScene("Enemy");
+            AddScene(_sceneData.Enemy, "Enemy");
+            LoadScene("Enemy");
+        };
     }
 
     public void AddScene(PackedScene scene, string key)

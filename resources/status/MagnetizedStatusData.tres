@@ -6,5 +6,7 @@
 script = ExtResource("1_xmcqc")
 turnLength = 1
 power = 0
-chance = 0.0
-statusFlag = 0
+chance = 40.0
+statusFlag = 3
+statsToModify = Array[int]([])
+statModifiers = null

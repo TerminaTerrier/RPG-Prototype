@@ -18,6 +18,13 @@ public partial class Main : Node2D
 	{
 		eventBus = GetNode<EventBus>("/root/EventBus");
         
+		eventBus.TypeSelected += (string type) =>
+		{
+            battleManager.PlayerMoveset = TypeLoader.LoadMoveset(type);
+			battleManager.EnemyMoveset = TypeLoader.LoadOpposingMoveset(type);
+			
+			eventBus.EmitSignal(EventBus.SignalName.GameStarted);
+		};
 
 		eventBus.StartBattle += InitializeBattle;
 	}

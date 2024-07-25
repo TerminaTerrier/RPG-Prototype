@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://h8t5c3uo61t2"]
+
+[ext_resource type="Script" path="res://resources/moves/Move.cs" id="1_ufwum"]
+
+[resource]
+script = ExtResource("1_ufwum")
+MoveText = "Bludgeon"
+moveTypes = Array[int]([0])
+target = 2
+BaseStrength = 3
+HitNumber = 1
+CritChance = 25.0
+SPCost = 3

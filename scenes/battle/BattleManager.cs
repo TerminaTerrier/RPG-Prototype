@@ -17,11 +17,11 @@ public partial class BattleManager : Node
 	InstanceStats playerInstanceData;
 	BattlePlayer battlePlayer;
 	BattleEnemy battleEnemy;
+	public Moveset PlayerMoveset {get; set;}
+	public Moveset EnemyMoveset {get; set;}
 	Dictionary<string, Node2D> participants = new Dictionary<string, Node2D>();
 	Dictionary<string, Stats> participantsStats = new Dictionary<string, Stats>();
 	public static BattleStatus battleStatus {get; private set;}
-	
-    
 	public enum BattleStatus
 	{
 		Active,
@@ -47,9 +47,8 @@ public partial class BattleManager : Node
 		
 		battlePlayer.SetPlayerInstanceValues(playerInstanceData);
         
-		//Temporary method call that will be moved into a more fully fleged class.
-		battlePlayer.SetMoveset(GD.Load<Moveset>("res://resources/moves/WoodMoveset.tres"));
-		_actionClient.SetMoveset(GD.Load<Moveset>("res://resources/moves/WoodMoveset.tres"));
+		_actionClient.SetMovesets(PlayerMoveset, EnemyMoveset);
+		battlePlayer.SetMoveset(PlayerMoveset);
 
 		participants.Add("Player", battlePlayer);
 	    participants.Add("Enemy", battleEnemy);
@@ -57,8 +56,6 @@ public partial class BattleManager : Node
 		participantsStats.Add("EnemyStats", _enemyStats);
 		_actionClient.possibleTargets = participants;
 		_actionClient.TargetStats = participantsStats;
-
-
         
 		_battleCamera.Enabled = true;
 		battleStatus = BattleStatus.Active;

@@ -1,0 +1,52 @@
+[gd_scene load_steps=2 format=3 uid="uid://clmwkrei142f5"]
+
+[ext_resource type="Script" path="res://UI/StartScreen.cs" id="1_f1mbs"]
+
+[node name="StartScreen" type="Control" node_paths=PackedStringArray("typeSelect")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f1mbs")
+typeSelect = NodePath("TypeSelect")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 315.0
+offset_top = 90.0
+offset_right = 801.0
+offset_bottom = 132.0
+theme_override_font_sizes/font_size = 30
+text = "Choose your style."
+horizontal_alignment = 1
+
+[node name="TypeSelect" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 325.0
+offset_top = 170.0
+offset_right = 784.0
+offset_bottom = 323.0
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="EarthButton" type="Button" parent="TypeSelect"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Earth"
+
+[node name="WoodButton" type="Button" parent="TypeSelect"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Wood"
+
+[node name="MetalButton" type="Button" parent="TypeSelect"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Metal
+"
+
+[connection signal="pressed" from="TypeSelect/EarthButton" to="." method="OnEarthButtonPressed"]
+[connection signal="pressed" from="TypeSelect/WoodButton" to="." method="OnWoodButtonPressed"]
+[connection signal="pressed" from="TypeSelect/MetalButton" to="." method="OnMetalButtonPressed"]

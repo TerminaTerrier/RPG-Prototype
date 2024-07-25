@@ -23,5 +23,9 @@ public partial class SceneData : Resource
     public PackedScene BattleGUI{ get; set; }
     [Export]
     public PackedScene BattleHUD { get; set; }
+    [Export]
+    public PackedScene StartScreen { get; set; } 
+    [Export]
+    public PackedScene DialoguePlayer{ get; set; }
 
 }

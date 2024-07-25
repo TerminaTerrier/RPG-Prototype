@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Move" load_steps=3 format=3 uid="uid://dgj3iokismc6w"]
+
+[ext_resource type="Script" path="res://resources/moves/Move.cs" id="1_r8pav"]
+[ext_resource type="Resource" uid="uid://cgtksq04d8bug" path="res://resources/status/MagnetizedStatusData.tres" id="2_2dvi3"]
+
+[resource]
+script = ExtResource("1_r8pav")
+MoveText = "Magnet Shock"
+moveTypes = Array[int]([2])
+target = 2
+BaseStrength = 0
+HitNumber = 1
+CritChance = 0.0
+SPCost = 4
+status = ExtResource("2_2dvi3")

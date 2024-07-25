@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cn4m5tx6i1uok"]
 
-[ext_resource type="Script" path="res://UI/VitalElementManager.cs" id="1_0fdiq"]
+[ext_resource type="Script" path="res://UI/battle/VitalElementManager.cs" id="1_0fdiq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8wiky"]
 bg_color = Color(1, 0.266667, 0.611765, 1)

@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://resources/stats/Stats.cs" id="1_p17jf"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_p17jf")
 attack = 1
 defense = 1

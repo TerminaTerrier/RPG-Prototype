@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://uj58vf5m2yx0"]
 
-[ext_resource type="Script" path="res://UI/BattleGUI.cs" id="1_qysn8"]
-[ext_resource type="PackedScene" uid="uid://cqararx1et8i8" path="res://UI/action_menu.tscn" id="2_56de8"]
+[ext_resource type="Script" path="res://UI/battle/BattleGUI.cs" id="1_1kcfy"]
+[ext_resource type="PackedScene" uid="uid://cqararx1et8i8" path="res://UI/battle/action_menu.tscn" id="2_s1njt"]
 
 [node name="BattleGUI" type="Control" node_paths=PackedStringArray("_actionMenu")]
 layout_mode = 3
@@ -10,10 +10,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_qysn8")
+script = ExtResource("1_1kcfy")
 _actionMenu = NodePath("ActionMenu")
 
-[node name="ActionMenu" parent="." instance=ExtResource("2_56de8")]
+[node name="ActionMenu" parent="." instance=ExtResource("2_s1njt")]
 layout_mode = 0
 offset_left = 394.0
 offset_top = 490.0

@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dxpx0u2o5vu4j"]
+[gd_scene load_steps=7 format=3 uid="uid://dxpx0u2o5vu4j"]
 
 [ext_resource type="Script" path="res://scenes/main/Main.cs" id="1_aet3y"]
 [ext_resource type="Script" path="res://UI/UILoader.cs" id="2_6fxpc"]
 [ext_resource type="Script" path="res://scenes/world/SceneLoader.cs" id="2_v6b1g"]
-[ext_resource type="PackedScene" uid="uid://bedc5yovfgr40" path="res://UI/dialogue_player.tscn" id="3_37184"]
 [ext_resource type="Resource" uid="uid://blmyec8b7vv5w" path="res://resources/common/SceneData.tres" id="3_so8sb"]
 [ext_resource type="Resource" uid="uid://diiec2t5hy6xb" path="res://resources/common/UISceneData.tres" id="3_yaw1d"]
 [ext_resource type="PackedScene" uid="uid://ghjpune6tddj" path="res://scenes/battle/battle_room.tscn" id="6_nkeoh"]
@@ -16,12 +15,6 @@ battleManager = NodePath("BattleRoom")
 [node name="UILayer" type="CanvasLayer" parent="."]
 script = ExtResource("2_6fxpc")
 _sceneData = ExtResource("3_yaw1d")
-
-[node name="DialoguePlayer" parent="UILayer" instance=ExtResource("3_37184")]
-offset_left = 8.0
-offset_top = -5.0
-offset_right = 8.0
-offset_bottom = -5.0
 
 [node name="World" type="Node" parent="."]
 script = ExtResource("2_v6b1g")

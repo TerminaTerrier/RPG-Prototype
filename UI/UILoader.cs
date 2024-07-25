@@ -11,19 +11,35 @@ public partial class UILoader : CanvasLayer
     public override void _Ready()
     {
         eventBus = GetNode<EventBus>("/root/EventBus");
-		eventBus.StartBattle += () => { AddUIElement(_sceneData.BattleGUI, "BattleGUI"); AddUIElement(_sceneData.BattleHUD, "BattleHUD"); LoadUIElement("BattleHUD"); LoadUIElement("BattleGUI"); };
+        
+        AddUIElement(_sceneData.StartScreen, "StartScreen");
+        LoadUIElement("StartScreen");
+
+        eventBus.GameStarted += () => 
+        {
+            RemoveChild((Node)elements["StartScreen"]);
+            AddUIElement(_sceneData.DialoguePlayer, "DialoguePlayer"); 
+            LoadUIElement("DialoguePlayer");
+        };
+
+		eventBus.StartBattle += () => 
+        { 
+            AddUIElement(_sceneData.BattleGUI, "BattleGUI"); 
+            AddUIElement(_sceneData.BattleHUD, "BattleHUD"); 
+            LoadUIElement("BattleHUD"); 
+            LoadUIElement("BattleGUI"); 
+        };
     }
 
 	public void AddUIElement(PackedScene scene, string key)
     {
-       var newUIElement = scene.Instantiate();
-
-       elements.Add(key, newUIElement);  
+        var newUIElement = scene.Instantiate();
+        elements.Add(key, newUIElement);  
     }
 
 	public void LoadUIElement(string key)
     {
-       AddChild((Node)elements[key]);
+        AddChild((Node)elements[key]);
     }
 
     public void UnloadAllUIElements()

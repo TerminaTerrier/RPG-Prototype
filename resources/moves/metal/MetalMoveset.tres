@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Moveset" load_steps=6 format=3 uid="uid://cns430b0ve52d"]
+
+[ext_resource type="Resource" uid="uid://couelpjxfgdbu" path="res://resources/moves/metal/Slice.tres" id="1_g8bnl"]
+[ext_resource type="Script" path="res://resources/moves/Moveset.cs" id="1_j313b"]
+[ext_resource type="Resource" uid="uid://cuex1yx4548u2" path="res://resources/moves/metal/Sharpen.tres" id="2_7n4qt"]
+[ext_resource type="Resource" uid="uid://h8t5c3uo61t2" path="res://resources/moves/metal/Bludgeon.tres" id="3_oo14o"]
+[ext_resource type="Resource" uid="uid://dgj3iokismc6w" path="res://resources/moves/metal/MagnetShock.tres" id="4_31ggq"]
+
+[resource]
+script = ExtResource("1_j313b")
+moveset = [ExtResource("1_g8bnl"), ExtResource("2_7n4qt"), ExtResource("3_oo14o"), ExtResource("4_31ggq")]

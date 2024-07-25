@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Move" load_steps=3 format=3 uid="uid://bu4susbo22dwp"]
+
+[ext_resource type="Script" path="res://resources/moves/Move.cs" id="1_u6c2b"]
+[ext_resource type="Resource" uid="uid://r5exd8qs33g3" path="res://resources/status/SinkingStatusData.tres" id="2_ftx43"]
+
+[resource]
+script = ExtResource("1_u6c2b")
+MoveText = "Sinkhole"
+moveTypes = Array[int]([2])
+target = 2
+BaseStrength = 0
+HitNumber = 0
+CritChance = 0.0
+SPCost = 5
+status = ExtResource("2_ftx43")

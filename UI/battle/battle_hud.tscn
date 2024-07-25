@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b7mwy4uhjumwp"]
 
-[ext_resource type="PackedScene" uid="uid://cn4m5tx6i1uok" path="res://UI/vital_hud_element.tscn" id="1_s4ji0"]
-[ext_resource type="Script" path="res://UI/BattleHUD.cs" id="1_t4r71"]
+[ext_resource type="Script" path="res://UI/battle/BattleHUD.cs" id="1_auttt"]
+[ext_resource type="PackedScene" uid="uid://cn4m5tx6i1uok" path="res://UI/battle/vital_hud_element.tscn" id="2_33lc4"]
 
 [node name="BattleHUD" type="Control" node_paths=PackedStringArray("PlayerVitalElement", "EnemyVitalElement")]
 layout_mode = 3
@@ -10,17 +10,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_t4r71")
+script = ExtResource("1_auttt")
 PlayerVitalElement = NodePath("PlayerVitalHUDElement")
 EnemyVitalElement = NodePath("EnemyVitalHUDElement")
 
-[node name="PlayerVitalHUDElement" parent="." instance=ExtResource("1_s4ji0")]
+[node name="PlayerVitalHUDElement" parent="." instance=ExtResource("2_33lc4")]
 offset_left = 17.0
 offset_top = 519.0
 offset_right = 57.0
 offset_bottom = 559.0
 
-[node name="EnemyVitalHUDElement" parent="." instance=ExtResource("1_s4ji0")]
+[node name="EnemyVitalHUDElement" parent="." instance=ExtResource("2_33lc4")]
 offset_left = 930.0
 offset_top = 14.0
 offset_right = 970.0

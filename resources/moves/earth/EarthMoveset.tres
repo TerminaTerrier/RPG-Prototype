@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Moveset" load_steps=6 format=3 uid="uid://dv5qdwsm4g3du"]
+
+[ext_resource type="Script" path="res://resources/moves/Moveset.cs" id="1_esaqm"]
+[ext_resource type="Resource" uid="uid://jitjj2sari0v" path="res://resources/moves/earth/Quake.tres" id="1_unuk1"]
+[ext_resource type="Resource" uid="uid://bthx50n6fdixs" path="res://resources/moves/earth/Crystalize.tres" id="2_27uat"]
+[ext_resource type="Resource" uid="uid://onwmruoda5n8" path="res://resources/moves/earth/Sandstorm.tres" id="3_u771u"]
+[ext_resource type="Resource" uid="uid://bu4susbo22dwp" path="res://resources/moves/earth/Sinkhole.tres" id="4_vysx0"]
+
+[resource]
+script = ExtResource("1_esaqm")
+moveset = [ExtResource("1_unuk1"), ExtResource("2_27uat"), ExtResource("3_u771u"), ExtResource("4_vysx0")]

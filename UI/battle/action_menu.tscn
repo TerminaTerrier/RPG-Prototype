@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cqararx1et8i8"]
 
-[ext_resource type="Script" path="res://UI/ActionMenu.cs" id="1_owlvr"]
+[ext_resource type="Script" path="res://UI/battle/ActionMenu.cs" id="1_owlvr"]
 
 [node name="ActionMenu" type="GridContainer"]
 offset_left = 390.0

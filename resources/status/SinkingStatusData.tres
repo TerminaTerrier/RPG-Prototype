@@ -4,7 +4,9 @@
 
 [resource]
 script = ExtResource("1_y21et")
-turnLength = 0
+turnLength = 3
 power = 0
-chance = 0.0
-statusFlag = 0
+chance = 50.0
+statusFlag = 4
+statsToModify = null
+statModifiers = null

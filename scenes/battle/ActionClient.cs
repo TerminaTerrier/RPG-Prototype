@@ -11,7 +11,8 @@ public partial class ActionClient : Node
 	public InstanceStats InstanceStats {get; private set;}
 	public Dictionary<string, Node2D> possibleTargets;
 	public Dictionary<string, Stats> TargetStats;
-	public Moveset Moveset { get; private set; }
+	public Moveset PlayerMoveset { get; private set; }
+	public Moveset EnemyMoveset { get; private set; }
 
 	public override void _Ready()
 	{
@@ -19,47 +20,50 @@ public partial class ActionClient : Node
 		eventBus.ActionSelected += DetermineAction;
 	}
 
-	public void SetMoveset(Moveset moveset)
+	public void SetMovesets(Moveset moveset1, Moveset moveset2)
 	{
-        Moveset = moveset;
+		PlayerMoveset = moveset1;
+		EnemyMoveset = moveset2;
 	}
     
 	public void DetermineAction(int moveNum)
 	{
-		var moveData = Moveset.moveset[moveNum];
-		(Node2D target1, Node2D target2)targets = targetRetriever.GetTarget(moveData.target, possibleTargets);
-		var targetStats = targetRetriever.GetTargetStats(moveData.target, TargetStats);
-		var actorStats = targetRetriever.GetActorStats(moveData.target, TargetStats);
+		Move _moveData = null;
+
+		if(TurnManager.currentTurn == TurnManager.CurrentTurn.Player)
+		{
+		    _moveData = PlayerMoveset.moveset[moveNum];
+		}
+		else if(TurnManager.currentTurn == TurnManager.CurrentTurn.Enemy)
+		{
+            _moveData = EnemyMoveset.moveset[moveNum];
+		}
+
+		(Node2D target1, Node2D target2)targets = targetRetriever.GetTarget(_moveData.target, possibleTargets);
+		var targetStats = targetRetriever.GetTargetStats(_moveData.target, TargetStats);
+		var actorStats = targetRetriever.GetActorStats(_moveData.target, TargetStats);
 		var actor = targetRetriever.GetActor(possibleTargets);
 		var actorSP = targetRetriever.GetActorSP(possibleTargets);
 		GD.Print("Actor SP is " + actorSP);
 		var i = 0;
-
-		
         
-		if(actorSP >= moveData.SPCost)
+		if(actorSP >= _moveData.SPCost)
 		{
-            actor.Deplete(moveData.SPCost);
+            actor.Deplete(_moveData.SPCost);
 			  
-		    foreach(var moveType in moveData.moveTypes)
+		    foreach(var moveType in _moveData.moveTypes)
 		    {
-		        switch(moveData.moveTypes[i])
+		        switch(_moveData.moveTypes[i])
 		        {
 			        case Move.MoveType.SingleAttack:
 			        {
-                        ActionContext.SetAction(new AttackAction(moveData, targets, actorStats));
+                        ActionContext.SetAction(new AttackAction(_moveData, targets, actorStats));
 				        ActionContext.EnactAction();  
 				        break;
 			        }
-				    case Move.MoveType.MultiAttack:
-				    {
-					    ActionContext.SetAction(new AttackAction(moveData, targets, actorStats));
-				        ActionContext.EnactAction();  
-					    break;
-				    }
 				    case Move.MoveType.StatusEffect:
 				    {
-					    ActionContext.SetAction(new StatusChangeAction(moveData, targets, targetStats));
+					    ActionContext.SetAction(new StatusChangeAction(_moveData, targets, targetStats));
 					    ActionContext.EnactAction();
 					    break;
 				    }

@@ -14,6 +14,7 @@ public partial class BattleEnemy : Node2D, IDamageable, IEffectable, IDepletable
 	[Export]
 	public SpecialPointComponent spComponent {get; private set;}
 	
+	
 	public override void _Ready()
 	{
         GlobalPosition = new Vector2(300, -170);
@@ -32,6 +33,7 @@ public partial class BattleEnemy : Node2D, IDamageable, IEffectable, IDepletable
 	{
 
 	}
+	
 	
     public void TakeDamage(int damage)
     {
