@@ -21,9 +21,8 @@ public partial class BattlePlayer : Node2D, IDamageable, IEffectable, IDepletabl
     public override void _Ready()
 	{
 		_eventBus = GetNode<EventBus>("/root/EventBus");
-
-		healthComponent.SetMaxHealth(playerStats.maxHP);
-		spComponent.SetMaxSP(playerStats.maxSP);
+        
+		
 		Timer timer = new();
 		AddChild(timer);
 
@@ -43,6 +42,7 @@ public partial class BattlePlayer : Node2D, IDamageable, IEffectable, IDepletabl
 
 	public void StartTurn()
 	{
+		GD.Print(Moveset is null);
         _eventBus.EmitSignal(EventBus.SignalName.PlayerTurnStarted, Moveset);
 		//GD.Print(healthComponent.CurrentHealth);
         GD.Print(spComponent.CurrentSP);
@@ -58,6 +58,12 @@ public partial class BattlePlayer : Node2D, IDamageable, IEffectable, IDepletabl
 	{
 		ActionLocked = false;
         _eventBus.EmitSignal(EventBus.SignalName.TurnEnded);
+	}
+
+	public void SetStats()
+	{
+		healthComponent.SetMaxHealth(playerStats.maxHP);
+		spComponent.SetMaxSP(playerStats.maxSP);
 	}
     
 	public void SetPlayerInstanceValues(InstanceStats instanceStats)

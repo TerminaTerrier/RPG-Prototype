@@ -46,4 +46,52 @@ public partial class TypeLoader : Node
 		return null;
 	}
 
+	public static Resource LoadStats(string type)
+	{
+		switch(type)
+		{
+			case "Earth":
+			{
+				var stats = GD.Load<Stats>("res://resources/stats/EarthStats.tres");
+				return stats.Duplicate();
+			}
+			case "Wood":
+			{
+				var stats = GD.Load<Stats>("res://resources/stats/WoodStats.tres");
+				return stats.Duplicate();
+			}
+			case "Metal":
+			{
+				var stats = GD.Load<Stats>("res://resources/stats/MetalStats.tres");
+				return stats.Duplicate();
+			}
+		}
+
+		return null;
+	}
+
+    public static Resource LoadOpposingStats(string type)
+    {
+	    switch(type)
+	    {
+			case "Earth":
+			{
+				var stats = GD.Load<Stats>("res://resources/stats/WoodStats.tres");
+				return stats.Duplicate();
+			}
+			case "Wood":
+			{
+				var stats = GD.Load<Stats>("res://resources/stats/MetalStats.tres");
+				return stats.Duplicate();
+			}
+			case "Metal":
+			{
+				var stats = GD.Load<Stats>("res://resources/stats/EarthStats.tres");
+				return stats.Duplicate();
+			}
+		}
+
+		return null;
+    }
+
 }

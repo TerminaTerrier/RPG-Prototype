@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public partial class Player : CharacterBody2D, IControllable, ITransition
 {
 	[Export]
-	Stats playerStats;
+	public Stats playerStats;
 	[Export]
 	CharacterController characterController;
 	[Export]

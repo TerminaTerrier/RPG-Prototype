@@ -22,7 +22,14 @@ public partial class Main : Node2D
 		{
             battleManager.PlayerMoveset = TypeLoader.LoadMoveset(type);
 			battleManager.EnemyMoveset = TypeLoader.LoadOpposingMoveset(type);
-			
+
+			sceneLoader.playerStats = TypeLoader.LoadStats(type);
+			sceneLoader.enemyStats = TypeLoader.LoadOpposingStats(type);
+			battleManager._enemyStats = (Stats)TypeLoader.LoadOpposingStats(type);
+			battleManager._playerStats = (Stats)TypeLoader.LoadStats(type);
+            
+			GD.Print(TypeLoader.LoadMoveset(type) is null);
+
 			eventBus.EmitSignal(EventBus.SignalName.GameStarted);
 		};
 

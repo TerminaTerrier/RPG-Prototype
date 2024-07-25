@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Stats" load_steps=2 format=3 uid="uid://dy5kawmojv6sf"]
+
+[ext_resource type="Script" path="res://resources/stats/Stats.cs" id="1_nej5y"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_nej5y")
+attack = 3
+defense = 3
+speed = 1
+luck = 1
+maxHP = 10
+maxSP = 15

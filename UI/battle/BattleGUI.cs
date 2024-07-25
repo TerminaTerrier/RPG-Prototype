@@ -9,7 +9,6 @@ public partial class BattleGUI : Control
 	public override void _Ready()
 	{
 		eventBus = GetNode<EventBus>("/root/EventBus");
-		eventBus.PlayerTurnStarted += SetActionMenuText;
 		eventBus.TurnEnded += UnloadActionMenu;
 		eventBus.SPDepleted += (parentEntityName) => DisableActionMenuButtons();
 		eventBus.SPReplenished += EnableActionMenuButtons;

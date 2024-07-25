@@ -41,18 +41,23 @@ public partial class TurnManager : Node
 
 	public void ManageTurn()
 	{
+		GD.Print("Managing turn");
+		GD.Print(_playerStats.speed);
+		GD.Print(_enemyStats.speed);
 	    if(BattleManager.battleStatus == BattleManager.BattleStatus.Active)
 		{
             if(_playerStats.speed > _enemyStats.speed)
 		    {
                 if(tookLastTurn != TookLastTurn.Player)
 				{
+					GD.Print("It is the player's turn");
                     _battlePlayer.StartTurn();
 					tookLastTurn = TookLastTurn.Player;
 					currentTurn = CurrentTurn.Player;
 				}
 				else if(tookLastTurn != TookLastTurn.Enemy)
 				{
+					GD.Print("It is the enemy's turn");
 					_battleEnemy.StartTurn();
 					tookLastTurn = TookLastTurn.Enemy;
 					currentTurn = CurrentTurn.Enemy;

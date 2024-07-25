@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://blgpk5il3fahb"]
 
 [ext_resource type="Script" path="res://entities/player/BattlePlayer.cs" id="1_aljo4"]
-[ext_resource type="Resource" uid="uid://ckgpqx306jwjh" path="res://resources/stats/PlayerStats.tres" id="2_1la81"]
+[ext_resource type="Resource" uid="uid://ckgpqx306jwjh" path="res://resources/stats/BaseStats.tres" id="2_7js6t"]
 [ext_resource type="PackedScene" uid="uid://3a5s6ds1pqbd" path="res://components/HealthComponent.tscn" id="3_yymax"]
 [ext_resource type="PackedScene" uid="uid://cg4p2cq2jnl5e" path="res://components/damage_component.tscn" id="4_qxj7n"]
 [ext_resource type="PackedScene" uid="uid://cmknxnkgmwblx" path="res://components/status_handler.tscn" id="5_fts6n"]
@@ -16,7 +16,7 @@ healthComponent = NodePath("HealthComponent")
 spComponent = NodePath("SpecialPointComponent")
 damageComponent = NodePath("DamageComponent")
 statusHandler = NodePath("StatusHandler")
-playerStats = ExtResource("2_1la81")
+playerStats = ExtResource("2_7js6t")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1

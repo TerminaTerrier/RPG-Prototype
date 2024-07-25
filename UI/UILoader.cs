@@ -24,10 +24,16 @@ public partial class UILoader : CanvasLayer
 
 		eventBus.StartBattle += () => 
         { 
-            AddUIElement(_sceneData.BattleGUI, "BattleGUI"); 
             AddUIElement(_sceneData.BattleHUD, "BattleHUD"); 
             LoadUIElement("BattleHUD"); 
+        };
+
+        eventBus.PlayerTurnStarted += (Moveset moveset) => 
+        {
+            AddUIElement(_sceneData.BattleGUI, "BattleGUI");
             LoadUIElement("BattleGUI"); 
+            var battleGUI = (BattleGUI)elements["BattleGUI"];
+            battleGUI.SetActionMenuText(moveset);
         };
     }
 

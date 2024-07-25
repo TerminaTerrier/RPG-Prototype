@@ -12,8 +12,8 @@ public partial class BattleManager : Node
 	[Export]
 	ActionClient _actionClient;
 	EventBus _eventBus;
-	Stats _playerStats;
-	Stats _enemyStats;
+	public Stats _playerStats;
+	public Stats _enemyStats;
 	InstanceStats playerInstanceData;
 	BattlePlayer battlePlayer;
 	BattleEnemy battleEnemy;
@@ -39,12 +39,14 @@ public partial class BattleManager : Node
 	{
         battlePlayer = (BattlePlayer)_sceneData.BattlePlayer.Instantiate();
 		battleEnemy = (BattleEnemy)_sceneData.BattleEnemy.Instantiate();
+		battlePlayer.playerStats = _playerStats;
+		battleEnemy.enemyStats = _enemyStats;
+		battlePlayer.SetStats();
+		battleEnemy.SetStats();
 		AddChild(battlePlayer);
 		AddChild(battleEnemy);
 
-		_playerStats = battlePlayer.playerStats;
-		_enemyStats = battleEnemy.enemyStats;
-		
+
 		battlePlayer.SetPlayerInstanceValues(playerInstanceData);
         
 		_actionClient.SetMovesets(PlayerMoveset, EnemyMoveset);

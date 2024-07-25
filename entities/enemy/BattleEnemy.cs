@@ -18,6 +18,12 @@ public partial class BattleEnemy : Node2D, IDamageable, IEffectable, IDepletable
 	public override void _Ready()
 	{
         GlobalPosition = new Vector2(300, -170);
+		
+		
+	}
+
+	public void SetStats()
+	{
 		healthComponent.SetMaxHealth(enemyStats.maxHP);
 		healthComponent.SetHealth(enemyStats.maxHP);
 		spComponent.SetMaxSP(enemyStats.maxSP);
@@ -26,7 +32,7 @@ public partial class BattleEnemy : Node2D, IDamageable, IEffectable, IDepletable
 
     public void StartTurn()
 	{
-
+       GD.Print("It's my turn!");
 	}
 
 	public void EndTurn()
