@@ -31,7 +31,8 @@ public partial class Enemy : CharacterBody2D
 	{
         if(body.Name == "Player")
 		{
-			eventBus.EmitSignal(EventBus.SignalName.StartBattle);
+			var player = (Player)body;
+			eventBus.EmitSignal(EventBus.SignalName.StartBattle, enemyStats, player.playerStats);
 		}
 	}
 }

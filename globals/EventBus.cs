@@ -13,7 +13,7 @@ public partial class EventBus : Node
     [Signal]
     public delegate void UnloadTextEventHandler();
     [Signal]
-    public delegate void StartBattleEventHandler();
+    public delegate void StartBattleEventHandler(Stats enemyStats, Stats playerStats);
     [Signal]
     public delegate void PlayerTurnStartedEventHandler(Moveset moveset);
     [Signal]

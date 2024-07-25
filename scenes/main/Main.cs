@@ -44,7 +44,7 @@ public partial class Main : Node2D
 		}
 	}
 
-    public void InitializeBattle()
+    public void InitializeBattle(Stats enemyStats, Stats playerStats)
 	{
 		var player = sceneLoader.GetNode<Player>("Player");
 		

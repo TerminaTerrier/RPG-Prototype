@@ -22,10 +22,12 @@ public partial class UILoader : CanvasLayer
             LoadUIElement("DialoguePlayer");
         };
 
-		eventBus.StartBattle += () => 
+		eventBus.StartBattle += (Stats enemyStats, Stats playerStats) => 
         { 
             AddUIElement(_sceneData.BattleHUD, "BattleHUD"); 
             LoadUIElement("BattleHUD"); 
+            var battleHUD = (BattleHUD)elements["BattleHUD"];
+            battleHUD.SetMaxValues(enemyStats, playerStats);
         };
 
         eventBus.PlayerTurnStarted += (Moveset moveset) => 

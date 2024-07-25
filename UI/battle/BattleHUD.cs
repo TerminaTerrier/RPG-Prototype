@@ -17,6 +17,17 @@ public partial class BattleHUD : Control
 		_eventBus.PlayerSPUpdated += OnPlayerSPUpdate;
 		_eventBus.EnemySPUpdated += OnEnemySPUpdate;
 	}
+
+	public void SetMaxValues(Stats enemyStats, Stats playerStats)
+	{
+		EnemyVitalElement.OnHealthUpdate(enemyStats.maxHP);
+		EnemyVitalElement.OnSPUpdate(enemyStats.maxSP);
+		EnemyVitalElement.SetProgressBarMax(enemyStats.maxHP, enemyStats.maxSP);
+		PlayerVitalElement.OnHealthUpdate(playerStats.maxHP);
+		PlayerVitalElement.OnSPUpdate(playerStats.maxSP);
+		PlayerVitalElement.SetProgressBarMax(playerStats.maxHP, playerStats.maxSP);
+
+	}
     
 	public void OnPlayerHealthUpdate(int health)
 	{

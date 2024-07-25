@@ -17,8 +17,13 @@ public partial class VitalElementManager : Control
 	{
 		eventBus = GetNode<EventBus>("/root/EventBus");
 	}
-
 	
+	public void SetProgressBarMax(int hpMax, int spMax)
+	{
+        healthBar.MaxValue = hpMax;
+		spBar.MaxValue = spMax;
+	}
+
 	public void OnHealthUpdate(int healthUpdate)
 	{
 		GD.Print("Calling OnHealthUpdate...");
