@@ -5,6 +5,7 @@
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_u5bmx")
+statClassName = "Earth"
 attack = 1
 defense = 3
 speed = 2

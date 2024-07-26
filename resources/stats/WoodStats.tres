@@ -5,6 +5,7 @@
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_lkgxx")
+statClassName = "Wood"
 attack = 2
 defense = 1
 speed = 3

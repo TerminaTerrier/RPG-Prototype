@@ -7,6 +7,7 @@ script = ExtResource("1_4m1ve")
 MoveText = "Sap"
 moveTypes = Array[int]([0])
 target = 3
+moveAffinity = 2
 BaseStrength = 10
 HitNumber = 1
 CritChance = 0.0

@@ -6,6 +6,8 @@ using System;
 public partial class Stats : Resource
 {
     [Export]
+    public string statClassName;
+    [Export]
     public int attack;
     [Export]
     public int defense;

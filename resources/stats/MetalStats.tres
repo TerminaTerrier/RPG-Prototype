@@ -5,6 +5,7 @@
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_nej5y")
+statClassName = "Metal"
 attack = 3
 defense = 3
 speed = 1

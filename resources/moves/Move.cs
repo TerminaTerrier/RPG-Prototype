@@ -11,6 +11,8 @@ public partial class Move : Resource
     [Export]
     public Target target;
     [Export]
+    public MoveAffinity moveAffinity;
+    [Export]
     public int BaseStrength;
     [Export]
     public int HitNumber;
@@ -33,6 +35,13 @@ public partial class Move : Resource
         SingleAttack,
         MultiAttack,
         StatusEffect
+    }
+    public enum MoveAffinity
+    {
+        None,
+        Earth,
+        Wood,
+        Metal
     }
   
 }

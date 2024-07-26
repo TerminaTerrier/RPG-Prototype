@@ -16,7 +16,9 @@ public partial class BattlePlayer : Node2D, IDamageable, IEffectable, IDepletabl
 	public Moveset Moveset { get; private set; }
 	public InstanceStats PlayersInstanceStats {get; private set;}
 	public bool ActionLocked {get; set;}
-	EventBus _eventBus;
+    public IDamageable.DamageAffinity damageAffinity { get; set; }
+
+    EventBus _eventBus;
     
     public override void _Ready()
 	{
@@ -64,6 +66,25 @@ public partial class BattlePlayer : Node2D, IDamageable, IEffectable, IDepletabl
 	{
 		healthComponent.SetMaxHealth(playerStats.maxHP);
 		spComponent.SetMaxSP(playerStats.maxSP);
+
+		switch(playerStats.statClassName)
+		{
+			case "Earth":
+			{
+				damageAffinity = IDamageable.DamageAffinity.Earth;
+				break;
+			}
+			case "Wood":
+			{
+				damageAffinity = IDamageable.DamageAffinity.Wood;
+				break;
+			}
+			case "Metal":
+			{
+				damageAffinity = IDamageable.DamageAffinity.Metal;
+				break;
+			}
+		}
 	}
     
 	public void SetPlayerInstanceValues(InstanceStats instanceStats)

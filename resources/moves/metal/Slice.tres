@@ -23,6 +23,7 @@ script = ExtResource("1_gpima")
 MoveText = "Slice"
 moveTypes = Array[int]([0, 2])
 target = 2
+moveAffinity = 3
 BaseStrength = 7
 HitNumber = 0
 CritChance = 10.0

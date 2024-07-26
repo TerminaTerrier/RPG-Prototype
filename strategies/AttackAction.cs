@@ -52,12 +52,60 @@ public partial class AttackAction : Node, IAction
 
         var rng = new RandomNumberGenerator();
         var critDeterminer = rng.RandfRange(0,1) * 100;
-
+        
         if(critDeterminer < Move?.CritChance)
         {
             damage = damage * 2;
         }
 
+        switch(Move.moveAffinity)
+        {
+            case Move.MoveAffinity.Earth:
+            {
+                if(Targets.targetOne.damageAffinity == IDamageable.DamageAffinity.Metal)
+                {
+                    damage = damage * 2;
+                    
+                }
+
+                if(Targets.targetOne.damageAffinity == IDamageable.DamageAffinity.Wood)
+                {
+                    damage = damage/2;
+                }
+
+                break;
+            }
+            case Move.MoveAffinity.Wood:
+            {
+                if(Targets.targetOne.damageAffinity == IDamageable.DamageAffinity.Earth)
+                {
+                    damage = damage * 2;
+                    
+                }
+
+                if(Targets.targetOne.damageAffinity == IDamageable.DamageAffinity.Metal)
+                {
+                    damage = damage/2;
+                }
+
+                break;
+            }
+            case Move.MoveAffinity.Metal:
+            {
+                if(Targets.targetOne.damageAffinity == IDamageable.DamageAffinity.Wood)
+                {
+                    damage = damage * 2;
+                }
+
+                if(Targets.targetOne.damageAffinity == IDamageable.DamageAffinity.Earth)
+                {
+                    damage = damage/2;
+                } 
+
+                break;
+            }
+        }
+        GD.Print("damage: " + damage);
         return damage;
     }
    
