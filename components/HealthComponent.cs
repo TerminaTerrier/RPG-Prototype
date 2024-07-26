@@ -26,6 +26,12 @@ public partial class HealthComponent : Node2D
 				CurrentHealth = MaxHealth;
 			}
 
+			if(CurrentHealth <= 0)
+		    {
+			    GD.Print("death");
+			    CurrentHealth = 0;
+		    }
+
 			if(parentEntityName == "Player")
 			{
 			    eventBus.EmitSignal(EventBus.SignalName.PlayerHealthUpdated, CurrentHealth);
@@ -36,12 +42,7 @@ public partial class HealthComponent : Node2D
 			}
 		}
 
-		if(CurrentHealth <= 0)
-		{
-			GD.Print("death");
-			
-			//CurrentHealth = MaxHealth;
-		}
+		
 		
 		if(CurrentHealth <= MaxHealth && CurrentHealth > 0)
 		{
