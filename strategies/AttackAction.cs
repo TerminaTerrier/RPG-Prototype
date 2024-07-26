@@ -53,7 +53,7 @@ public partial class AttackAction : Node, IAction
         var rng = new RandomNumberGenerator();
         var critDeterminer = rng.RandfRange(0,1) * 100;
         
-        if(critDeterminer < Move?.CritChance)
+        if(critDeterminer <= Move?.CritChance * ActorStats.luck)
         {
             damage = damage * 2;
         }
