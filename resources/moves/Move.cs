@@ -32,8 +32,7 @@ public partial class Move : Resource
     }
     public enum MoveType
     {
-        SingleAttack,
-        MultiAttack,
+        Attack,
         StatusEffect
     }
     public enum MoveAffinity

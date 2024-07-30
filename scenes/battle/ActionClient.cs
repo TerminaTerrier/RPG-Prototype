@@ -30,6 +30,8 @@ public partial class ActionClient : Node
 	{
 		Move _moveData = null;
 
+		GD.Print("Current turn at time of determing action is " + TurnManager.currentTurn);
+
 		if(TurnManager.currentTurn == TurnManager.CurrentTurn.Player)
 		{
 		    _moveData = PlayerMoveset.moveset[moveNum];
@@ -46,6 +48,8 @@ public partial class ActionClient : Node
 		var actorSP = targetRetriever.GetActorSP(possibleTargets);
 		GD.Print("Actor SP is " + actorSP);
 		var i = 0;
+
+		GD.Print("Move selected: " + _moveData.MoveText);
         
 		if(actorSP >= _moveData.SPCost)
 		{
@@ -55,7 +59,7 @@ public partial class ActionClient : Node
 		    {
 		        switch(_moveData.moveTypes[i])
 		        {
-			        case Move.MoveType.SingleAttack:
+			        case Move.MoveType.Attack:
 			        {
                         ActionContext.SetAction(new AttackAction(_moveData, targets, actorStats));
 				        ActionContext.EnactAction();  
@@ -75,6 +79,16 @@ public partial class ActionClient : Node
 		else
 		{
 			GD.Print("Not enough SP!");
+		}
+        
+		if(TurnManager.currentTurn == TurnManager.CurrentTurn.Player)
+		{
+		    eventBus.EmitSignal(EventBus.SignalName.PlayerTurnEnded);
+		    eventBus.EmitSignal(EventBus.SignalName.TurnEnded);
+		}
+		else if(TurnManager.currentTurn == TurnManager.CurrentTurn.Enemy)
+		{
+			eventBus.EmitSignal(EventBus.SignalName.TurnEnded);
 		}
 	}
 	

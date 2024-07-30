@@ -39,6 +39,8 @@ public partial class BattlePlayer : Node2D, IDamageable, IEffectable, IDepletabl
 			}
 		};
 
+		
+
 		GlobalPosition = new Vector2(-300, 165);
 	}
 
@@ -47,19 +49,18 @@ public partial class BattlePlayer : Node2D, IDamageable, IEffectable, IDepletabl
 		GD.Print(Moveset is null);
         _eventBus.EmitSignal(EventBus.SignalName.PlayerTurnStarted, Moveset);
 		//GD.Print(healthComponent.CurrentHealth);
+		GD.Print("Current turn check: " + TurnManager.currentTurn);
         GD.Print(spComponent.CurrentSP);
 		statusHandler.CheckStatus();	
+		
 
-		if(ActionLocked)
-		{
-			EndTurn();
-		}	
+		
 	}
 
 	public void EndTurn()
 	{
-		ActionLocked = false;
-        _eventBus.EmitSignal(EventBus.SignalName.TurnEnded);
+		//ActionLocked = false;
+       // _eventBus.EmitSignal(EventBus.SignalName.TurnEnded);
 	}
 
 	public void SetStats()

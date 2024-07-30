@@ -51,6 +51,7 @@ public partial class BattleManager : Node
         
 		_actionClient.SetMovesets(PlayerMoveset, EnemyMoveset);
 		battlePlayer.SetMoveset(PlayerMoveset);
+		battleEnemy.SetMoveset(EnemyMoveset);
 
 		participants.Add("Player", battlePlayer);
 	    participants.Add("Enemy", battleEnemy);

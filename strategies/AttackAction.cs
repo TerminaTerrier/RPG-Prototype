@@ -18,13 +18,15 @@ public partial class AttackAction : Node, IAction
         var t1 = (IDamageable)targets.target1;
         var t2 = (IDamageable)targets.target2;
         Targets = (t1, t2);
-        
+        GD.Print(t1.damageAffinity);
     
         ActorStats = actorStats;
+       
 	}
 	
     public void Enact()
     {
+        
         for(int i = 0; i < Move.HitNumber;)
         {
             var damage = CalculateDamageGiven();

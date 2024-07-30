@@ -15,16 +15,18 @@ public partial class UILoader : CanvasLayer
         AddUIElement(_sceneData.StartScreen, "StartScreen");
         LoadUIElement("StartScreen");
 
+        AddUIElement(_sceneData.BattleGUI, "BattleGUI");
+        AddUIElement(_sceneData.DialoguePlayer, "DialoguePlayer"); 
+        AddUIElement(_sceneData.BattleHUD, "BattleHUD"); 
+
         eventBus.GameStarted += () => 
         {
             RemoveChild((Node)elements["StartScreen"]);
-            AddUIElement(_sceneData.DialoguePlayer, "DialoguePlayer"); 
             LoadUIElement("DialoguePlayer");
         };
 
 		eventBus.StartBattle += (Stats enemyStats, Stats playerStats) => 
         { 
-            AddUIElement(_sceneData.BattleHUD, "BattleHUD"); 
             LoadUIElement("BattleHUD"); 
             var battleHUD = (BattleHUD)elements["BattleHUD"];
             battleHUD.SetMaxValues(enemyStats, playerStats);
@@ -32,10 +34,15 @@ public partial class UILoader : CanvasLayer
 
         eventBus.PlayerTurnStarted += (Moveset moveset) => 
         {
-            AddUIElement(_sceneData.BattleGUI, "BattleGUI");
             LoadUIElement("BattleGUI"); 
             var battleGUI = (BattleGUI)elements["BattleGUI"];
             battleGUI.SetActionMenuText(moveset);
+        };
+
+        eventBus.PlayerTurnEnded += () =>
+        {
+            var battleGUI = (BattleGUI)elements["BattleGUI"];
+            RemoveChild(battleGUI);
         };
     }
 

@@ -12,7 +12,7 @@ public partial class Main : Node2D
 
     public override void _EnterTree()
     {
-        Input.MouseMode = Input.MouseModeEnum.Captured;
+        //Input.MouseMode = Input.MouseModeEnum.Captured;
     }
     public override void _Ready()
 	{

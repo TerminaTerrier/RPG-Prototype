@@ -9,7 +9,7 @@ public partial class BattleGUI : Control
 	public override void _Ready()
 	{
 		eventBus = GetNode<EventBus>("/root/EventBus");
-		eventBus.TurnEnded += UnloadActionMenu;
+		//eventBus.PlayerTurnEnded += UnloadGUI;
 		eventBus.SPDepleted += (parentEntityName) => DisableActionMenuButtons();
 		eventBus.SPReplenished += EnableActionMenuButtons;
 	}
@@ -24,10 +24,10 @@ public partial class BattleGUI : Control
 			i++;
 		}
 	}
-
-	public void UnloadActionMenu()
+    
+	public void UnloadGUI()
 	{
-		RemoveChild(_actionMenu);
+		QueueFree();
 	}
     
 	public void DisableActionMenuButtons()

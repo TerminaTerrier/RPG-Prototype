@@ -30,7 +30,6 @@ public partial class TurnManager : Node
         _eventBus = GetNode<EventBus>("/root/EventBus");
 		_eventBus.TurnEnded += ManageTurn;
 	}
-
 	public void SetBattleProperties(BattlePlayer battlePlayer, BattleEnemy battleEnemy, Stats playerStats, Stats enemyStats)
 	{
         _battlePlayer = battlePlayer;
@@ -44,6 +43,7 @@ public partial class TurnManager : Node
 		GD.Print("Managing turn");
 		GD.Print(_playerStats.speed);
 		GD.Print(_enemyStats.speed);
+		
 	    if(BattleManager.battleStatus == BattleManager.BattleStatus.Active)
 		{
             if(_playerStats.speed > _enemyStats.speed)
@@ -51,37 +51,37 @@ public partial class TurnManager : Node
                 if(tookLastTurn != TookLastTurn.Player)
 				{
 					GD.Print("It is the player's turn");
-                    _battlePlayer.StartTurn();
 					tookLastTurn = TookLastTurn.Player;
 					currentTurn = CurrentTurn.Player;
+					_battlePlayer.StartTurn();
 				}
 				else if(tookLastTurn != TookLastTurn.Enemy)
 				{
 					GD.Print("It is the enemy's turn");
-					_battleEnemy.StartTurn();
 					tookLastTurn = TookLastTurn.Enemy;
 					currentTurn = CurrentTurn.Enemy;
+					_battleEnemy.StartTurn();
 				}
 		    }
 		    else if(_enemyStats.speed > _playerStats.speed)
 		    {
                if(tookLastTurn != TookLastTurn.Enemy)
 				{
-                    _battleEnemy.StartTurn();
 					tookLastTurn = TookLastTurn.Enemy;
 					currentTurn = CurrentTurn.Enemy;
+					_battleEnemy.StartTurn();
 				}
 				else if(tookLastTurn != TookLastTurn.Player)
 				{
-					_battlePlayer.StartTurn();
 					tookLastTurn = TookLastTurn.Player;
 					currentTurn = CurrentTurn.Player;
+					_battlePlayer.StartTurn();
 				}
 		    }
 		}
 		else
 		{
-			
+			GD.Print("invalid turn");
 		}
 	}
 
