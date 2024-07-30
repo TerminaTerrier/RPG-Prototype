@@ -24,6 +24,16 @@ public partial class BattleGUI : Control
 			i++;
 		}
 	}
+
+	public void SkipTurn()
+	{
+		if(TurnManager.currentTurn == TurnManager.CurrentTurn.Player)
+		{
+            eventBus.EmitSignal(EventBus.SignalName.PlayerTurnEnded);
+		}
+
+		eventBus.EmitSignal(EventBus.SignalName.TurnSkipped);
+	}
     
 	public void UnloadGUI()
 	{

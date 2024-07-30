@@ -29,6 +29,7 @@ public partial class TurnManager : Node
 	{
         _eventBus = GetNode<EventBus>("/root/EventBus");
 		_eventBus.TurnEnded += ManageTurn;
+		_eventBus.TurnSkipped += ManageTurn;
 	}
 	public void SetBattleProperties(BattlePlayer battlePlayer, BattleEnemy battleEnemy, Stats playerStats, Stats enemyStats)
 	{
