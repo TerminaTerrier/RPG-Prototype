@@ -18,11 +18,15 @@ public partial class UILoader : CanvasLayer
         AddUIElement(_sceneData.BattleGUI, "BattleGUI");
         AddUIElement(_sceneData.DialoguePlayer, "DialoguePlayer"); 
         AddUIElement(_sceneData.BattleHUD, "BattleHUD"); 
+        AddUIElement(_sceneData.Inventory, "Inventory");
 
         eventBus.GameStarted += () => 
         {
             RemoveChild((Node)elements["StartScreen"]);
             LoadUIElement("DialoguePlayer");
+            LoadUIElement("Inventory");
+            
+
         };
 
 		eventBus.StartBattle += (Stats enemyStats, Stats playerStats) => 
@@ -37,6 +41,7 @@ public partial class UILoader : CanvasLayer
             LoadUIElement("BattleGUI"); 
             var battleGUI = (BattleGUI)elements["BattleGUI"];
             battleGUI.SetActionMenuText(moveset);
+            battleGUI.inventory = (GridContainer)elements["Inventory"];
         };
 
         eventBus.PlayerTurnEnded += () =>

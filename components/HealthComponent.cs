@@ -12,6 +12,7 @@ public partial class HealthComponent : Node2D
     public override void _Ready()
     {
         eventBus = GetNode<EventBus>("/root/EventBus");
+		eventBus.HealthItemUsed += CalculateHealth;
     }
 	
     public void CalculateHealth(int healthUpdate)

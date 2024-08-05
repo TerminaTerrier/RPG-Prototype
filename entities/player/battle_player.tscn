@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://blgpk5il3fahb"]
+[gd_scene load_steps=10 format=3 uid="uid://blgpk5il3fahb"]
 
 [ext_resource type="Script" path="res://entities/player/BattlePlayer.cs" id="1_aljo4"]
 [ext_resource type="Resource" uid="uid://ckgpqx306jwjh" path="res://resources/stats/BaseStats.tres" id="2_7js6t"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://cg4p2cq2jnl5e" path="res://components/damage_component.tscn" id="4_qxj7n"]
 [ext_resource type="PackedScene" uid="uid://cmknxnkgmwblx" path="res://components/status_handler.tscn" id="5_fts6n"]
 [ext_resource type="PackedScene" uid="uid://dhkeasjjv1f11" path="res://components/special_point_component.tscn" id="6_02do0"]
+[ext_resource type="PackedScene" uid="uid://dejejuw75ce4n" path="res://components/inventory_component.tscn" id="7_5l20r"]
+[ext_resource type="Resource" uid="uid://b2lnnm0sjr1k1" path="res://resources/inventory/PlayerInventory.tres" id="8_uby5j"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xe28o"]
 
@@ -33,3 +35,6 @@ parentEntityName = "Player"
 [node name="DamageComponent" parent="." instance=ExtResource("4_qxj7n")]
 
 [node name="StatusHandler" parent="." instance=ExtResource("5_fts6n")]
+
+[node name="InventoryComponent" parent="." instance=ExtResource("7_5l20r")]
+PlayerInventory = ExtResource("8_uby5j")

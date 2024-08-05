@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4dds13pqr1cw"]
+
+[ext_resource type="Script" path="res://scenes/items/SPItemWorldIcon.cs" id="1_oi5p1"]
+[ext_resource type="Texture2D" uid="uid://ckr8kqcb0yhui" path="res://assets/items/spitem.png" id="2_cn53c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2dnaq"]
+
+[node name="SPItemWorldIcon" type="Node2D"]
+script = ExtResource("1_oi5p1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_cn53c")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_2dnaq")
+
+[connection signal="body_entered" from="Area2D" to="." method="OnBodyEntered"]

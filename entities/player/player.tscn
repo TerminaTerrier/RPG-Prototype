@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cyvkhehj31xp5"]
+[gd_scene load_steps=13 format=3 uid="uid://cyvkhehj31xp5"]
 
 [ext_resource type="Script" path="res://entities/player/Player.cs" id="1_fsyaj"]
 [ext_resource type="PackedScene" uid="uid://duf16hyc5j5ok" path="res://components/character_controller.tscn" id="2_5ohw0"]
@@ -7,7 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://cj61p2pt0xi67" path="res://components/velocity_component.tscn" id="3_pp30o"]
 [ext_resource type="PackedScene" uid="uid://btqt0sdgf8ygs" path="res://components/inspect_area.tscn" id="4_x516y"]
 [ext_resource type="PackedScene" uid="uid://3a5s6ds1pqbd" path="res://components/HealthComponent.tscn" id="5_r05pt"]
+[ext_resource type="PackedScene" uid="uid://dejejuw75ce4n" path="res://components/inventory_component.tscn" id="8_mf4ak"]
 [ext_resource type="PackedScene" uid="uid://dhkeasjjv1f11" path="res://components/special_point_component.tscn" id="8_vfbqr"]
+[ext_resource type="Resource" uid="uid://b2lnnm0sjr1k1" path="res://resources/inventory/PlayerInventory.tres" id="9_cf86d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4pdow"]
 
@@ -45,6 +47,9 @@ speed = 90
 
 [node name="HealthComponent" parent="." instance=ExtResource("5_r05pt")]
 parentEntityName = "Player"
+
+[node name="InventoryComponent" parent="." instance=ExtResource("8_mf4ak")]
+PlayerInventory = ExtResource("9_cf86d")
 
 [node name="SpecialPointComponent" parent="." instance=ExtResource("8_vfbqr")]
 parentEntityName = "Player"

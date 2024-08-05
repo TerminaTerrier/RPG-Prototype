@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="SceneData" load_steps=6 format=3 uid="uid://diiec2t5hy6xb"]
+[gd_resource type="Resource" script_class="SceneData" load_steps=7 format=3 uid="uid://diiec2t5hy6xb"]
 
 [ext_resource type="PackedScene" uid="uid://uj58vf5m2yx0" path="res://UI/battle/battle_gui.tscn" id="1_rfqas"]
 [ext_resource type="Script" path="res://resources/common/SceneData.cs" id="1_vpat1"]
 [ext_resource type="PackedScene" uid="uid://b7mwy4uhjumwp" path="res://UI/battle/battle_hud.tscn" id="2_6rt1k"]
 [ext_resource type="PackedScene" uid="uid://bedc5yovfgr40" path="res://UI/dialogue_player.tscn" id="3_bilm5"]
 [ext_resource type="PackedScene" uid="uid://clmwkrei142f5" path="res://UI/start_screen.tscn" id="3_d7n5a"]
+[ext_resource type="PackedScene" uid="uid://dule8jshedm7u" path="res://UI/inventory.tscn" id="4_rk52c"]
 
 [resource]
 script = ExtResource("1_vpat1")
@@ -12,3 +13,4 @@ BattleGUI = ExtResource("1_rfqas")
 BattleHUD = ExtResource("2_6rt1k")
 StartScreen = ExtResource("3_d7n5a")
 DialoguePlayer = ExtResource("3_bilm5")
+Inventory = ExtResource("4_rk52c")

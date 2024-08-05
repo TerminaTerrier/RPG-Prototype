@@ -20,7 +20,7 @@ offset_top = 490.0
 offset_right = 819.0
 offset_bottom = 628.0
 
-[node name="Button" type="Button" parent="."]
+[node name="SkipButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = 849.0
 offset_top = 562.0
@@ -28,4 +28,14 @@ offset_right = 915.0
 offset_bottom = 627.0
 text = "Skip"
 
-[connection signal="pressed" from="Button" to="." method="SkipTurn"]
+[node name="ItemButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 849.0
+offset_top = 492.0
+offset_right = 915.0
+offset_bottom = 557.0
+text = "Item
+"
+
+[connection signal="pressed" from="SkipButton" to="." method="SkipTurn"]
+[connection signal="pressed" from="ItemButton" to="." method="OpenInventory"]

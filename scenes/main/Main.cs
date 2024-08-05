@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.IO;
 
 public partial class Main : Node2D
 {
@@ -40,6 +41,8 @@ public partial class Main : Node2D
 	{
 		if(@event.IsActionPressed("ui_cancel"))
 		{
+			var dir = DirAccess.Open("user://");
+			dir.Remove("user://PlayerInventory.tres");
              GetTree().Quit();
 		}
 	}

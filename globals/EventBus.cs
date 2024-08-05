@@ -42,6 +42,13 @@ public partial class EventBus : Node
     public delegate void SPDepletedEventHandler(string entityName);
     [Signal]
     public delegate void SPReplenishedEventHandler();
-   
+    [Signal]
+    public delegate void ItemObtainedEventHandler(int itemType);
+    [Signal]
+    public delegate void ItemSelectedEventHandler(int slotNum);
+    [Signal]
+    public delegate void HealthItemUsedEventHandler(int healthUpdate);
+    [Signal]
+    public delegate void SPItemUsedEventHandler(int spUpdate);
      
 }

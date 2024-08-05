@@ -12,7 +12,7 @@ public partial class SpecialPointComponent : Node
 	public override void _Ready()
 	{
 		eventBus = GetNode<EventBus>("/root/EventBus");
-		
+		eventBus.SPItemUsed += CalculateSP;
 	}
 
 	public void CalculateSP(int spUpdate)
