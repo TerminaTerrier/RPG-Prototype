@@ -48,6 +48,8 @@ public partial class Player : CharacterBody2D, IControllable, ITransition
 		spComponent.SetMaxSP(playerStats.maxSP);
 		spComponent.SetSP(playerStats.maxSP);
 
+		//GD.Print("PLAYER MAX HEALTH IS :" + healthComponent.CurrentHealth);
+
 		
 		
 

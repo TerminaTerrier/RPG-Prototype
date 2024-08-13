@@ -5,8 +5,10 @@ using System;
 [GlobalClass]
 public partial class InstanceStats : Resource
 {
+    [Export]
     public int Health {get;set;}
-    public int SP {get;set;}
+    [Export]
+    public int SP {get; set;}
 
     public InstanceStats()
     {

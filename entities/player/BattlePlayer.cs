@@ -60,7 +60,7 @@ public partial class BattlePlayer : Node2D, IDamageable, IEffectable, IDepletabl
         _eventBus.EmitSignal(EventBus.SignalName.PlayerTurnStarted, Moveset);
 		//GD.Print(healthComponent.CurrentHealth);
 		GD.Print("Current turn check: " + TurnManager.currentTurn);
-        GD.Print(spComponent.CurrentSP);
+        GD.Print("Current SP check: " + spComponent.CurrentSP);
 		statusHandler.CheckStatus();	
 		
 

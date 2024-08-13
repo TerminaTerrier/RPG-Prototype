@@ -26,7 +26,7 @@ public partial class Main : Node2D
 			battleManager.EnemyMoveset = TypeLoader.LoadOpposingMoveset(type);
 
 			sceneLoader.playerStats = TypeLoader.LoadStats(type);
-			sceneLoader.enemyStats = TypeLoader.LoadOpposingStats(type);
+			sceneLoader.enemyStats =  TypeLoader.LoadOpposingStats(type);
 			battleManager._enemyStats = (Stats)TypeLoader.LoadOpposingStats(type);
 			battleManager._playerStats = (Stats)TypeLoader.LoadStats(type);
             
