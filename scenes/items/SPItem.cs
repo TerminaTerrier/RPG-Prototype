@@ -6,12 +6,8 @@ public partial class SPItem : Item
 	[Export]
     public Item itemData;
     EventBus eventBus;
-    public override void _Ready()
-    {
-        eventBus = GetNode<EventBus>("/root/EventBus");
-    }
-
-	public override void Use()
+    
+	public override void Use(EventBus eventBus)
     {
         eventBus.EmitSignal(EventBus.SignalName.SPItemUsed, 3);
     }

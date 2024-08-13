@@ -23,10 +23,19 @@ public partial class BattlePlayer : Node2D, IDamageable, IEffectable, IDepletabl
     public override void _Ready()
 	{
 		_eventBus = GetNode<EventBus>("/root/EventBus");
+
+		GD.Print("Battle Player ready? " + IsInsideTree());
         
+		PlayersInstanceStats = ResourceLoader.Load<InstanceStats>("user://InstanceData.tres");
+		spComponent.SetSP(PlayersInstanceStats.SP);
+		healthComponent.SetHealth(PlayersInstanceStats.Health);
+
+		GD.Print("Battle player health is: " + PlayersInstanceStats.Health);
+
+		
 		
 		Timer timer = new();
-		AddChild(timer);
+		CallDeferred("add_child", timer);
 
 		_eventBus.SPDepleted += (string parentEntityName) =>
 		{
@@ -46,7 +55,8 @@ public partial class BattlePlayer : Node2D, IDamageable, IEffectable, IDepletabl
 
 	public void StartTurn()
 	{
-		GD.Print(Moveset is null);
+		GD.Print("Is Moveset null? " + Moveset);
+		GD.Print(_eventBus is null);
         _eventBus.EmitSignal(EventBus.SignalName.PlayerTurnStarted, Moveset);
 		//GD.Print(healthComponent.CurrentHealth);
 		GD.Print("Current turn check: " + TurnManager.currentTurn);
@@ -73,34 +83,25 @@ public partial class BattlePlayer : Node2D, IDamageable, IEffectable, IDepletabl
 			case "Earth":
 			{
 				damageAffinity = IDamageable.DamageAffinity.Earth;
+				Moveset = ResourceLoader.Load<Moveset>("res://resources/moves/earth/EarthMoveset.tres");
 				break;
 			}
 			case "Wood":
 			{
 				damageAffinity = IDamageable.DamageAffinity.Wood;
+				Moveset = ResourceLoader.Load<Moveset>("res://resources/moves/wood/WoodMoveset.tres");
 				break;
 			}
 			case "Metal":
 			{
 				damageAffinity = IDamageable.DamageAffinity.Metal;
+				Moveset = ResourceLoader.Load<Moveset>("res://resources/moves/metal/MetalMoveset.tres");
 				break;
 			}
 		}
 	}
     
-	public void SetPlayerInstanceValues(InstanceStats instanceStats)
-	{
-		PlayersInstanceStats = instanceStats;
-		healthComponent.SetHealth(PlayersInstanceStats.Health);
-		//GD.Print(PlayersInstanceStats.SP);
-		spComponent.SetSP(PlayersInstanceStats.SP);
-		//GD.Print(PlayersInstanceStats.Health);
-	}
-
-	public void SetMoveset(Moveset moveset)
-	{
-		Moveset = moveset;
-	}
+	
 	
 
     public void TakeDamage(int damage)

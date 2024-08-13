@@ -3,5 +3,5 @@ using System;
 
 public interface IConsumable 
 {
-    void Use();
+    void Use(EventBus eventBus);
 }

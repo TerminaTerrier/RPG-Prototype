@@ -2,17 +2,17 @@ using Godot;
 using System;
 using System.Linq;
 
-public partial class InventoryManager : Node
+public partial class InventoryManager : Node2D
 {
 	[Export]
 	public Inventory PlayerInventory;
     int filledInventorySlotCounter;
+	int emptySlotIndex;
 	EventBus eventBus;
 
     public override void _EnterTree()
     {
         eventBus = GetNode<EventBus>("/root/EventBus");
-		eventBus.ItemObtained += AddInventoryItems;
 		eventBus.ItemSelected += UseItem;
     }
     public override void _Ready()
@@ -27,12 +27,20 @@ public partial class InventoryManager : Node
 		}
 		else
 		{
+			GD.Print("inventory manager is ready!");
 		    PlayerInventory.inventory = new Item[4];
 		}
+
+       // filledInventorySlotCounter = -1;
     }
 
-    public void AddInventoryItems(int itemType)
+    public void AddInventoryItems(Area2D area2D)
 	{
+		string itemID = (string)area2D.GetMeta("ItemType");
+		
+
+		GD.Print("this is item type: " + itemID);
+
 		foreach(var item in PlayerInventory.inventory)
 		{
 			GD.Print("iterating...");
@@ -44,20 +52,24 @@ public partial class InventoryManager : Node
 			if(item != null)
 			{
 				filledInventorySlotCounter++;
+				emptySlotIndex = filledInventorySlotCounter;
 			}
-			GD.Print("Filled Slots: " + filledInventorySlotCounter);
-		}
-
-		if(itemType == 1)
-		{   
-            PlayerInventory.inventory[filledInventorySlotCounter] = new HealthItem();
-			GD.Print(PlayerInventory.inventory[filledInventorySlotCounter]);
 			
 		}
-		else if(itemType == 2)
+        
+		filledInventorySlotCounter = 0;
+		GD.Print("Filled Slots: " + filledInventorySlotCounter);
+
+		if(itemID == "Health")
 		{
-		    PlayerInventory.inventory[filledInventorySlotCounter] = new SPItem();
-			GD.Print(PlayerInventory.inventory[filledInventorySlotCounter]);
+			GD.Print("item is health!");
+            PlayerInventory.inventory[emptySlotIndex] = new HealthItem();
+			eventBus.EmitSignal(EventBus.SignalName.ItemObtained, "Health");
+		}
+		else if(itemID == "SpecialPoint")
+		{
+			PlayerInventory.inventory[emptySlotIndex] = new SPItem();
+			eventBus.EmitSignal(EventBus.SignalName.ItemObtained, "SpecialPoint");
 		}
 
 		ResourceSaver.Save(PlayerInventory, "user://PlayerInventory.tres");
@@ -67,8 +79,8 @@ public partial class InventoryManager : Node
 	{
 		GD.Print(slotNum);
 		GD.Print(PlayerInventory.inventory[slotNum]);
-       //PlayerInventory.inventory[slotNum].Use();
-	   //RemoveInventoryItem(slotNum);
+        PlayerInventory.inventory[slotNum].Use(eventBus);
+	    RemoveInventoryItem(slotNum);
 	}
 
 	public void RemoveInventoryItem(int slotNum)
@@ -78,7 +90,6 @@ public partial class InventoryManager : Node
 
     public override void _ExitTree()
     {
-		eventBus.ItemObtained -= AddInventoryItems;
 		eventBus.ItemSelected -= UseItem;
     }
 }

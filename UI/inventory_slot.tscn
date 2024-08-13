@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://brom60ri6jxxs"]
+
+[ext_resource type="Script" path="res://UI/InventorySlot.cs" id="1_6uyq8"]
+
+[node name="InventorySlot" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -829.0
+offset_bottom = -332.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+mouse_filter = 2
+script = ExtResource("1_6uyq8")

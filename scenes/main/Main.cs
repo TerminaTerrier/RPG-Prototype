@@ -18,6 +18,7 @@ public partial class Main : Node2D
     public override void _Ready()
 	{
 		eventBus = GetNode<EventBus>("/root/EventBus");
+
         
 		eventBus.TypeSelected += (string type) =>
 		{
@@ -43,17 +44,18 @@ public partial class Main : Node2D
 		{
 			var dir = DirAccess.Open("user://");
 			dir.Remove("user://PlayerInventory.tres");
-             GetTree().Quit();
+            GetTree().Quit();
 		}
 	}
 
     public void InitializeBattle(Stats enemyStats, Stats playerStats)
 	{
 		var player = sceneLoader.GetNode<Player>("Player");
-		
-		battleManager.SetInstanceValues(player.GetInstanceData());
-		battleManager.BattleStart();
+        
+		player.SaveInstanceData();
 		sceneLoader.UnloadAllScenes();
+		battleManager.BattleStart();
+		
 		
 		
 	}

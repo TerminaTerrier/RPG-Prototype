@@ -3,5 +3,5 @@ using System;
 
 public abstract partial class Item : Node, IConsumable
 {
-    public abstract void Use();
+    public abstract void Use(EventBus eventBus);
 }

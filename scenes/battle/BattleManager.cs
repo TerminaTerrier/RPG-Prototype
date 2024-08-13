@@ -43,15 +43,11 @@ public partial class BattleManager : Node
 		battleEnemy.enemyStats = _enemyStats;
 		battlePlayer.SetStats();
 		battleEnemy.SetStats();
-		AddChild(battlePlayer);
-		AddChild(battleEnemy);
-
-
-		battlePlayer.SetPlayerInstanceValues(playerInstanceData);
-        
 		_actionClient.SetMovesets(PlayerMoveset, EnemyMoveset);
-		battlePlayer.SetMoveset(PlayerMoveset);
-		battleEnemy.SetMoveset(EnemyMoveset);
+		CallDeferred("add_child", battlePlayer);
+		CallDeferred("add_child", battleEnemy);
+        
+
 
 		participants.Add("Player", battlePlayer);
 	    participants.Add("Enemy", battleEnemy);
@@ -60,10 +56,10 @@ public partial class BattleManager : Node
 		_actionClient.possibleTargets = participants;
 		_actionClient.TargetStats = participantsStats;
         
-		_battleCamera.Enabled = true;
+		_battleCamera.SetDeferred("enabled", true);
 		battleStatus = BattleStatus.Active;
 		turnManager.SetBattleProperties(battlePlayer, battleEnemy, _playerStats, _enemyStats);
-		turnManager.ManageTurn();
+		turnManager.CallDeferred("ManageTurn");
 	}
 
 	public void SetInstanceValues(InstanceStats PlayerInstanceData)

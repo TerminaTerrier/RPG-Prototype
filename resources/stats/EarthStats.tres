@@ -5,10 +5,10 @@
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_u5bmx")
-statClassName = "Earth"
+statClassName = ""
 attack = 1
 defense = 3
 speed = 2
 luck = 2
-maxHP = 20
-maxSP = 10
+maxHP = 0
+maxSP = 0

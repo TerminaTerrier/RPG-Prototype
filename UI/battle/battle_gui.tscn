@@ -1,17 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://uj58vf5m2yx0"]
+[gd_scene load_steps=4 format=3 uid="uid://uj58vf5m2yx0"]
 
 [ext_resource type="Script" path="res://UI/battle/BattleGUI.cs" id="1_1kcfy"]
 [ext_resource type="PackedScene" uid="uid://cqararx1et8i8" path="res://UI/battle/action_menu.tscn" id="2_s1njt"]
+[ext_resource type="PackedScene" uid="uid://dule8jshedm7u" path="res://UI/inventory.tscn" id="3_cdgl6"]
 
-[node name="BattleGUI" type="Control" node_paths=PackedStringArray("_actionMenu")]
+[node name="BattleGUI" type="Control" node_paths=PackedStringArray("_actionMenu", "inventory")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_1kcfy")
 _actionMenu = NodePath("ActionMenu")
+inventory = NodePath("Inventory")
 
 [node name="ActionMenu" parent="." instance=ExtResource("2_s1njt")]
 layout_mode = 0
@@ -19,6 +22,13 @@ offset_left = 394.0
 offset_top = 490.0
 offset_right = 819.0
 offset_bottom = 628.0
+
+[node name="Inventory" parent="." instance=ExtResource("3_cdgl6")]
+layout_mode = 1
+offset_left = 535.0
+offset_top = 244.0
+offset_right = -468.0
+offset_bottom = -262.0
 
 [node name="SkipButton" type="Button" parent="."]
 layout_mode = 0

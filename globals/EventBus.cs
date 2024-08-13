@@ -43,7 +43,7 @@ public partial class EventBus : Node
     [Signal]
     public delegate void SPReplenishedEventHandler();
     [Signal]
-    public delegate void ItemObtainedEventHandler(int itemType);
+    public delegate void ItemObtainedEventHandler(string ItemID);
     [Signal]
     public delegate void ItemSelectedEventHandler(int slotNum);
     [Signal]

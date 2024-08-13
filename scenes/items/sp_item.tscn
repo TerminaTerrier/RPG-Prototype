@@ -13,6 +13,9 @@ texture_filter = 1
 texture = ExtResource("2_cn53c")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 17
+collision_mask = 17
+metadata/ItemType = "SpecialPoint"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_2dnaq")

@@ -1,8 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://cyvkhehj31xp5"]
+[gd_scene load_steps=12 format=3 uid="uid://cyvkhehj31xp5"]
 
 [ext_resource type="Script" path="res://entities/player/Player.cs" id="1_fsyaj"]
 [ext_resource type="PackedScene" uid="uid://duf16hyc5j5ok" path="res://components/character_controller.tscn" id="2_5ohw0"]
-[ext_resource type="Resource" uid="uid://ckgpqx306jwjh" path="res://resources/stats/BaseStats.tres" id="2_l180g"]
 [ext_resource type="PackedScene" uid="uid://dx1d20sblmt2g" path="res://components/PlayerCamera.tscn" id="3_1d5s3"]
 [ext_resource type="PackedScene" uid="uid://cj61p2pt0xi67" path="res://components/velocity_component.tscn" id="3_pp30o"]
 [ext_resource type="PackedScene" uid="uid://btqt0sdgf8ygs" path="res://components/inspect_area.tscn" id="4_x516y"]
@@ -12,6 +11,7 @@
 [ext_resource type="Resource" uid="uid://b2lnnm0sjr1k1" path="res://resources/inventory/PlayerInventory.tres" id="9_cf86d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4pdow"]
+radius = 5.0
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_tiqjn"]
 
@@ -20,7 +20,6 @@ z_index = 1
 position = Vector2(1, 0)
 motion_mode = 1
 script = ExtResource("1_fsyaj")
-playerStats = ExtResource("2_l180g")
 characterController = NodePath("CharacterController")
 velocityComponent = NodePath("VelocityComponent")
 inspectArea = NodePath("InspectArea")
@@ -28,27 +27,36 @@ healthComponent = NodePath("HealthComponent")
 spComponent = NodePath("SpecialPointComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+position = Vector2(-1, 0)
 shape = SubResource("CircleShape2D_4pdow")
+debug_color = Color(0.772549, 0.670588, 0, 0.658824)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, 0)
 scale = Vector2(23.75, 21.25)
 texture = SubResource("PlaceholderTexture2D_tiqjn")
 
 [node name="PlayerCamera" parent="." instance=ExtResource("3_1d5s3")]
 
 [node name="CharacterController" parent="." instance=ExtResource("2_5ohw0")]
+position = Vector2(-1, 0)
 
 [node name="VelocityComponent" parent="." instance=ExtResource("3_pp30o")]
+position = Vector2(-1, 0)
 maxXSpeed = 100.0
 maxYSpeed = 100.0
 speed = 90
 
 [node name="InspectArea" parent="." instance=ExtResource("4_x516y")]
+position = Vector2(-1, 0)
 
 [node name="HealthComponent" parent="." instance=ExtResource("5_r05pt")]
+position = Vector2(-1, 0)
 parentEntityName = "Player"
 
 [node name="InventoryComponent" parent="." instance=ExtResource("8_mf4ak")]
+position = Vector2(-1, 0)
 PlayerInventory = ExtResource("9_cf86d")
 
 [node name="SpecialPointComponent" parent="." instance=ExtResource("8_vfbqr")]

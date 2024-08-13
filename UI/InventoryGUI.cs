@@ -1,45 +1,49 @@
 using Godot;
 using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Runtime.ExceptionServices;
 
 public partial class InventoryGUI : GridContainer
 {
 	const int inventorySize = 4;
-	PackedScene healthItem = GD.Load<PackedScene>("res://UI/health_item_inventory_icon.tscn");
-	PackedScene specialPointItem = GD.Load<PackedScene>("res://UI/sp_item_inventory_icon.tscn");
+	Godot.Collections.Array<Node> inventorySlots;
 	int filledSlotCounter;
 	EventBus eventBus;
 	public override void _Ready()
 	{
 		eventBus = GetNode<EventBus>("/root/EventBus");
 		eventBus.ItemObtained += FillSlot;
+
+		inventorySlots = GetChildren();
 	}
 
-	public void FillSlot(int itemType)
+	public void FillSlot(string itemID)
 	{
-        if(itemType == 1 && filledSlotCounter < inventorySize)
+        var slot = SelectSlot();
+
+		GD.Print("filling slot...");
+
+        if(itemID == "Health" && filledSlotCounter < inventorySize)
 		{
-            var hpItem = (TextureButton)healthItem.Instantiate();
-			hpItem.Pressed += () => EmptySlot(filledSlotCounter);
-			AddChild(hpItem);
-			filledSlotCounter++;
+            slot.CreateButton(itemID);
 		}
-		else if(itemType == 2 && filledSlotCounter < inventorySize)
+		else if(itemID == "SpecialPoint" && filledSlotCounter < inventorySize)
 		{
-			var spItem = (TextureButton)specialPointItem.Instantiate();
-			spItem.Pressed += () => EmptySlot(filledSlotCounter);
-			AddChild(spItem);
-			filledSlotCounter++;
+			slot.CreateButton(itemID);
 		}	
 	}
 
-	public void EmptySlot(int slotNum)
+    public InventorySlot SelectSlot()
 	{
-        var item = GetChild<TextureButton>(slotNum - 1);
-		GD.Print("slot is null? " + item is null);
-		GD.Print("emptying slot " + slotNum);
-		item.QueueFree();
-		eventBus.EmitSignal(EventBus.SignalName.ItemSelected, slotNum - 1);
-		filledSlotCounter--;
+        foreach(InventorySlot slot in inventorySlots)
+		{
+			if(slot.IsSlotFilled == false)
+			{
+				return slot;
+			}
+		}
+
+		return null;
 	}
 }

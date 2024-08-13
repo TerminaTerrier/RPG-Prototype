@@ -1,17 +1,94 @@
-[gd_scene load_steps=2 format=3 uid="uid://dule8jshedm7u"]
+[gd_scene load_steps=4 format=3 uid="uid://dule8jshedm7u"]
 
 [ext_resource type="Script" path="res://UI/InventoryGUI.cs" id="1_yae2y"]
+[ext_resource type="PackedScene" uid="uid://brom60ri6jxxs" path="res://UI/inventory_slot.tscn" id="2_0j6da"]
+[ext_resource type="PackedScene" uid="uid://dmxex6sjmhyx5" path="res://UI/inventory_item.tscn" id="3_oaoa6"]
 
 [node name="Inventory" type="GridContainer"]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 491.0
-offset_top = 252.0
-offset_right = -512.0
-offset_bottom = -254.0
+offset_left = 438.0
+offset_top = 127.0
+offset_right = -403.0
+offset_bottom = -251.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 columns = 2
 script = ExtResource("1_yae2y")
+
+[node name="InventorySlot" parent="." node_paths=PackedStringArray("InventoryItemIcon") instance=ExtResource("2_0j6da")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+InventoryItemIcon = NodePath("CenterContainer/InventoryItem")
+
+[node name="CenterContainer" type="CenterContainer" parent="InventorySlot"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 153.0
+offset_bottom = 133.0
+mouse_filter = 2
+
+[node name="InventoryItem" parent="InventorySlot/CenterContainer" instance=ExtResource("3_oaoa6")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../../../InventorySlot2/CenterContainer/InventoryItem")
+focus_neighbor_right = NodePath("../../../InventorySlot2/CenterContainer/InventoryItem")
+focus_neighbor_bottom = NodePath("../../../InventorySlot3/CenterContainer/InventoryItem")
+
+[node name="InventorySlot2" parent="." node_paths=PackedStringArray("InventoryItemIcon") instance=ExtResource("2_0j6da")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+InventoryItemIcon = NodePath("CenterContainer/InventoryItem")
+
+[node name="CenterContainer" type="CenterContainer" parent="InventorySlot2"]
+layout_mode = 0
+offset_right = 153.0
+offset_bottom = 132.0
+mouse_filter = 2
+
+[node name="InventoryItem" parent="InventorySlot2/CenterContainer" instance=ExtResource("3_oaoa6")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../../../InventorySlot/CenterContainer/InventoryItem")
+focus_neighbor_right = NodePath("../../../InventorySlot/CenterContainer/InventoryItem")
+focus_neighbor_bottom = NodePath("../../../InventorySlot4/CenterContainer/InventoryItem")
+
+[node name="InventorySlot3" parent="." node_paths=PackedStringArray("InventoryItemIcon") instance=ExtResource("2_0j6da")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+InventoryItemIcon = NodePath("CenterContainer/InventoryItem")
+
+[node name="CenterContainer" type="CenterContainer" parent="InventorySlot3"]
+layout_mode = 0
+offset_right = 154.0
+offset_bottom = 133.0
+mouse_filter = 2
+
+[node name="InventoryItem" parent="InventorySlot3/CenterContainer" instance=ExtResource("3_oaoa6")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../../../InventorySlot4/CenterContainer/InventoryItem")
+focus_neighbor_top = NodePath("../../../InventorySlot/CenterContainer/InventoryItem")
+focus_neighbor_right = NodePath("../../../InventorySlot4/CenterContainer/InventoryItem")
+
+[node name="InventorySlot4" parent="." node_paths=PackedStringArray("InventoryItemIcon") instance=ExtResource("2_0j6da")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+InventoryItemIcon = NodePath("CenterContainer/InventoryItem")
+
+[node name="CenterContainer" type="CenterContainer" parent="InventorySlot4"]
+layout_mode = 0
+offset_right = 155.0
+offset_bottom = 134.0
+mouse_filter = 2
+
+[node name="InventoryItem" parent="InventorySlot4/CenterContainer" instance=ExtResource("3_oaoa6")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../../../InventorySlot3/CenterContainer/InventoryItem")
+focus_neighbor_top = NodePath("../../../InventorySlot2/CenterContainer/InventoryItem")
+focus_neighbor_right = NodePath("../../../InventorySlot3/CenterContainer/InventoryItem")

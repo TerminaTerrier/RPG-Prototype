@@ -4,3 +4,4 @@
 
 [resource]
 script = ExtResource("1_kvp0r")
+inventory = Array[Node]([null, null, null, null])

@@ -12,7 +12,6 @@ public partial class HealthItemWorldIcon : Node2D
     
     public void OnBodyEntered(Node2D body)
     {
-        eventBus.EmitSignal(EventBus.SignalName.ItemObtained, 1);
-		QueueFree();
+		CallDeferred("queue_free");
 	}
 }

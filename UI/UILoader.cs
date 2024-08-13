@@ -40,7 +40,7 @@ public partial class UILoader : CanvasLayer
         {
             LoadUIElement("BattleGUI"); 
             var battleGUI = (BattleGUI)elements["BattleGUI"];
-            battleGUI.SetActionMenuText(moveset);
+            battleGUI.CallDeferred("SetActionMenuText", moveset);
             battleGUI.inventory = (GridContainer)elements["Inventory"];
         };
 
@@ -59,7 +59,7 @@ public partial class UILoader : CanvasLayer
 
 	public void LoadUIElement(string key)
     {
-        AddChild((Node)elements[key]);
+        CallDeferred("add_child", (Node)elements[key]);
     }
 
     public void UnloadAllUIElements()

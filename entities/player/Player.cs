@@ -47,6 +47,8 @@ public partial class Player : CharacterBody2D, IControllable, ITransition
 		healthComponent.SetHealth(playerStats.maxHP);
 		spComponent.SetMaxSP(playerStats.maxSP);
 		spComponent.SetSP(playerStats.maxSP);
+
+		
 		
 
 	    CurrentState = StandingState;
@@ -90,10 +92,11 @@ public partial class Player : CharacterBody2D, IControllable, ITransition
 		CurrentState.Update(this, (float)delta);
 	}
     
-	public InstanceStats GetInstanceData()
+	public void SaveInstanceData()
 	{
        var newInstanceData = new InstanceStats(healthComponent.CurrentHealth, spComponent.CurrentSP);
 
-	   return newInstanceData;
+	   ResourceSaver.Save(newInstanceData, "user://InstanceData.tres");
+	   GD.Print("Player health is: " + newInstanceData.Health);
 	}
 }

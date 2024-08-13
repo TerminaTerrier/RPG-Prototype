@@ -38,16 +38,19 @@ public partial class BattleEnemy : Node2D, IDamageable, IEffectable, IDepletable
 			case "Earth":
 			{
 				damageAffinity = IDamageable.DamageAffinity.Earth;
+				enemyMoveset = ResourceLoader.Load<Moveset>("res://resources/moves/earth/EarthMoveset.tres");
 				break;
 			}
 			case "Wood":
 			{
 				damageAffinity = IDamageable.DamageAffinity.Wood;
+				enemyMoveset = ResourceLoader.Load<Moveset>("res://resources/moves/wood/WoodMoveset.tres");
 				break;
 			}
 			case "Metal":
 			{
 				damageAffinity = IDamageable.DamageAffinity.Metal;
+				enemyMoveset = ResourceLoader.Load<Moveset>("res://resources/moves/metal/MetalMoveset.tres");
 				break;
 			}
 		}
@@ -74,11 +77,6 @@ public partial class BattleEnemy : Node2D, IDamageable, IEffectable, IDepletable
         //eventBus.EmitSignal(EventBus.SignalName.TurnEnded);
 	}
 
-	public void SetMoveset(Moveset moveset)
-	{
-		enemyMoveset = moveset;
-	}
-	
 	
     public void TakeDamage(int damage)
     {

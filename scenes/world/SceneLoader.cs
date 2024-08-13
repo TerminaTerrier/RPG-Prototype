@@ -42,7 +42,7 @@ public partial class SceneLoader : Node
 
     public void LoadScene(string key)
     {
-       AddChild((Node)scenes[key]);
+         CallDeferred("add_child", (Node)scenes[key]);
     }
 
     public void SetScenePosition(string key, Vector2 position)
@@ -53,7 +53,7 @@ public partial class SceneLoader : Node
 
     public void LoadSubScene(Node child, string key)
     {
-        child.AddChild((Node)scenes[key]);
+        child.CallDeferred("add_child", (Node)scenes[key]);
     }
 
     public void UnloadScene(string key)

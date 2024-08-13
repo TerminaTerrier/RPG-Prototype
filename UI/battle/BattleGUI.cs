@@ -16,13 +16,15 @@ public partial class BattleGUI : Control
 		//eventBus.PlayerTurnEnded += UnloadGUI;
 		eventBus.SPDepleted += (parentEntityName) => DisableActionMenuButtons();
 		eventBus.SPReplenished += EnableActionMenuButtons;
+		GD.Print("hello world");
         
 	}
     
 	public void SetActionMenuText(Moveset moveset)
 	{
 		var i = 0;
-        GD.Print(_actionMenu.ActionMenuButtons[i].Text);
+		var isNull = _actionMenu.ActionMenuButtons is null;
+        GD.Print("Is ActionMenuButtons null? " + isNull);
 		foreach(var move in moveset.moveset)
 		{
 			_actionMenu.ActionMenuButtons[i].Text = moveset.moveset[i].MoveText;
@@ -44,8 +46,9 @@ public partial class BattleGUI : Control
 	{
 		//var inventoryScene = GD.Load<PackedScene>("res://UI/inventory.tscn");
 		//inventory = inventoryScene.Instantiate();
+		//inventory.SetDeferred("visible", true);
 		inventory.Visible = true;
-		inventory.GetChild<TextureButton>(0).GrabFocus();
+		inventory.GetChild<Panel>(0).GetChild<CenterContainer>(0).GetChild<TextureButton>(0).GrabFocus();
 		//inventory.FocusMode = Control.FocusMode.All;
 		//inventory.GrabFocus();
 	}
@@ -57,7 +60,7 @@ public partial class BattleGUI : Control
     
 	public void UnloadGUI()
 	{
-		QueueFree();
+		CallDeferred("queue_free");
 	}
     
 	public void DisableActionMenuButtons()
