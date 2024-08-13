@@ -42,19 +42,33 @@ public partial class BattleGUI : Control
 		eventBus.EmitSignal(EventBus.SignalName.TurnSkipped);
 	}
 
-	public void OpenInventory()
+    public override void _Input(InputEvent @event)
+    {
+        if(@event.IsActionPressed("Exit"))
+		{
+			CloseInventory();
+		}
+    }
+
+    public void OpenInventory()
 	{
 		//var inventoryScene = GD.Load<PackedScene>("res://UI/inventory.tscn");
 		//inventory = inventoryScene.Instantiate();
 		//inventory.SetDeferred("visible", true);
 		inventory.Visible = true;
 		inventory.GetChild<Panel>(0).GetChild<CenterContainer>(0).GetChild<TextureButton>(0).GrabFocus();
+		DisableActionMenuButtons();
+		GetChild<Button>(2).Disabled = true;
+		GetChild<Button>(3).Disabled = true;
 		//inventory.FocusMode = Control.FocusMode.All;
 		//inventory.GrabFocus();
 	}
 
 	public void CloseInventory()
 	{
+		EnableActionMenuButtons();
+	    GetChild<Button>(2).Disabled = false;
+		GetChild<Button>(3).Disabled = false;
         inventory.Visible = false;
 	}
     
