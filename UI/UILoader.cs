@@ -39,6 +39,8 @@ public partial class UILoader : CanvasLayer
         eventBus.PlayerTurnStarted += (Moveset moveset) => 
         {
             LoadUIElement("BattleGUI"); 
+            
+
             var battleGUI = (BattleGUI)elements["BattleGUI"];
             battleGUI.CallDeferred("SetActionMenuText", moveset);
             battleGUI.inventory = (GridContainer)elements["Inventory"];

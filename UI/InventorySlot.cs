@@ -51,6 +51,8 @@ public partial class InventorySlot : Panel
 	{
         
         eventBus.EmitSignal(EventBus.SignalName.ItemSelected, GetIndex());
+		eventBus.EmitSignal(EventBus.SignalName.PlayerTurnEnded);
+		eventBus.EmitSignal(EventBus.SignalName.TurnEnded);
 		InventoryItemIcon.TextureNormal = null;
 		InventoryItemIcon.TextureFocused = null;
 		IsSlotFilled = false;
