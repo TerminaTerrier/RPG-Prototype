@@ -80,8 +80,13 @@ public partial class BattleManager : Node
 	}
 
 	
-	public void BattleStop()
+	public void EndBattle()
 	{
-        
+        battleStatus = BattleStatus.Finished;
+		battlePlayer.QueueFree();
+		battleEnemy.QueueFree();
+		_battleCamera.Enabled = false;
+		participants.Clear();
+		participantsStats.Clear();
 	}
 }

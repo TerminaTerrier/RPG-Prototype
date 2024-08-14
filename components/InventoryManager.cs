@@ -14,6 +14,7 @@ public partial class InventoryManager : Node2D
     {
         eventBus = GetNode<EventBus>("/root/EventBus");
 		eventBus.ItemSelected += UseItem;
+		eventBus.PlayerDeath += ClearInventory;
     }
     public override void _Ready()
     {
@@ -30,9 +31,13 @@ public partial class InventoryManager : Node2D
 			GD.Print("inventory manager is ready!");
 		    PlayerInventory.inventory = new Item[4];
 		}
-
-       // filledInventorySlotCounter = -1;
     }
+
+	public void ClearInventory()
+	{
+		Array.Clear(PlayerInventory.inventory);
+		ResourceSaver.Save(PlayerInventory, "user://PlayerInventory.tres");
+	}
 
     public void AddInventoryItems(Area2D area2D)
 	{

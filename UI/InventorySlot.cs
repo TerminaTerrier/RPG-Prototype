@@ -11,6 +11,7 @@ public partial class InventorySlot : Panel
 	public override void _Ready()
 	{
         eventBus = GetNode<EventBus>("/root/EventBus");
+		eventBus.PlayerDeath += ResetInventorySlot;
 	}
 
 	public void CreateButton(string itemID)
@@ -54,6 +55,13 @@ public partial class InventorySlot : Panel
 		eventBus.EmitSignal(EventBus.SignalName.PlayerTurnEnded);
 		eventBus.EmitSignal(EventBus.SignalName.TurnEnded);
 		InventoryItemIcon.TextureNormal = null;
+		InventoryItemIcon.TextureFocused = null;
+		IsSlotFilled = false;
+	}
+
+	public void ResetInventorySlot()
+	{
+        InventoryItemIcon.TextureNormal = null;
 		InventoryItemIcon.TextureFocused = null;
 		IsSlotFilled = false;
 	}

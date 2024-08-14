@@ -36,6 +36,8 @@ public partial class Main : Node2D
 		};
 
 		eventBus.StartBattle += InitializeBattle;
+        eventBus.EnemyDeath += UnloadBattle;
+		eventBus.PlayerDeath += GameOver;
 	}
 
 	public override void _Input(InputEvent @event)
@@ -55,9 +57,18 @@ public partial class Main : Node2D
 		player.SaveInstanceData();
 		sceneLoader.UnloadAllScenes();
 		battleManager.BattleStart();
-		
-		
-		
+	}
+
+	public void UnloadBattle()
+	{
+        battleManager.EndBattle();
+		sceneLoader.LoadInitialScene();
+	}
+
+	public void GameOver()
+	{
+		battleManager.EndBattle();
+		sceneLoader.LoadInitialScene();
 	}
 
 	

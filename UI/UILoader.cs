@@ -51,6 +51,20 @@ public partial class UILoader : CanvasLayer
             var battleGUI = (BattleGUI)elements["BattleGUI"];
             RemoveChild(battleGUI);
         };
+
+        eventBus.EnemyDeath += () => 
+        {
+            //RemoveChild((Node)elements["BattleGUI"]);
+            RemoveChild((Node)elements["BattleHUD"]);
+        
+        };
+
+		eventBus.PlayerDeath += () =>
+        {
+           // RemoveChild((Node)elements["BattleGUI"]);
+            RemoveChild((Node)elements["BattleHUD"]);
+            
+        };
     }
 
 	public void AddUIElement(PackedScene scene, string key)

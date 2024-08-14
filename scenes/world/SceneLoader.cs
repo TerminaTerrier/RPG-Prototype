@@ -15,22 +15,24 @@ public partial class SceneLoader : Node
     {
         eventBus = GetNode<EventBus>("/root/EventBus");
         
-        eventBus.GameStarted += () =>
-        {
-            AddScene(_sceneData.Player, "Player");
-            var player = (Player)scenes["Player"];
-            player.playerStats = (Stats)playerStats;
-            SetScenePosition("Player", new Vector2(150,150));
-            LoadScene("Player");
- 
-            AddScene(_sceneData.TestArea1, "TestArea1");
-            LoadScene("TestArea1");
+        eventBus.GameStarted += LoadInitialScene;
+    }
 
-            AddScene(_sceneData.Enemy, "Enemy");
-            var enemy = (Enemy)scenes["Enemy"];
-            enemy.enemyStats = (Stats)enemyStats;
-            LoadScene("Enemy");
-        };
+    public void LoadInitialScene()
+    {
+        AddScene(_sceneData.Player, "Player");
+        var player = (Player)scenes["Player"];
+        player.playerStats = (Stats)playerStats;
+        SetScenePosition("Player", new Vector2(150,150));
+        LoadScene("Player");
+ 
+        AddScene(_sceneData.TestArea1, "TestArea1");
+        LoadScene("TestArea1");
+
+        AddScene(_sceneData.Enemy, "Enemy");
+        var enemy = (Enemy)scenes["Enemy"];
+        enemy.enemyStats = (Stats)enemyStats;
+        LoadScene("Enemy");
     }
 
     public void AddScene(PackedScene scene, string key)
@@ -69,5 +71,7 @@ public partial class SceneLoader : Node
         {
             CallDeferred("remove_child", child);
         }
+
+        scenes.Clear();
     }
 }
