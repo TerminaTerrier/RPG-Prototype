@@ -20,8 +20,6 @@ public partial class InventorySlot : Panel
 
         if(itemID == "Health")
 		{
-			InventoryItemIcon.Pressed += () => OnButtonPressed();
-
 			InventoryItemIcon.Disabled = false;
 
 			var healthSprite = GD.Load<Texture2D>("res://assets/items/hpitem.png");
@@ -33,8 +31,6 @@ public partial class InventorySlot : Panel
 		}
 		else if(itemID == "SpecialPoint")
 		{
-			InventoryItemIcon.Pressed += () => OnButtonPressed();
-
 			InventoryItemIcon.Disabled = false;
 
 			var spSprite = GD.Load<Texture2D>("res://assets/items/spitem.png");

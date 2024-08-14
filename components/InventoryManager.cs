@@ -6,6 +6,8 @@ public partial class InventoryManager : Node2D
 {
 	[Export]
 	public Inventory PlayerInventory;
+	[Export]
+	Area2D itemDetectArea;
     int filledInventorySlotCounter;
 	int emptySlotIndex;
 	EventBus eventBus;
@@ -43,12 +45,13 @@ public partial class InventoryManager : Node2D
 	{
 		string itemID = (string)area2D.GetMeta("ItemType");
 		
-
 		GD.Print("this is item type: " + itemID);
-
+        
+		
 		foreach(var item in PlayerInventory.inventory)
 		{
 			GD.Print("iterating...");
+
 		    if(item == null)
 		    {  
 				break;
@@ -58,25 +61,38 @@ public partial class InventoryManager : Node2D
 			{
 				filledInventorySlotCounter++;
 				emptySlotIndex = filledInventorySlotCounter;
+				GD.Print("Filled Slots: " + filledInventorySlotCounter);
 			}
-			
 		}
         
 		filledInventorySlotCounter = 0;
-		GD.Print("Filled Slots: " + filledInventorySlotCounter);
 
-		if(itemID == "Health")
+		if(emptySlotIndex == 4)
 		{
-			GD.Print("item is health!");
-            PlayerInventory.inventory[emptySlotIndex] = new HealthItem();
-			eventBus.EmitSignal(EventBus.SignalName.ItemObtained, "Health");
+			itemDetectArea.SetDeferred("monitoring", false);
+			itemDetectArea.SetDeferred("monitorable", false);
 		}
-		else if(itemID == "SpecialPoint")
+		else
 		{
-			PlayerInventory.inventory[emptySlotIndex] = new SPItem();
-			eventBus.EmitSignal(EventBus.SignalName.ItemObtained, "SpecialPoint");
+			itemDetectArea.SetDeferred("monitoring", true);
+			itemDetectArea.SetDeferred("monitorable", true);
 		}
-
+		    
+        if(emptySlotIndex < 4)
+		{
+		    if(itemID == "Health")
+		    {
+			    GD.Print("item is health!");
+                PlayerInventory.inventory[emptySlotIndex] = new HealthItem();
+			    eventBus.EmitSignal(EventBus.SignalName.ItemObtained, "Health");
+			}
+			else if(itemID == "SpecialPoint")
+		    {
+			    PlayerInventory.inventory[emptySlotIndex] = new SPItem();
+			    eventBus.EmitSignal(EventBus.SignalName.ItemObtained, "SpecialPoint");
+		    }
+		}
+		
 		ResourceSaver.Save(PlayerInventory, "user://PlayerInventory.tres");
 	}
     

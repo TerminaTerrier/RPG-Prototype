@@ -92,3 +92,8 @@ layout_mode = 2
 focus_neighbor_left = NodePath("../../../InventorySlot3/CenterContainer/InventoryItem")
 focus_neighbor_top = NodePath("../../../InventorySlot2/CenterContainer/InventoryItem")
 focus_neighbor_right = NodePath("../../../InventorySlot3/CenterContainer/InventoryItem")
+
+[connection signal="pressed" from="InventorySlot/CenterContainer/InventoryItem" to="InventorySlot" method="OnButtonPressed"]
+[connection signal="pressed" from="InventorySlot2/CenterContainer/InventoryItem" to="InventorySlot2" method="OnButtonPressed"]
+[connection signal="pressed" from="InventorySlot3/CenterContainer/InventoryItem" to="InventorySlot3" method="OnButtonPressed"]
+[connection signal="pressed" from="InventorySlot4/CenterContainer/InventoryItem" to="InventorySlot4" method="OnButtonPressed"]
