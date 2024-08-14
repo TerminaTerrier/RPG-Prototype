@@ -20,4 +20,4 @@ metadata/ItemType = "SpecialPoint"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_2dnaq")
 
-[connection signal="body_entered" from="Area2D" to="." method="OnBodyEntered"]
+[connection signal="area_entered" from="Area2D" to="." method="OnBodyEntered"]
