@@ -30,6 +30,20 @@ public partial class TurnManager : Node
         _eventBus = GetNode<EventBus>("/root/EventBus");
 		_eventBus.TurnEnded += ManageTurn;
 		_eventBus.TurnSkipped += ManageTurn;
+
+		_eventBus.PlayerDeath += () =>
+		{
+          tookLastTurn = TookLastTurn.None;
+			currentTurn = CurrentTurn.Undefined;
+		};
+
+		_eventBus.EnemyDeath += () =>
+		{
+           tookLastTurn = TookLastTurn.None;
+			currentTurn = CurrentTurn.Undefined;
+		};
+
+
 	}
 	public void SetBattleProperties(BattlePlayer battlePlayer, BattleEnemy battleEnemy, Stats playerStats, Stats enemyStats)
 	{
