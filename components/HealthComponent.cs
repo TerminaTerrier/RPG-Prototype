@@ -30,6 +30,8 @@ public partial class HealthComponent : Node2D
 			if(CurrentHealth <= 0)
 		    {
 			    GD.Print("death");
+				
+				CurrentHealth = 0;
                 
 				if(parentEntityName == "Player")
 			    {
@@ -40,7 +42,7 @@ public partial class HealthComponent : Node2D
 				    eventBus.EmitSignal(EventBus.SignalName.EnemyDeath);
 			    }
 
-			    CurrentHealth = 0;
+			    
 		    }
 
 			if(parentEntityName == "Player")

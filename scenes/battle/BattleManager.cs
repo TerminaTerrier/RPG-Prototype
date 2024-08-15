@@ -27,7 +27,6 @@ public partial class BattleManager : Node
 		Active,
 		Finished
 	}
-
 	
 	public override void _Ready()
 	{
@@ -47,8 +46,6 @@ public partial class BattleManager : Node
 		CallDeferred("add_child", battlePlayer);
 		CallDeferred("add_child", battleEnemy);
         
-
-
 		participants.Add("Player", battlePlayer);
 	    participants.Add("Enemy", battleEnemy);
 		participantsStats.Add("PlayerStats", _playerStats);
@@ -62,27 +59,10 @@ public partial class BattleManager : Node
 		turnManager.CallDeferred("ManageTurn");
 	}
 
-	public void SetInstanceValues(InstanceStats PlayerInstanceData)
-	{
-        playerInstanceData = PlayerInstanceData;
-	}
-
-	public void ChangeBattleStatus()
-	{
-		if(battleStatus == BattleStatus.Active)
-		{
-			battleStatus = BattleStatus.Finished;
-		}
-		else if(battleStatus == BattleStatus.Finished)
-		{
-			battleStatus = BattleStatus.Active;
-		}
-	}
-
-	
 	public void EndBattle()
 	{
         battleStatus = BattleStatus.Finished;
+		battlePlayer.SaveInstanceData();
 		battlePlayer.QueueFree();
 		battleEnemy.QueueFree();
 		_battleCamera.Enabled = false;

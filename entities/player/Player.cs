@@ -23,18 +23,40 @@ public partial class Player : CharacterBody2D, IControllable, ITransition
 	IState InspectingState;
 	EventBus eventBus;
 
-	
-
     public override void _EnterTree()
     {
+		var dir = DirAccess.Open("user://");
+		
+		if(dir.FileExists("user://BattlePlayerInstanceData.tres"))
+		{ 
+			GD.Print("Instance Data found. Setting values.");
+			GD.Print(ResourceLoader.Load<InstanceStats>("user://BattlePlayerInstanceData.tres") is null);
+            var instanceData = ResourceLoader.Load<InstanceStats>("user://BattlePlayerInstanceData.tres");
+
+		    if(instanceData.Health == 0 | instanceData.SP == 0)
+		    {
+			    spComponent.SetSP(spComponent.MaxSP);
+			    healthComponent.SetHealth(healthComponent.MaxHealth);
+		    }
+		    else
+		    {
+			    healthComponent.SetHealth(instanceData.Health);
+			    spComponent.SetSP(instanceData.SP);	
+		    }
+
+			GD.Print("INSTANCE DATA HEALTH: " + instanceData.Health);
+		    GD.Print("INSTANCE DATA SP: " + instanceData.SP);
+		}
+
+		GD.Print("HEALTH ON ENTERING TREE: " + healthComponent.CurrentHealth);
+
 		inspectArea.Monitorable = true;
     }
+
     public override void _Ready()
     {
-		
         eventBus = GetNode<EventBus>("/root/EventBus");
 		
-
 		StandingState = new StandingState(this, velocityComponent);
 		WalkingState = new WalkingState(this, velocityComponent);
 		InspectingState = new InspectingState(this, inspectArea);
@@ -42,22 +64,23 @@ public partial class Player : CharacterBody2D, IControllable, ITransition
 		states.Add("StandingState", StandingState);
 		states.Add("WalkingState", WalkingState);
 		states.Add("InspectingState", InspectingState);
-        
+ 
 		healthComponent.SetMaxHealth(playerStats.maxHP);
-		healthComponent.SetHealth(playerStats.maxHP);
 		spComponent.SetMaxSP(playerStats.maxSP);
-		spComponent.SetSP(playerStats.maxSP);
-
-		//GD.Print("PLAYER MAX HEALTH IS :" + healthComponent.CurrentHealth);
-
 		
+		var dir = DirAccess.Open("user://");
 		
+		if(!dir.FileExists("user://BattlePlayerInstanceData.tres"))
+		{
+			GD.Print("No InstanceData. Setting default values");
+		    healthComponent.SetHealth(playerStats.maxHP);
+		    spComponent.SetSP(playerStats.maxSP);
+		}
 
 	    CurrentState = StandingState;
 		characterController.ControlObjectState = CurrentState;
 		inspectArea._inspectableObject = (IInspectable)CurrentState;
-        CurrentState.Enter(this);
-		
+        CurrentState.Enter(this);		
     }
 
     public void InputHandler(ICommand command)
@@ -96,9 +119,9 @@ public partial class Player : CharacterBody2D, IControllable, ITransition
     
 	public void SaveInstanceData()
 	{
-       var newInstanceData = new InstanceStats(healthComponent.CurrentHealth, spComponent.CurrentSP);
+       InstanceStats newInstanceData = new InstanceStats(healthComponent.CurrentHealth, spComponent.CurrentSP);
 
-	   ResourceSaver.Save(newInstanceData, "user://InstanceData.tres");
+	   ResourceSaver.Save(newInstanceData, "user://PlayerInstanceData.tres");
 	   GD.Print("Player health is: " + newInstanceData.Health);
 	}
 }

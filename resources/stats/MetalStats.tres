@@ -6,9 +6,9 @@
 resource_local_to_scene = true
 script = ExtResource("1_nej5y")
 statClassName = "Metal"
-attack = 3
+attack = 2
 defense = 3
 speed = 1
 luck = 1
-maxHP = 10
+maxHP = 30
 maxSP = 15

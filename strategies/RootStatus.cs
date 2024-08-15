@@ -28,7 +28,7 @@ public partial class RootStatus : Node, IStatus
 			GD.Print("Effecting...");
 			var battlePlayer = (BattlePlayer)Target;
 			battlePlayer.ActionLocked = true;
-			battlePlayer.EndTurn();
+			//battlePlayer.EndTurn();
 		}
     }
 

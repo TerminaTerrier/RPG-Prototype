@@ -6,14 +6,11 @@ using System;
 public partial class InstanceStats : Resource
 {
     [Export]
-    public int Health {get;set;}
+    public int Health { get; set; }
     [Export]
-    public int SP {get; set;}
+    public int SP { get; set; }
 
-    public InstanceStats()
-    {
-         //C# doesn't define a parameterless constructor if you define one with parameters so I have to make one myself.
-    }
+    public InstanceStats() : this(0, 0) {}
 
     public InstanceStats(int health, int sp)
     {

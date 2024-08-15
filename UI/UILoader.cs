@@ -61,7 +61,7 @@ public partial class UILoader : CanvasLayer
 
 		eventBus.PlayerDeath += () =>
         {
-            RemoveChild((Node)elements["BattleGUI"]);
+            //RemoveChild((Node)elements["BattleGUI"]);
             RemoveChild((Node)elements["BattleHUD"]);
             
         };

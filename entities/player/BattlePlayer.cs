@@ -26,10 +26,19 @@ public partial class BattlePlayer : Node2D, IDamageable, IEffectable, IDepletabl
 
 		GD.Print("Battle Player ready? " + IsInsideTree());
         
-		PlayersInstanceStats = ResourceLoader.Load<InstanceStats>("user://InstanceData.tres");
-		spComponent.SetSP(PlayersInstanceStats.SP);
-		healthComponent.SetHealth(PlayersInstanceStats.Health);
+		PlayersInstanceStats = ResourceLoader.Load<InstanceStats>("user://PlayerInstanceData.tres");
 
+		if(PlayersInstanceStats.Health == 0 | PlayersInstanceStats.SP == 0)
+		{
+			spComponent.SetSP(spComponent.MaxSP);
+			healthComponent.SetHealth(healthComponent.MaxHealth);
+		}
+		else
+		{
+			spComponent.SetSP(PlayersInstanceStats.SP);
+			healthComponent.SetHealth(PlayersInstanceStats.Health);
+		}
+		
 		GD.Print("Battle player health is: " + PlayersInstanceStats.Health);
 
 		
@@ -67,12 +76,6 @@ public partial class BattlePlayer : Node2D, IDamageable, IEffectable, IDepletabl
 		
 	}
 
-	public void EndTurn()
-	{
-		//ActionLocked = false;
-       // _eventBus.EmitSignal(EventBus.SignalName.TurnEnded);
-	}
-
 	public void SetStats()
 	{
 		healthComponent.SetMaxHealth(playerStats.maxHP);
@@ -101,9 +104,6 @@ public partial class BattlePlayer : Node2D, IDamageable, IEffectable, IDepletabl
 		}
 	}
     
-	
-	
-
     public void TakeDamage(int damage)
     {
         var calculatedDamage = damageComponent.CalculateDamageTaken(damage, playerStats);
@@ -121,4 +121,12 @@ public partial class BattlePlayer : Node2D, IDamageable, IEffectable, IDepletabl
     {
         spComponent.CalculateSP(-cost);
     }
+
+    public void SaveInstanceData()
+    {
+	   InstanceStats newInstanceData = new InstanceStats(healthComponent.CurrentHealth, spComponent.CurrentSP);
+	   //GD.Print(ResourceSaver.Save(newInstanceData, "user://InstanceData.tres"));
+	   ResourceSaver.Save(newInstanceData, "user://BattlePlayerInstanceData.tres");
+	   GD.Print("Battle Player health is: " + newInstanceData.Health);
+	}
 }

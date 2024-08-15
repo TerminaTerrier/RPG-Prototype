@@ -10,5 +10,5 @@ attack = 1
 defense = 3
 speed = 2
 luck = 2
-maxHP = 0
-maxSP = 0
+maxHP = 30
+maxSP = 15
