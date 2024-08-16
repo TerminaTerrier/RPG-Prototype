@@ -71,6 +71,7 @@ public partial class BattleGUI : Control
 	    GetChild<Button>(2).Disabled = false;
 		GetChild<Button>(3).Disabled = false;
         inventory.Visible = false;
+		_actionMenu.ActionMenuButtons[0].GrabFocus();
 	}
     
 	public void UnloadGUI()
