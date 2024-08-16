@@ -7,10 +7,11 @@
 [ext_resource type="Resource" uid="uid://diiec2t5hy6xb" path="res://resources/common/UISceneData.tres" id="3_yaw1d"]
 [ext_resource type="PackedScene" uid="uid://ghjpune6tddj" path="res://scenes/battle/battle_room.tscn" id="6_nkeoh"]
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("sceneLoader", "battleManager")]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("sceneLoader", "battleManager", "uiLoader")]
 script = ExtResource("1_aet3y")
 sceneLoader = NodePath("World")
 battleManager = NodePath("BattleRoom")
+uiLoader = NodePath("UILayer")
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 script = ExtResource("2_6fxpc")

@@ -7,6 +7,8 @@ public partial class UILoader : CanvasLayer
 	SceneData _sceneData;
 	 Godot.Collections.Dictionary<string, GodotObject> elements = new Godot.Collections.Dictionary<string, GodotObject>();
 	EventBus eventBus;
+    public Stats playerStats;
+    public Stats enemyStats;
 
     public override void _Ready()
     {
@@ -19,18 +21,22 @@ public partial class UILoader : CanvasLayer
         AddUIElement(_sceneData.DialoguePlayer, "DialoguePlayer"); 
         AddUIElement(_sceneData.BattleHUD, "BattleHUD"); 
         AddUIElement(_sceneData.Inventory, "Inventory");
+        AddUIElement(_sceneData.WorldHUD, "WorldHUD");
 
         eventBus.GameStarted += () => 
         {
             RemoveChild((Node)elements["StartScreen"]);
             LoadUIElement("DialoguePlayer");
             LoadUIElement("Inventory");
-            
+            LoadUIElement("WorldHUD");
+            var worldHUD = (WorldHUD)elements["WorldHUD"];     
+            worldHUD.SetMaxValues(playerStats);       
 
         };
 
-		eventBus.StartBattle += (Stats enemyStats, Stats playerStats) => 
+		eventBus.StartBattle += () => 
         { 
+            RemoveChild((Node)elements["WorldHUD"]);
             LoadUIElement("BattleHUD"); 
             var battleHUD = (BattleHUD)elements["BattleHUD"];
             battleHUD.SetMaxValues(enemyStats, playerStats);
@@ -49,6 +55,7 @@ public partial class UILoader : CanvasLayer
         eventBus.PlayerTurnEnded += () =>
         {
             var battleGUI = (BattleGUI)elements["BattleGUI"];
+            battleGUI.CloseInventory();
             RemoveChild(battleGUI);
         };
 
@@ -56,6 +63,8 @@ public partial class UILoader : CanvasLayer
         {
             RemoveChild((Node)elements["BattleGUI"]);
             RemoveChild((Node)elements["BattleHUD"]);
+            LoadUIElement("WorldHUD");
+  
         
         };
 
@@ -63,6 +72,8 @@ public partial class UILoader : CanvasLayer
         {
             //RemoveChild((Node)elements["BattleGUI"]);
             RemoveChild((Node)elements["BattleHUD"]);
+            LoadUIElement("WorldHUD");
+
             
         };
     }

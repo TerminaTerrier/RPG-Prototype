@@ -32,7 +32,7 @@ public partial class Enemy : CharacterBody2D
         if(body.Name == "Player")
 		{
 			var player = (Player)body;
-			eventBus.EmitSignal(EventBus.SignalName.StartBattle, enemyStats, player.playerStats);
+			eventBus.EmitSignal(EventBus.SignalName.StartBattle);
 		}
 	}
 }

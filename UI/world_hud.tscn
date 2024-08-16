@@ -1,9 +1,16 @@
-[gd_scene format=3 uid="uid://cgvmhlen3mfnb"]
+[gd_scene load_steps=3 format=3 uid="uid://b66l4bs7frqob"]
 
-[node name="WorldHUD" type="Control"]
+[ext_resource type="PackedScene" uid="uid://cn4m5tx6i1uok" path="res://UI/battle/vital_hud_element.tscn" id="1_i6q17"]
+[ext_resource type="Script" path="res://UI/WorldHUD.cs" id="1_wjcws"]
+
+[node name="WorldHUD" type="Control" node_paths=PackedStringArray("PlayerVitalElement")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_wjcws")
+PlayerVitalElement = NodePath("PlayerVitalHUDElement")
+
+[node name="PlayerVitalHUDElement" parent="." instance=ExtResource("1_i6q17")]

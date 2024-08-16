@@ -29,5 +29,7 @@ public partial class SceneData : Resource
     public PackedScene DialoguePlayer{ get; set; }
     [Export]
     public PackedScene Inventory{get; set; }
+    [Export]
+    public PackedScene WorldHUD { get; set; }
 
 }

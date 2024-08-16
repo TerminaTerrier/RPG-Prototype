@@ -14,7 +14,6 @@ public partial class BattleGUI : Control
     public override void _Ready()
 	{
 		eventBus = GetNode<EventBus>("/root/EventBus");
-		eventBus.PlayerTurnEnded += CloseInventory;
 		eventBus.SPDepleted += (parentEntityName) => DisableActionMenuButtons();
 		eventBus.SPReplenished += EnableActionMenuButtons;
 		GD.Print("hello world");

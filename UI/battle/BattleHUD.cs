@@ -23,9 +23,23 @@ public partial class BattleHUD : Control
 		EnemyVitalElement.OnHealthUpdate(enemyStats.maxHP);
 		EnemyVitalElement.OnSPUpdate(enemyStats.maxSP);
 		EnemyVitalElement.SetProgressBarMax(enemyStats.maxHP, enemyStats.maxSP);
-		PlayerVitalElement.OnHealthUpdate(playerStats.maxHP);
-		PlayerVitalElement.OnSPUpdate(playerStats.maxSP);
-		PlayerVitalElement.SetProgressBarMax(playerStats.maxHP, playerStats.maxSP);
+        PlayerVitalElement.SetProgressBarMax(playerStats.maxHP, playerStats.maxSP);
+
+	    var dir = DirAccess.Open("user://");
+		
+		if(dir.FileExists("user://PlayerInstanceData.tres"))
+		{
+            var instanceData = ResourceLoader.Load<InstanceStats>("user://PlayerInstanceData.tres");
+		    PlayerVitalElement.OnHealthUpdate(instanceData.Health);
+		    PlayerVitalElement.OnSPUpdate(instanceData.SP);
+		}
+		else
+		{
+			PlayerVitalElement.OnHealthUpdate(playerStats.maxHP);
+			PlayerVitalElement.OnSPUpdate(playerStats.maxSP);
+		}
+
+		GD.Print("BATTLE PLAYER MAX HP IS: " + playerStats.maxHP);
 
 	}
     

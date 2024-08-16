@@ -9,6 +9,8 @@ public partial class Main : Node2D
 	SceneLoader sceneLoader;
 	[Export]
 	BattleManager battleManager;
+	[Export]
+	UILoader uiLoader;
 	EventBus eventBus;
 
     public override void _EnterTree()
@@ -29,6 +31,8 @@ public partial class Main : Node2D
 			sceneLoader.enemyStats =  TypeLoader.LoadOpposingStats(type);
 			battleManager._enemyStats = (Stats)TypeLoader.LoadOpposingStats(type);
 			battleManager._playerStats = (Stats)TypeLoader.LoadStats(type);
+			uiLoader.playerStats = (Stats)TypeLoader.LoadStats(type);
+			uiLoader.enemyStats = (Stats)TypeLoader.LoadOpposingStats(type);
             
 			GD.Print(TypeLoader.LoadMoveset(type) is null);
 
@@ -52,7 +56,7 @@ public partial class Main : Node2D
 		}
 	}
 
-    public void InitializeBattle(Stats enemyStats, Stats playerStats)
+    public void InitializeBattle()
 	{
 		var player = sceneLoader.GetNode<Player>("Player");
         
