@@ -2,13 +2,14 @@
 
 [ext_resource type="Script" path="res://UI/battle/ActionMenu.cs" id="1_owlvr"]
 
-[node name="ActionMenu" type="GridContainer"]
+[node name="ActionMenu" type="GridContainer" node_paths=PackedStringArray("ActionMenuButtons")]
 offset_left = 390.0
 offset_top = 487.0
 offset_right = 815.0
 offset_bottom = 625.0
 columns = 2
 script = ExtResource("1_owlvr")
+ActionMenuButtons = [NodePath("Button"), NodePath("Button2"), NodePath("Button3"), NodePath("Button4")]
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 2

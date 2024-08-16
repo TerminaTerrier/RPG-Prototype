@@ -47,7 +47,7 @@ public partial class Main : Node2D
 			var dir = DirAccess.Open("user://");
 			dir.Remove("user://PlayerInventory.tres");
 			dir.Remove("user://BattlePlayerInstanceData.tres");
-			dir.Remove("user://BattlePlayerInstanceData.tres");
+			dir.Remove("user://PlayerInstanceData.tres");
             GetTree().Quit();
 		}
 	}

@@ -10,7 +10,8 @@ public partial class BattleGUI : Control
 	[Export]
 	public GridContainer inventory;
 	EventBus eventBus;
-	public override void _Ready()
+
+    public override void _Ready()
 	{
 		eventBus = GetNode<EventBus>("/root/EventBus");
 		eventBus.PlayerTurnEnded += CloseInventory;
