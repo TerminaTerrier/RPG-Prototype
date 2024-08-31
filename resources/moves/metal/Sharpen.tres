@@ -9,7 +9,7 @@ script = ExtResource("2_husb5")
 turnLength = 1
 power = 0
 chance = 0.0
-statusFlag = 1
+statusFlag = 0
 statsToModify = Array[int]([1, 0, 3])
 statModifiers = {
 "Attack": 3.0,

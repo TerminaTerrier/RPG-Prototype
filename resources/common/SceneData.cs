@@ -31,5 +31,7 @@ public partial class SceneData : Resource
     public PackedScene Inventory{get; set; }
     [Export]
     public PackedScene WorldHUD { get; set; }
+    [Export]
+    public PackedScene BattleLog { get; set; }
 
 }

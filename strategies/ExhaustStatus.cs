@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 public partial class ExhaustStatus : Node, IStatus
 {
@@ -8,14 +10,17 @@ public partial class ExhaustStatus : Node, IStatus
 	public HealthComponent HealthComponent { get; set; }
     public SpecialPointComponent SpecialPointComponent { get; set; }
 	public Timer Timer { get; set; }
+    public Queue<string> StatusNames { get; set; } = new Queue<string>();
 
-	public ExhaustStatus(int turnLength, StatusData statusData, HealthComponent healthComponent, SpecialPointComponent specialPointComponent, Timer timer)
+    public ExhaustStatus(int turnLength, StatusData statusData, HealthComponent healthComponent, SpecialPointComponent specialPointComponent, Timer timer)
 	{
         TurnLength = turnLength;
 		StatusData = statusData;
 		HealthComponent = healthComponent;
 		SpecialPointComponent = specialPointComponent;
 		Timer = timer;
+
+		StatusNames.Enqueue("Exhaust");
 	}
     public void Effect()
     {

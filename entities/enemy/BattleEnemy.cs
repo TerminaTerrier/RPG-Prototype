@@ -88,7 +88,9 @@ public partial class BattleEnemy : Node2D, IDamageable, IEffectable, IDepletable
 
 	public void ChangeStatus(IStatus status)
 	{
+		GD.Print("Changing enemy status");
         statusHandler.SetStatus(status);
+		statusHandler.CheckStatus();
 	}
 
     public void Deplete(int cost)

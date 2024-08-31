@@ -50,5 +50,7 @@ public partial class EventBus : Node
     public delegate void HealthItemUsedEventHandler(int healthUpdate);
     [Signal]
     public delegate void SPItemUsedEventHandler(int spUpdate);
+    [Signal]
+    public delegate void BattleUpdateEventHandler(string text);
      
 }

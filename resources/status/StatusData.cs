@@ -19,13 +19,14 @@ public partial class StatusData : Resource
 	public enum StatusFlag
     {
         None,
-        Nonspecific,
+        Modifier,
         Rooted,
         Magnetized,
         Sinking
     }
     public enum StatsToModify
     {
+        Unaffected,
         Attack,
         Defense,
         Speed,

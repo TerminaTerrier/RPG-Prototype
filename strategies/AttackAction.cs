@@ -41,7 +41,7 @@ public partial class AttackAction : Node, IAction
                 Targets.targetTwo?.TakeDamage(damage);
                 Targets.targetOne?.TakeDamage(-damage);
             }
-                
+            
             i++;
         }  
     }

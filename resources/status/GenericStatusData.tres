@@ -9,7 +9,7 @@ turnLength = 1
 power = 0
 chance = 0.0
 statusFlag = 1
-statsToModify = Array[int]([1])
+statsToModify = Array[int]([2])
 statModifiers = {
 "Attack": 0.0,
 "Defense": 2.0,

@@ -22,6 +22,7 @@ public partial class UILoader : CanvasLayer
         AddUIElement(_sceneData.BattleHUD, "BattleHUD"); 
         AddUIElement(_sceneData.Inventory, "Inventory");
         AddUIElement(_sceneData.WorldHUD, "WorldHUD");
+        AddUIElement(_sceneData.BattleLog, "BattleLog");
 
         eventBus.GameStarted += () => 
         {
@@ -38,6 +39,7 @@ public partial class UILoader : CanvasLayer
         { 
             RemoveChild((Node)elements["WorldHUD"]);
             LoadUIElement("BattleHUD"); 
+            LoadUIElement("BattleLog");
             var battleHUD = (BattleHUD)elements["BattleHUD"];
             battleHUD.SetMaxValues(enemyStats, playerStats);
         };
@@ -63,6 +65,7 @@ public partial class UILoader : CanvasLayer
         {
             RemoveChild((Node)elements["BattleGUI"]);
             RemoveChild((Node)elements["BattleHUD"]);
+            RemoveChild((Node)elements["BattleLog"]);
             LoadUIElement("WorldHUD");
   
         
@@ -72,6 +75,7 @@ public partial class UILoader : CanvasLayer
         {
             //RemoveChild((Node)elements["BattleGUI"]);
             RemoveChild((Node)elements["BattleHUD"]);
+            RemoveChild((Node)elements["BattleLog"]);
             LoadUIElement("WorldHUD");
 
             

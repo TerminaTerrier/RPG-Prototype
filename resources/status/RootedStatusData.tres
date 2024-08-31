@@ -7,4 +7,6 @@ script = ExtResource("1_jnxly")
 turnLength = 1
 power = 0
 chance = 30.0
-statusFlag = 1
+statusFlag = 2
+statsToModify = null
+statModifiers = null

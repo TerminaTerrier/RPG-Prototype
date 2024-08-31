@@ -35,10 +35,12 @@ public partial class ActionClient : Node
 		if(TurnManager.currentTurn == TurnManager.CurrentTurn.Player)
 		{
 		    _moveData = PlayerMoveset.moveset[moveNum];
+			eventBus.EmitSignal(EventBus.SignalName.BattleUpdate, "Player uses " + _moveData.MoveText + "!");
 		}
 		else if(TurnManager.currentTurn == TurnManager.CurrentTurn.Enemy)
 		{
             _moveData = EnemyMoveset.moveset[moveNum];
+			eventBus.EmitSignal(EventBus.SignalName.BattleUpdate, "Enemy uses " + _moveData.MoveText + "!");
 		}
 
 		(Node2D target1, Node2D target2)targets = targetRetriever.GetTarget(_moveData.target, possibleTargets);

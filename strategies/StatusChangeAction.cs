@@ -19,34 +19,42 @@ public partial class StatusChangeAction : Node, IAction
  
     public void Enact()
     {
+        GD.Print("ENACTING STATUS CHANGE");
        switch (Move.status.statusFlag)
        {
             case StatusData.StatusFlag.None:
             {
                 break;
             } 
-            case StatusData.StatusFlag.Nonspecific:
+            case StatusData.StatusFlag.Modifier:
             {
-                if(Move.target == Move.Target.Self)
+                
+                if(Targets.targetOne is not null)
                 {
-                   Targets.targetOne?.ChangeStatus(new StatModifier(Move, ActorStats, Targets.targetOne));
+                    GD.Print("Applying Modifier to Target One");
+                    Targets.targetOne.ChangeStatus(new StatModifier(Move, ActorStats, Targets.targetOne));
                 }
-                else if(Move.target == Move.Target.Enemy)
+                else
                 {
-                    Targets.targetTwo?.ChangeStatus(new StatModifier(Move, ActorStats, Targets.targetTwo));
+                    GD.Print("Applying Modifier to Target Two");
+                    Targets.targetTwo.ChangeStatus(new StatModifier(Move, ActorStats, Targets.targetTwo));
                 }
+    
                 break;
             }
             case StatusData.StatusFlag.Rooted:
             {
-                if(Move.target == Move.Target.Self)
+                GD.Print("Apply Rooted...");
+
+                if(Targets.targetOne is not null)
                 {
-                    Targets.targetOne?.ChangeStatus(new StatModifier(Move, ActorStats, Targets.targetOne));
+                    Targets.targetOne.ChangeStatus(new RootStatus(Move.status, ActorStats, Targets.targetOne));
                 }
-                else if(Move.target == Move.Target.Enemy)
+                else
                 {
-                    Targets.targetTwo?.ChangeStatus(new RootStatus(Move.status, ActorStats, Targets.targetTwo));
+                    Targets.targetTwo.ChangeStatus(new RootStatus(Move.status, ActorStats, Targets.targetTwo));
                 }
+
                 break;
             }
        }

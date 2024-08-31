@@ -57,6 +57,7 @@ public partial class BattleManager : Node
 		battleStatus = BattleStatus.Active;
 		turnManager.SetBattleProperties(battlePlayer, battleEnemy, _playerStats, _enemyStats);
 		turnManager.CallDeferred("ManageTurn");
+		
 	}
 
 	public void EndBattle()

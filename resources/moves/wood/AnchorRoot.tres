@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_cfxam")
 MoveText = "Anchor Root"
-moveTypes = Array[int]([2])
+moveTypes = Array[int]([1])
 target = 2
 moveAffinity = 1
 BaseStrength = 0
