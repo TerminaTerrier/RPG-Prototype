@@ -17,7 +17,7 @@ public partial class StatModifier : Node, IStatus
 		Target = target;
 		TurnLength = MoveData.status.turnLength;
 	}
-  
+   
     public void Effect()
     {
 		var i = 0;
@@ -62,5 +62,19 @@ public partial class StatModifier : Node, IStatus
 				i++;
 		}
 		
+		switch(TargetStats.statClassName)
+		{
+			case "Wood":
+			    ResourceSaver.Save(TargetStats, "res://resources/stats/WoodStats.tres");
+			break;
+
+			case "Earth":
+			    ResourceSaver.Save(TargetStats, "res://resources/stats/EarthStats.tres");
+			break;
+
+			case "Metal":
+			    ResourceSaver.Save(TargetStats, "res://resources/stats/MetalStats.tres");
+			break;
+		}
     }
 }

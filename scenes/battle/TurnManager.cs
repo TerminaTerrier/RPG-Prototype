@@ -62,7 +62,7 @@ public partial class TurnManager : Node
 	    if(BattleManager.battleStatus == BattleManager.BattleStatus.Active)
 		{
             if(_playerStats.speed > _enemyStats.speed)
-		    {
+		    { 
                 if(tookLastTurn != TookLastTurn.Player)
 				{
 					GD.Print("It is the player's turn");

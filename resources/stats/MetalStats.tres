@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://resources/stats/Stats.cs" id="1_nej5y"]
 
 [resource]
-resource_local_to_scene = true
 script = ExtResource("1_nej5y")
 statClassName = "Metal"
 attack = 2

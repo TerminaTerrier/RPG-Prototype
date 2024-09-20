@@ -21,7 +21,7 @@ statModifiers = {
 [resource]
 script = ExtResource("1_ahupu")
 MoveText = "Crystalize"
-moveTypes = Array[int]([2])
+moveTypes = Array[int]([1])
 target = 1
 moveAffinity = 1
 BaseStrength = 0
