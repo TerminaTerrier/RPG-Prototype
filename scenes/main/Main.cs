@@ -34,7 +34,11 @@ public partial class Main : Node2D
 			uiLoader.playerStats = (Stats)TypeLoader.LoadStats(type);
 			uiLoader.enemyStats = (Stats)TypeLoader.LoadOpposingStats(type);
             
+			GD.Print("Is moveset null?");
 			GD.Print(TypeLoader.LoadMoveset(type) is null);
+
+			GD.Print("Are stats null?");
+			GD.Print(TypeLoader.LoadStats(type) is null);
 
 			eventBus.EmitSignal(EventBus.SignalName.GameStarted);
 		};

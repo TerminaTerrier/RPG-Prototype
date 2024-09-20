@@ -22,8 +22,16 @@ public partial class ActionClient : Node
 
 	public void SetMovesets(Moveset moveset1, Moveset moveset2)
 	{
-		PlayerMoveset = moveset1;
-		EnemyMoveset = moveset2;
+		if(TurnManager.currentTurn == TurnManager.CurrentTurn.Player )
+		{
+		    PlayerMoveset = moveset1;
+		    EnemyMoveset = moveset2;
+		}
+		else
+		{
+		    PlayerMoveset = moveset2;
+			EnemyMoveset = moveset1;
+		}
 	}
     
 	public void DetermineAction(int moveNum)

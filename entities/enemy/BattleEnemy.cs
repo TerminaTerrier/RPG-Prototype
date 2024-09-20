@@ -60,6 +60,9 @@ public partial class BattleEnemy : Node2D, IDamageable, IEffectable, IDepletable
 	{
        GD.Print("It's my turn!");
 	   var moveNum = enemyAI.PickMove(enemyMoveset, healthComponent.CurrentHealth);
+
+	   	GD.Print("Is Enemy Moveset null? ");
+		GD.Print(enemyMoveset is null);
        
 	   Timer timer = new Timer();
 	   AddChild(timer);

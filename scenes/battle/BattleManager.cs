@@ -40,9 +40,12 @@ public partial class BattleManager : Node
 		battleEnemy = (BattleEnemy)_sceneData.BattleEnemy.Instantiate();
 		battlePlayer.playerStats = _playerStats;
 		battleEnemy.enemyStats = _enemyStats;
+		bool isNull = _playerStats is null;
+		GD.Print("Are player stats null in battle manager?");
+		GD.Print(isNull);
 		battlePlayer.SetStats();
 		battleEnemy.SetStats();
-		_actionClient.SetMovesets(PlayerMoveset, EnemyMoveset);
+		_actionClient.SetMovesets(PlayerMoveset, EnemyMoveset); 
 		CallDeferred("add_child", battlePlayer);
 		CallDeferred("add_child", battleEnemy);
         

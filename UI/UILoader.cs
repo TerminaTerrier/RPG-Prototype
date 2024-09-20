@@ -44,15 +44,7 @@ public partial class UILoader : CanvasLayer
             battleHUD.SetMaxValues(enemyStats, playerStats);
         };
 
-        eventBus.PlayerTurnStarted += (Moveset moveset) => 
-        {
-            LoadUIElement("BattleGUI"); 
-            
-
-            var battleGUI = (BattleGUI)elements["BattleGUI"];
-            battleGUI.CallDeferred("SetActionMenuText", moveset);
-            battleGUI.inventory = (GridContainer)elements["Inventory"];
-        };
+        eventBus.PlayerTurnStarted += LoadBattleGUI;
 
         eventBus.PlayerTurnEnded += () =>
         {
@@ -80,6 +72,19 @@ public partial class UILoader : CanvasLayer
 
             
         };
+    }
+
+    public void LoadBattleGUI(Moveset moveset)
+    {
+        LoadUIElement("BattleGUI"); 
+        
+        bool isMovesetNull = moveset is null;
+        GD.Print("Is moveset null while loading Battle GUI?");
+        GD.Print(isMovesetNull);
+
+        var battleGUI = (BattleGUI)elements["BattleGUI"];
+        battleGUI.CallDeferred("SetActionMenuText", moveset);
+        battleGUI.inventory = (GridContainer)elements["Inventory"];
     }
 
 	public void AddUIElement(PackedScene scene, string key)

@@ -64,8 +64,8 @@ public partial class BattlePlayer : Node2D, IDamageable, IEffectable, IDepletabl
 
 	public void StartTurn()
 	{
-		GD.Print("Is Moveset null? " + Moveset);
-		GD.Print(_eventBus is null);
+		GD.Print("Is Moveset null? ");
+		GD.Print(Moveset is null);
         _eventBus.EmitSignal(EventBus.SignalName.PlayerTurnStarted, Moveset);
 		//GD.Print(healthComponent.CurrentHealth);
 		GD.Print("Current turn check: " + TurnManager.currentTurn);
@@ -74,13 +74,14 @@ public partial class BattlePlayer : Node2D, IDamageable, IEffectable, IDepletabl
 		
 
 		
-	}
+	} 
 
 	public void SetStats()
 	{
 		healthComponent.SetMaxHealth(playerStats.maxHP);
 		spComponent.SetMaxSP(playerStats.maxSP);
-
+        GD.Print("Setting player moveset...");
+		GD.Print(playerStats.statClassName);
 		switch(playerStats.statClassName)
 		{
 			case "Earth":

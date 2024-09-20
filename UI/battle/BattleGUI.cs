@@ -13,7 +13,7 @@ public partial class BattleGUI : Control
 
     public override void _Ready()
 	{
-		eventBus = GetNode<EventBus>("/root/EventBus");
+		eventBus = GetNode<EventBus>("/root/EventBus"); 
 		eventBus.SPDepleted += (parentEntityName) => DisableActionMenuButtons();
 		eventBus.SPReplenished += EnableActionMenuButtons;
 		GD.Print("hello world");
@@ -23,8 +23,8 @@ public partial class BattleGUI : Control
 	public void SetActionMenuText(Moveset moveset)
 	{
 		var i = 0;
-		var isNull = _actionMenu.ActionMenuButtons is null;
-        GD.Print("Is ActionMenuButtons null? " + isNull);
+		var isNull = moveset is null;
+        GD.Print("Is Moveset null? " + isNull);
 		foreach(var move in moveset.moveset)
 		{
 			_actionMenu.ActionMenuButtons[i].Text = moveset.moveset[i].MoveText;
