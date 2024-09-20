@@ -20,7 +20,7 @@ public partial class StatusHandler : Node
 	}
 
     public void CheckStatus()
-	{
+	{ 
 		if(Status != null)
 		{
 			GD.Print("Checking status...");

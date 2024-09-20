@@ -6,7 +6,7 @@
 script = ExtResource("1_lkgxx")
 statClassName = "Wood"
 attack = 1
-defense = 4
+defense = 2
 speed = 3
 luck = 2
 maxHP = 10

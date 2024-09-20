@@ -12,6 +12,9 @@ public partial class Main : Node2D
 	[Export]
 	UILoader uiLoader;
 	EventBus eventBus;
+	Stats woodStatsBase;
+	Stats metalStatsBase;
+	Stats earthStatsBase;
 
     public override void _EnterTree()
     {
@@ -20,7 +23,10 @@ public partial class Main : Node2D
     public override void _Ready()
 	{
 		eventBus = GetNode<EventBus>("/root/EventBus");
-
+        
+		woodStatsBase = (Stats)TypeLoader.LoadStats("Wood");
+		earthStatsBase = (Stats)TypeLoader.LoadStats("Earth");
+		metalStatsBase = (Stats)TypeLoader.LoadStats("Metal");
         
 		eventBus.TypeSelected += (string type) =>
 		{
@@ -56,6 +62,9 @@ public partial class Main : Node2D
 			dir.Remove("user://PlayerInventory.tres");
 			dir.Remove("user://BattlePlayerInstanceData.tres");
 			dir.Remove("user://PlayerInstanceData.tres");
+			ResourceSaver.Save(woodStatsBase, "res://resources/stats/WoodStats.tres");
+			ResourceSaver.Save(earthStatsBase, "res://resources/stats/EarthStats.tres");
+			ResourceSaver.Save(metalStatsBase, "res://resources/stats/MetalStats.tres");
             GetTree().Quit();
 		}
 	}

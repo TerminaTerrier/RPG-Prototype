@@ -23,7 +23,7 @@ public partial class StatusChangeAction : Node, IAction
        switch (Move.status.statusFlag)
        {
             case StatusData.StatusFlag.None:
-            {
+            { 
                 break;
             } 
             case StatusData.StatusFlag.Modifier:
